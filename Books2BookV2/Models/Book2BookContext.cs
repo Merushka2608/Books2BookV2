@@ -1,21 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
+using Books2BookV2.Data;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace Books2Book.Models
 {
-    public partial class Book2BookContext : DbContext
+
+   // public partial class ApplicationDbContext : IdentityDbContext<ApplicationUser>
+    public partial class Book2BookContext : IdentityDbContext<IdentityUser>
     {
-        public Book2BookContext()
+        public Book2BookContext(DbContextOptions options) : base(options)
         {
-        }
 
-        public Book2BookContext(DbContextOptions<Book2BookContext> options)
-            : base(options)
-        {
         }
-
         public virtual DbSet<TblAccount> TblAccounts { get; set; } = null!;
         public virtual DbSet<TblAuthor> TblAuthors { get; set; } = null!;
         public virtual DbSet<TblBook> TblBooks { get; set; } = null!;
@@ -23,17 +23,10 @@ namespace Books2Book.Models
         public virtual DbSet<TblPublisher> TblPublishers { get; set; } = null!;
         public virtual DbSet<TblUser> TblUsers { get; set; } = null!;
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (!optionsBuilder.IsConfigured)
-            {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Server=VIDUR\\MSSQLSERVER01;Database=Book2Book;Trusted_Connection=True;");
-            }
-        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<TblAccount>(entity =>
             {
                 entity.HasKey(e => e.AccountId);
