@@ -415,6 +415,7 @@ namespace Books2BookV2.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("UserId", "RoleId");
+                    b.HasNoKey();
 
                     b.HasIndex("RoleId");
 

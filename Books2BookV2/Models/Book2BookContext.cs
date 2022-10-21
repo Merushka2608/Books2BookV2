@@ -9,7 +9,7 @@ using Books2BookV2.Data;
 
 namespace Books2BookV2.Models
 {
-    public partial class Book2BookContext : IdentityDbContext<ApplicationUser>
+    public partial class Book2BookContext : DbContext
 
     {
         public Book2BookContext()
@@ -113,10 +113,9 @@ namespace Books2BookV2.Models
                     .HasConstraintName("FK_tblUsers_tblAccount");
             });
 
-         //   base.OnModelCreating(modelBuilder);
+
 
             OnModelCreatingPartial(modelBuilder);
-            base.OnModelCreating(modelBuilder);
 
         }
 
