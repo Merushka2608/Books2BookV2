@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Books2BookV2.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Books2Book.Models;
 
-namespace Books2Book.Controllers
+namespace Books2BookV2.Controllers
 {
     public class TblAuthorsController : Controller
     {
@@ -21,9 +21,7 @@ namespace Books2Book.Controllers
         // GET: TblAuthors
         public async Task<IActionResult> Index()
         {
-              return _context.TblAuthors != null ? 
-                          View(await _context.TblAuthors.ToListAsync()) :
-                          Problem("Entity set 'Book2BookContext.TblAuthors'  is null.");
+            return View(await _context.TblAuthors.ToListAsync());
         }
 
         // GET: TblAuthors/Details/5
@@ -149,14 +147,14 @@ namespace Books2Book.Controllers
             {
                 _context.TblAuthors.Remove(tblAuthor);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool TblAuthorExists(int id)
         {
-          return (_context.TblAuthors?.Any(e => e.AuthorId == id)).GetValueOrDefault();
+            return _context.TblAuthors.Any(e => e.AuthorId == id);
         }
     }
 }

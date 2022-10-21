@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Books2BookV2.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Books2Book.Models;
 
-namespace Books2Book.Controllers
+namespace Books2BookV2.Controllers
 {
     public class TblBooksController : Controller
     {
@@ -21,9 +21,7 @@ namespace Books2Book.Controllers
         // GET: TblBooks
         public async Task<IActionResult> Index()
         {
-              return _context.TblBooks != null ? 
-                          View(await _context.TblBooks.ToListAsync()) :
-                          Problem("Entity set 'Book2BookContext.TblBooks'  is null.");
+            return View(await _context.TblBooks.ToListAsync());
         }
 
         // GET: TblBooks/Details/5
@@ -55,7 +53,7 @@ namespace Books2Book.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("BookId,Isbn,Title,Category,InStock,Edition,Pages,Condition,NumberOfTimesBorrowed,Description,AverageRating,DatePublished")] TblBook tblBook)
+        public async Task<IActionResult> Create([Bind("BookId,Isbn,Title,Category,InStock,Edition,Pages,Condition,NumberOfTimesBorrowed,Description,AverageRating,DatePublished,AuthorId")] TblBook tblBook)
         {
             if (ModelState.IsValid)
             {
@@ -87,7 +85,7 @@ namespace Books2Book.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("BookId,Isbn,Title,Category,InStock,Edition,Pages,Condition,NumberOfTimesBorrowed,Description,AverageRating,DatePublished")] TblBook tblBook)
+        public async Task<IActionResult> Edit(int id, [Bind("BookId,Isbn,Title,Category,InStock,Edition,Pages,Condition,NumberOfTimesBorrowed,Description,AverageRating,DatePublished,AuthorId")] TblBook tblBook)
         {
             if (id != tblBook.BookId)
             {
@@ -149,14 +147,14 @@ namespace Books2Book.Controllers
             {
                 _context.TblBooks.Remove(tblBook);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool TblBookExists(int id)
         {
-          return (_context.TblBooks?.Any(e => e.BookId == id)).GetValueOrDefault();
+            return _context.TblBooks.Any(e => e.BookId == id);
         }
     }
 }

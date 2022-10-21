@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Books2Book.Models;
+using Books2BookV2.Models;
 
-namespace Books2Book.Controllers
+namespace Books2BookV2.Controllers
 {
     public class TblUsersController : Controller
     {
@@ -161,7 +161,7 @@ namespace Books2Book.Controllers
 
         private bool TblUserExists(int id)
         {
-          return (_context.TblUsers?.Any(e => e.UserId == id)).GetValueOrDefault();
+          return _context.TblUsers.Any(e => e.UserId == id);
         }
     }
 }

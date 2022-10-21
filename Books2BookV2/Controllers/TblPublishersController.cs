@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Books2Book.Models;
+using Books2BookV2.Models;
 
-namespace Books2Book.Controllers
+namespace Books2BookV2.Controllers
 {
     public class TblPublishersController : Controller
     {
@@ -21,9 +21,7 @@ namespace Books2Book.Controllers
         // GET: TblPublishers
         public async Task<IActionResult> Index()
         {
-              return _context.TblPublishers != null ? 
-                          View(await _context.TblPublishers.ToListAsync()) :
-                          Problem("Entity set 'Book2BookContext.TblPublishers'  is null.");
+              return View(await _context.TblPublishers.ToListAsync());
         }
 
         // GET: TblPublishers/Details/5
@@ -156,7 +154,7 @@ namespace Books2Book.Controllers
 
         private bool TblPublisherExists(int id)
         {
-          return (_context.TblPublishers?.Any(e => e.PublisherId == id)).GetValueOrDefault();
+          return _context.TblPublishers.Any(e => e.PublisherId == id);
         }
     }
 }

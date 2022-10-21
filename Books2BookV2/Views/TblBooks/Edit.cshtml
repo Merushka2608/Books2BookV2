@@ -1,4 +1,4 @@
-﻿@model Books2Book.Models.TblBook
+﻿@model Books2BookV2.Models.TblBook
 
 @{
     ViewData["Title"] = "Edit";
@@ -67,6 +67,11 @@
                 <label asp-for="DatePublished" class="control-label"></label>
                 <input asp-for="DatePublished" class="form-control" />
                 <span asp-validation-for="DatePublished" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AuthorId" class="control-label"></label>
+                <input asp-for="AuthorId" class="form-control" />
+                <span asp-validation-for="AuthorId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />

@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Books2BookV2.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Books2Book.Models;
 
-namespace Books2Book.Controllers
+namespace Books2BookV2.Controllers
 {
     public class TblAccountsController : Controller
     {
@@ -18,14 +18,10 @@ namespace Books2Book.Controllers
             _context = context;
         }
 
-
-
         // GET: TblAccounts
         public async Task<IActionResult> Index()
         {
-              return _context.TblAccounts != null ? 
-                          View(await _context.TblAccounts.ToListAsync()) :
-                          Problem("Entity set 'Book2BookContext.TblAccounts'  is null.");
+            return View(await _context.TblAccounts.ToListAsync());
         }
 
         // GET: TblAccounts/Details/5
@@ -151,14 +147,14 @@ namespace Books2Book.Controllers
             {
                 _context.TblAccounts.Remove(tblAccount);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool TblAccountExists(int id)
         {
-          return (_context.TblAccounts?.Any(e => e.AccountId == id)).GetValueOrDefault();
+            return _context.TblAccounts.Any(e => e.AccountId == id);
         }
     }
 }

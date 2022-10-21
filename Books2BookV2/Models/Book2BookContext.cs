@@ -2,17 +2,31 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Books2BookV2.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
+using Books2BookV2.Data;
 
-namespace Books2Book.Models
+namespace Books2BookV2.Models
 {
+    public partial class Book2BookContext : IdentityDbContext<ApplicationUser>
 
-   // public partial class ApplicationDbContext : IdentityDbContext<ApplicationUser>
-    public partial class Book2BookContext : IdentityDbContext<IdentityUser>
     {
-        public Book2BookContext(DbContextOptions options) : base(options)
+        public Book2BookContext()
         {
-
         }
+
+        public Book2BookContext(DbContextOptions<Book2BookContext> options)
+            : base(options)
+        {
+        }
+
+        public virtual DbSet<AspNetRole> AspNetRoles { get; set; } = null!;
+        public virtual DbSet<AspNetRoleClaim> AspNetRoleClaims { get; set; } = null!;
+        public virtual DbSet<AspNetUser> AspNetUsers { get; set; } = null!;
+        public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; } = null!;
+        public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; } = null!;
+        public virtual DbSet<AspNetUserToken> AspNetUserTokens { get; set; } = null!;
         public virtual DbSet<TblAccount> TblAccounts { get; set; } = null!;
         public virtual DbSet<TblAuthor> TblAuthors { get; set; } = null!;
         public virtual DbSet<TblBook> TblBooks { get; set; } = null!;
@@ -20,97 +34,70 @@ namespace Books2Book.Models
         public virtual DbSet<TblPublisher> TblPublishers { get; set; } = null!;
         public virtual DbSet<TblUser> TblUsers { get; set; } = null!;
 
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+                optionsBuilder.UseSqlServer("Server=VIDUR\\MSSQLSERVER01;Database=Book2Book;Trusted_Connection=True;");
+            }
+        }
+
+
+        
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<TblAccount>(entity =>
+
+            modelBuilder.Entity<AspNetRole>(entity =>
             {
-                entity.HasKey(e => e.AccountId);
-
-                entity.ToTable("tblAccount");
-
-                entity.Property(e => e.AccountNumber)
-                    .HasMaxLength(20)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Bank)
-                    .HasMaxLength(30)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.UserId)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
+                entity.HasIndex(e => e.NormalizedName, "RoleNameIndex")
+                    .IsUnique()
+                    .HasFilter("([NormalizedName] IS NOT NULL)");
             });
 
-            modelBuilder.Entity<TblAuthor>(entity =>
+            modelBuilder.Entity<AspNetUser>(entity =>
             {
-                entity.HasKey(e => e.AuthorId);
+                entity.HasIndex(e => e.NormalizedUserName, "UserNameIndex")
+                    .IsUnique()
+                    .HasFilter("([NormalizedUserName] IS NOT NULL)");
 
-                entity.ToTable("tblAuthor");
+                entity.HasMany(d => d.Roles)
+                    .WithMany(p => p.Users)
+                    .UsingEntity<Dictionary<string, object>>(
+                        "AspNetUserRole",
+                        l => l.HasOne<AspNetRole>().WithMany().HasForeignKey("RoleId"),
+                        r => r.HasOne<AspNetUser>().WithMany().HasForeignKey("UserId"),
+                        j =>
+                        {
+                            j.HasKey("UserId", "RoleId");
 
-                entity.Property(e => e.AuthorId).HasColumnName("AuthorID");
+                            j.ToTable("AspNetUserRoles");
 
-                entity.Property(e => e.AuthorName)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
+                            j.HasIndex(new[] { "RoleId" }, "IX_AspNetUserRoles_RoleId");
+                        });
+            });
+
+            modelBuilder.Entity<AspNetUserLogin>(entity =>
+            {
+                entity.HasKey(e => new { e.LoginProvider, e.ProviderKey });
+            });
+
+            modelBuilder.Entity<AspNetUserToken>(entity =>
+            {
+                entity.HasKey(e => new { e.UserId, e.LoginProvider, e.Name });
             });
 
             modelBuilder.Entity<TblBook>(entity =>
             {
-                entity.HasKey(e => e.BookId);
+                entity.Property(e => e.BookId).ValueGeneratedNever();
 
-                entity.ToTable("tblBooks");
-
-                entity.Property(e => e.BookId)
-                    .ValueGeneratedNever()
-                    .HasColumnName("BookID");
-
-                entity.Property(e => e.AuthorId)
-                    .ValueGeneratedOnAdd()
-                    .HasColumnName("AuthorID");
-
-                entity.Property(e => e.Category)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Condition)
-                    .HasMaxLength(1)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.DatePublished).HasColumnType("date");
-
-                entity.Property(e => e.Description)
-                    .HasMaxLength(300)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Isbn)
-                    .HasMaxLength(13)
-                    .IsUnicode(false)
-                    .HasColumnName("ISBN");
-
-                entity.Property(e => e.Title)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
+                entity.Property(e => e.AuthorId).ValueGeneratedOnAdd();
             });
 
             modelBuilder.Entity<TblComment>(entity =>
             {
-                entity.HasKey(e => e.CommentId);
-
-                entity.ToTable("tblComments");
-
-                entity.Property(e => e.CommentId).HasColumnName("commentId");
-
-                entity.Property(e => e.BookId).HasColumnName("bookID");
-
-                entity.Property(e => e.Comment)
-                    .HasMaxLength(150)
-                    .IsUnicode(false)
-                    .HasColumnName("comment");
-
-                entity.Property(e => e.UserId).HasColumnName("userID");
-
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.TblComments)
                     .HasForeignKey(d => d.UserId)
@@ -118,62 +105,19 @@ namespace Books2Book.Models
                     .HasConstraintName("FK_tblComments_tblUsers");
             });
 
-            modelBuilder.Entity<TblPublisher>(entity =>
-            {
-                entity.HasKey(e => e.PublisherId);
-
-                entity.ToTable("tblPublisher");
-
-                entity.Property(e => e.PublisherId).HasColumnName("PublisherID");
-
-                entity.Property(e => e.PublisherName)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-            });
-
             modelBuilder.Entity<TblUser>(entity =>
             {
-                entity.HasKey(e => e.UserId);
-
-                entity.ToTable("tblUsers");
-
-                entity.Property(e => e.UserId).ValueGeneratedNever();
-
-                entity.Property(e => e.Address)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Dob)
-                    .HasColumnType("date")
-                    .HasColumnName("DOB");
-
-                entity.Property(e => e.FirstName)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Institution)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.LastName)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Password)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.SubscriptionType)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
                 entity.HasOne(d => d.Account)
                     .WithMany(p => p.TblUsers)
                     .HasForeignKey(d => d.AccountId)
                     .HasConstraintName("FK_tblUsers_tblAccount");
             });
 
+         //   base.OnModelCreating(modelBuilder);
+
             OnModelCreatingPartial(modelBuilder);
+            base.OnModelCreating(modelBuilder);
+
         }
 
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);

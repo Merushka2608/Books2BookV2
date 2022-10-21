@@ -8,8 +8,10 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Text.Encodings.Web;
+using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
+using Books2Book.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -18,6 +20,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
+using Books2BookV2.Models;
+
 
 namespace Books2BookV2.Areas.Identity.Pages.Account
 {
@@ -114,6 +118,23 @@ namespace Books2BookV2.Areas.Identity.Pages.Account
             {
                 var user = CreateUser();
 
+                TblUser tblUser = new TblUser();
+                DateTime dateOfBirth = new DateTime(2001, 12, 04);
+
+                TblUser tbluser = new TblUser();  //name, whatever else  
+                tbluser.FirstName = "Fname";
+                tbluser.LastName = "lName";
+                tbluser.SubscriptionType = "";
+                tbluser.Password = Input.Password;
+                tbluser.Address = Input.Email; //example to load in our obj
+                tbluser.AccountId = 1;
+                tbluser.Institution = "Richfield";
+                tbluser.UserId = default;
+                tbluser.Dob = dateOfBirth;
+              
+
+                Task<int> CreateUserId = CreateUser(tbluser, "https://localhost:7133/TblUsers/Create");
+
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
                 var result = await _userManager.CreateAsync(user, Input.Password);
@@ -176,5 +197,30 @@ namespace Books2BookV2.Areas.Identity.Pages.Account
             }
             return (IUserEmailStore<IdentityUser>)_userStore;
         }
+
+
+        private async Task<int> CreateUser(TblUser tblUser, string controllerURL)
+        {
+            int result = 0;
+            using (HttpClient httpClient = new HttpClient())
+            {
+                try
+                {
+
+                    using (var response = await httpClient.PostAsJsonAsync(controllerURL, tblUser))
+                    {
+                        Stream apiResponse = await response.Content.ReadAsStreamAsync();
+                        result = await JsonSerializer.DeserializeAsync<int>(apiResponse);
+                    }
+                }
+                catch (Exception Ex1)
+                {
+
+                }
+            }
+            return result;
+        }
+
+
     }
 }
