@@ -2,15 +2,10 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Books2BookV2.Models;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.AspNetCore.Identity;
-using Books2BookV2.Data;
 
 namespace Books2BookV2.Models
 {
     public partial class Book2BookContext : DbContext
-
     {
         public Book2BookContext()
         {
@@ -43,13 +38,8 @@ namespace Books2BookV2.Models
             }
         }
 
-
-        
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            base.OnModelCreating(modelBuilder);
-
             modelBuilder.Entity<AspNetRole>(entity =>
             {
                 entity.HasIndex(e => e.NormalizedName, "RoleNameIndex")
@@ -62,21 +52,6 @@ namespace Books2BookV2.Models
                 entity.HasIndex(e => e.NormalizedUserName, "UserNameIndex")
                     .IsUnique()
                     .HasFilter("([NormalizedUserName] IS NOT NULL)");
-
-                entity.HasMany(d => d.Roles)
-                    .WithMany(p => p.Users)
-                    .UsingEntity<Dictionary<string, object>>(
-                        "AspNetUserRole",
-                        l => l.HasOne<AspNetRole>().WithMany().HasForeignKey("RoleId"),
-                        r => r.HasOne<AspNetUser>().WithMany().HasForeignKey("UserId"),
-                        j =>
-                        {
-                            j.HasKey("UserId", "RoleId");
-
-                            j.ToTable("AspNetUserRoles");
-
-                            j.HasIndex(new[] { "RoleId" }, "IX_AspNetUserRoles_RoleId");
-                        });
             });
 
             modelBuilder.Entity<AspNetUserLogin>(entity =>
@@ -113,10 +88,7 @@ namespace Books2BookV2.Models
                     .HasConstraintName("FK_tblUsers_tblAccount");
             });
 
-
-
             OnModelCreatingPartial(modelBuilder);
-
         }
 
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);

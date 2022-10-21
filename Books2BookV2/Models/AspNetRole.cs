@@ -11,7 +11,6 @@ namespace Books2BookV2.Models
         public AspNetRole()
         {
             AspNetRoleClaims = new HashSet<AspNetRoleClaim>();
-            Users = new HashSet<AspNetUser>();
         }
 
         [Key]
@@ -24,9 +23,5 @@ namespace Books2BookV2.Models
 
         [InverseProperty("Role")]
         public virtual ICollection<AspNetRoleClaim> AspNetRoleClaims { get; set; }
-
-        [ForeignKey("RoleId")]
-        [InverseProperty("Roles")]
-        public virtual ICollection<AspNetUser> Users { get; set; }
     }
 }

@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Books2BookV2.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Books2BookV2.Models;
 
 namespace Books2BookV2.Controllers
 {
@@ -21,7 +21,7 @@ namespace Books2BookV2.Controllers
         // GET: TblAccounts
         public async Task<IActionResult> Index()
         {
-            return View(await _context.TblAccounts.ToListAsync());
+              return View(await _context.TblAccounts.ToListAsync());
         }
 
         // GET: TblAccounts/Details/5
@@ -147,14 +147,14 @@ namespace Books2BookV2.Controllers
             {
                 _context.TblAccounts.Remove(tblAccount);
             }
-
+            
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool TblAccountExists(int id)
         {
-            return _context.TblAccounts.Any(e => e.AccountId == id);
+          return _context.TblAccounts.Any(e => e.AccountId == id);
         }
     }
 }

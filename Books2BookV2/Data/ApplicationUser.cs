@@ -8,6 +8,7 @@ namespace Books2BookV2.Data
 	{
 		public string UserName {get;set;}
 		public string Password {get;set;}
+        
 
-	}
+    }
 }

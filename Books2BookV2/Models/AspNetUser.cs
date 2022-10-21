@@ -14,7 +14,6 @@ namespace Books2BookV2.Models
             AspNetUserClaims = new HashSet<AspNetUserClaim>();
             AspNetUserLogins = new HashSet<AspNetUserLogin>();
             AspNetUserTokens = new HashSet<AspNetUserToken>();
-            Roles = new HashSet<AspNetRole>();
         }
 
         [Key]
@@ -37,6 +36,27 @@ namespace Books2BookV2.Models
         public DateTimeOffset? LockoutEnd { get; set; }
         public bool LockoutEnabled { get; set; }
         public int AccessFailedCount { get; set; }
+        [StringLength(50)]
+        [Unicode(false)]
+        public string? FirstName { get; set; }
+        [StringLength(50)]
+        [Unicode(false)]
+        public string? LastName { get; set; }
+        [Column("DOB", TypeName = "date")]
+        public DateTime? Dob { get; set; }
+        [StringLength(50)]
+        [Unicode(false)]
+        public string? Address { get; set; }
+        [StringLength(50)]
+        [Unicode(false)]
+        public string? Institution { get; set; }
+        [StringLength(50)]
+        [Unicode(false)]
+        public string? SubscriptionType { get; set; }
+        public int? AccountId { get; set; }
+        [StringLength(50)]
+        [Unicode(false)]
+        public string? Password { get; set; }
 
         [InverseProperty("User")]
         public virtual ICollection<AspNetUserClaim> AspNetUserClaims { get; set; }
@@ -44,9 +64,5 @@ namespace Books2BookV2.Models
         public virtual ICollection<AspNetUserLogin> AspNetUserLogins { get; set; }
         [InverseProperty("User")]
         public virtual ICollection<AspNetUserToken> AspNetUserTokens { get; set; }
-
-        [ForeignKey("UserId")]
-        [InverseProperty("Users")]
-        public virtual ICollection<AspNetRole> Roles { get; set; }
     }
 }

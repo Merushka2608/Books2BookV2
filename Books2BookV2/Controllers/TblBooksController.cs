@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Books2BookV2.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Books2BookV2.Models;
 
 namespace Books2BookV2.Controllers
 {
@@ -18,11 +18,25 @@ namespace Books2BookV2.Controllers
             _context = context;
         }
 
-        // GET: TblBooks
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString)
         {
-            return View(await _context.TblBooks.ToListAsync());
+            var books = from m in _context.TblBooks
+                         select m;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                books = books.Where(s => s.Title!.Contains(searchString));
+            }
+
+            return View(await books.ToListAsync());
         }
+
+
+        // GET: TblBooks
+        /*      public async Task<IActionResult> Index()
+              {
+                    return View(await _context.TblBooks.ToListAsync());
+              }*/
 
         // GET: TblBooks/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -147,14 +161,14 @@ namespace Books2BookV2.Controllers
             {
                 _context.TblBooks.Remove(tblBook);
             }
-
+            
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool TblBookExists(int id)
         {
-            return _context.TblBooks.Any(e => e.BookId == id);
+          return _context.TblBooks.Any(e => e.BookId == id);
         }
     }
 }

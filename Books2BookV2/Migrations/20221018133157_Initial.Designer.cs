@@ -313,7 +313,8 @@ namespace Books2BookV2.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
+            
+     modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
@@ -425,6 +426,7 @@ namespace Books2BookV2.Migrations
                     b.HasKey("UserId", "RoleId");
 
                     b.HasIndex("RoleId");
+
 
                     b.ToTable("AspNetUserRoles", (string)null);
                 });
