@@ -32,7 +32,12 @@ namespace Books2BookV2.Controllers
 
             if (!String.IsNullOrEmpty(filterBy))
             {
-                books = books.Where(s => s.Category!.Contains(filterBy));
+                if(filterBy != "All")
+                {
+                    books = books.Where(s => s.Category!.Contains(filterBy));
+                }
+
+               
             }
 
             return View(await books.ToListAsync());
