@@ -3,6 +3,7 @@ using Books2BookV2.Data;
 
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Books2BookV2.Controllers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,6 +16,10 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 
 builder.Services.AddDbContext<Book2BookContext>(options =>
     options.UseSqlServer(connectionString));
+
+builder.Services.AddTransient<TblBooksController>();
+
+builder.Services.AddDbContext<Books2BookV2.Models.Book2BookContext>();
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 //builder.Services.AddDbContext<Books2BookV2.Models.Book2BookContext>();

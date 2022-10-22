@@ -6,9 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Books2BookV2.Models;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace Books2BookV2.Controllers
 {
+   
     public class TblBooksController : Controller
     {
         private readonly Book2BookContext _context;
@@ -49,6 +51,14 @@ namespace Books2BookV2.Controllers
               {
                     return View(await _context.TblBooks.ToListAsync());
               }*/
+
+
+
+        public TblBook GetBookById(int id)
+        {
+            return _context.TblBooks.FirstOrDefault(s => s.BookId == id);   
+        }
+
 
         // GET: TblBooks/Details/5
         public async Task<IActionResult> Details(int? id)
