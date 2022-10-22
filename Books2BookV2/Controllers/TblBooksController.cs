@@ -18,14 +18,21 @@ namespace Books2BookV2.Controllers
             _context = context;
         }
 
-        public async Task<IActionResult> Index(string searchString)
+        public async Task<IActionResult> Index(string searchString, string sortBy, string filterBy)
         {
+            //  ViewBag.SortCategoryParameter = string.IsNullOrEmpty(sortBy) ? "Title desc":"";
+
             var books = from m in _context.TblBooks
                          select m;
 
             if (!String.IsNullOrEmpty(searchString))
             {
-                books = books.Where(s => s.Title!.Contains(searchString));
+                books = books.Where(s => s.Title!.Contains(searchString) || s.Isbn!.Contains(searchString));
+            }
+
+            if (!String.IsNullOrEmpty(filterBy))
+            {
+                books = books.Where(s => s.Category!.Contains(filterBy));
             }
 
             return View(await books.ToListAsync());
