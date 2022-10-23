@@ -13,7 +13,7 @@ namespace Books2BookV2.Models
         [Column("BookID")]
         public int BookId { get; set; }
         [Column("ISBN")]
-        [StringLength(13)]
+        [StringLength(15)]
         [Unicode(false)]
         public string Isbn { get; set; } = null!;
         [StringLength(50)]
@@ -37,5 +37,9 @@ namespace Books2BookV2.Models
         public DateTime DatePublished { get; set; }
         [Column("AuthorID")]
         public int AuthorId { get; set; }
+
+        [ForeignKey("AuthorId")]
+        [InverseProperty("TblBooks")]
+        public virtual TblAuthor Author { get; set; } = null!;
     }
 }
