@@ -308,23 +308,56 @@
 			<div class="content-wrap">
 				<div class="container clearfix">
 					<div id="oc-images" class="owl-carousel owl-carousel-full news-carousel header-stick bottommargin-lg carousel-widget" data-margin="3" data-loop="true" data-stage-padding="50" data-pagi="false" data-items-sm="1" data-items-xl="2">
-@foreach (var b in Model.codingBooks)
+						@foreach (var b in Model.codingBooks)
 						{
-						<div class="oc-item">
-							
-							<a href="#"><img src="images/book1.jpg" alt="Book"></a>
-							<div class="bg-overlay">
-								<div class="bg-overlay-content text-overlay-mask dark desc-sm align-items-end justify-content-start p-4">
-									<div>
-										<div class="portfolio-desc px-0">
-											<h3>@b.Title</h3>
+							<div class="oc-item">
+
+								<a href="#"><img src="images/book1.jpg" alt="Book"></a>
+								<div class="bg-overlay">
+									<div class="bg-overlay-content text-overlay-mask dark desc-sm align-items-end justify-content-start p-4">
+										<div>
+											<div class="portfolio-desc px-0">
+												<h3>@b.Title</h3>
+											</div>
+											<a href="/TblBooks/Details?ID=@b.BookId" class="btn btn-sm btn-outline-light mx-0 mb-2">Borrow</a>
 										</div>
-										<a href="/TblBooks/Details?ID=@b.BookId" class="btn btn-sm btn-outline-light mx-0 mb-2">Borrow</a>
 									</div>
 								</div>
+
 							</div>
-						
-						</div>
+						}
+
+
+					</div>
+
+
+				</div>
+			</div>
+
+			<div class="fancy-title title-border">
+				<h3>Business Books</h3>
+			</div>
+
+			<div class="content-wrap">
+				<div class="container clearfix">
+					<div id="oc-images" class="owl-carousel owl-carousel-full news-carousel header-stick bottommargin-lg carousel-widget" data-margin="3" data-loop="true" data-stage-padding="50" data-pagi="false" data-items-sm="1" data-items-xl="2">
+						@foreach (var b in Model.businessBooks)
+						{
+							<div class="oc-item">
+
+								<a href="#"><img src="images/book1.jpg" alt="Book"></a>
+								<div class="bg-overlay">
+									<div class="bg-overlay-content text-overlay-mask dark desc-sm align-items-end justify-content-start p-4">
+										<div>
+											<div class="portfolio-desc px-0">
+												<h3>@b.Title</h3>
+											</div>
+											<a href="/TblBooks/Details?ID=@b.BookId" class="btn btn-sm btn-outline-light mx-0 mb-2">Borrow</a>
+										</div>
+									</div>
+								</div>
+
+							</div>
 						}
 
 
