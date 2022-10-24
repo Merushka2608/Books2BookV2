@@ -37,6 +37,10 @@ namespace Books2BookV2.Models
         public DateTime DatePublished { get; set; }
         [Column("AuthorID")]
         public int AuthorId { get; set; }
+        [Column("comments")]
+        [StringLength(200)]
+        [Unicode(false)]
+        public string? Comments { get; set; }
 
         [ForeignKey("AuthorId")]
         [InverseProperty("TblBooks")]

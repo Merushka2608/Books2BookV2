@@ -27,7 +27,6 @@ namespace Books2BookV2.Models
         public virtual DbSet<TblBook> TblBooks { get; set; } = null!;
         public virtual DbSet<TblComment> TblComments { get; set; } = null!;
         public virtual DbSet<TblPublisher> TblPublishers { get; set; } = null!;
-        public virtual DbSet<TblReply> TblReplies { get; set; } = null!;
         public virtual DbSet<TblUser> TblUsers { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -81,14 +80,6 @@ namespace Books2BookV2.Models
                     .HasForeignKey(d => d.UserId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_tblComments_tblUsers");
-            });
-
-            modelBuilder.Entity<TblReply>(entity =>
-            {
-                entity.HasOne(d => d.Comment)
-                    .WithMany(p => p.TblReplies)
-                    .HasForeignKey(d => d.CommentId)
-                    .HasConstraintName("FK_tblReplies_tblComments");
             });
 
             modelBuilder.Entity<TblUser>(entity =>

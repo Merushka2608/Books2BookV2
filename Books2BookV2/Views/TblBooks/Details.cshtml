@@ -47,4 +47,33 @@
 
     <a asp-action="Edit" asp-route-id="@Model?.BookId">Edit</a> |
     <a asp-action="Index">Back to List</a>
-    
+
+
+<form id="commentForm">
+ 
+    <input type="hidden" name="UserID" value="1"/>
+    <input type="hidden" name="RecordID" value="@Model.BookId"/>
+  <div class="form-group">
+    <label for="exampleFormControlTextarea1">Example textarea</label>
+    <textarea class="form-control" id="Text" name="Text" rows="3"></textarea>
+  </div>
+  <button class="btn btn-success" id = "btnComment">Leave a comment</button>
+</form>
+
+<script>
+    $("btnComment").click(function() {
+        $.ajax({
+            URL:"@Url.Action("LeaceComment ","Shared")",
+            type:"post",
+            data: $("commentForm").seralize();
+
+        }).done(function (response)){
+            debugger;
+            if(Response.Success){
+                window.location.reload();
+            }else{
+                swal("Error","Error","Error");
+            });
+        });
+    });
+</script>

@@ -11,11 +11,6 @@ namespace Books2BookV2.Models
     [Index("UserId", Name = "IX_tblComments_userID")]
     public partial class TblComment
     {
-        public TblComment()
-        {
-            TblReplies = new HashSet<TblReply>();
-        }
-
         [Key]
         [Column("commentId")]
         public int CommentId { get; set; }
@@ -29,11 +24,11 @@ namespace Books2BookV2.Models
         public int UserId { get; set; }
         [Column("ParentID")]
         public int? ParentId { get; set; }
+        [Column(TypeName = "datetime")]
+        public DateTime? Date { get; set; }
 
         [ForeignKey("UserId")]
         [InverseProperty("TblComments")]
         public virtual TblUser User { get; set; } = null!;
-        [InverseProperty("Comment")]
-        public virtual ICollection<TblReply> TblReplies { get; set; }
     }
 }

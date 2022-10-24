@@ -192,5 +192,29 @@ namespace Books2BookV2.Controllers
         {
           return _context.TblBooks.Any(e => e.BookId == id);
         }
+
+        private JsonResult LeaveComment(CommentViewModel model)
+        {
+                SharedController s = new SharedController();
+            var comment = new TblComment();
+            try
+            {
+                comment.BookId = model.bookId;
+                comment.Comment = model.CommentText;
+                comment.UserId = model.userId;
+                comment.CommentId = model.CommentId;
+                comment.Date = DateTime.Now;
+
+            }catch(Exception e)
+            {
+                return Json(new { Success = false, Message = e.Message});
+            }
+           
+            
+            return Json(new { Success = s.LeaveComment(comment) });
+
+        }
+
+
     }
 }
