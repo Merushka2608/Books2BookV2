@@ -49,31 +49,22 @@
     <a asp-action="Index">Back to List</a>
 
 
-<form id="commentForm">
- 
-    <input type="hidden" name="UserID" value="1"/>
-    <input type="hidden" name="RecordID" value="@Model.BookId"/>
-  <div class="form-group">
-    <label for="exampleFormControlTextarea1">Example textarea</label>
-    <textarea class="form-control" id="Text" name="Text" rows="3"></textarea>
-  </div>
-  <button class="btn btn-success" id = "btnComment">Leave a comment</button>
-</form>
-
-<script>
-    $("btnComment").click(function() {
-        $.ajax({
-            URL:"@Url.Action("LeaceComment ","Shared")",
-            type:"post",
-            data: $("commentForm").seralize();
-
-        }).done(function (response)){
-            debugger;
-            if(Response.Success){
-                window.location.reload();
-            }else{
-                swal("Error","Error","Error");
-            });
-        });
-    });
-</script>
+    <div id="disqus_thread"></div>
+    <script>
+        /**
+        *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+        *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+        /*
+        var disqus_config = function () {
+        this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        };
+        */
+        (function () { // DON'T EDIT BELOW THIS LINE
+            var d = document, s = d.createElement('script');
+            s.src = 'https://book2book-1.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
