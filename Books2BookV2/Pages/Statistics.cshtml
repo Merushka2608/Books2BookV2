@@ -1,0 +1,423 @@
+﻿@page
+@model IndexModel
+@{
+	ViewData["Title"] = "Analysis page";
+}
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+<head>
+
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta name="author" content="SemiColonWeb" />
+
+	<!-- Stylesheets
+	============================================= -->
+	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700|Poppins:300,400,500,600,700|PT+Serif:400,400i&display=swap" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
+	<link rel="stylesheet" href="style.css" type="text/css" />
+	<link rel="stylesheet" href="css/dark.css" type="text/css" />
+	<link rel="stylesheet" href="css/font-icons.css" type="text/css" />
+	<link rel="stylesheet" href="css/animate.css" type="text/css" />
+	<link rel="stylesheet" href="css/magnific-popup.css" type="text/css" />
+
+	<link rel="stylesheet" href="css/custom.css" type="text/css" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+	<!-- Document Title
+	============================================= -->
+	<title>Analysis</title>
+
+</head>
+
+<body class="stretched">
+
+	<!-- Docume t Wrapper
+	============================================= -->
+	<div id="wrapper" class="clearfix">
+
+		<!-- Top Bar
+		============================================= -->
+		<div id="top-bar">
+			<div class="container clearfix">
+
+				<div class="row justify-content-between">
+					<div class="col-12 col-md-auto">
+
+						<a href="#" class="button button-mini button-rounded button-dark side-panel-trigger bottommargin">Menu</a>
+
+						<!-- Logo
+						============================================= -->
+						<div id="logo">
+							<div class="center">
+								<a href="index.html" class="standard-logo" data-dark-logo="images/logo-dark.png"><img src="images/logo.png" alt="Books2Book Logo"></a>
+							</div><!-- #logo end -->
+							<div class="fancy-title title-border">
+								<h1>Books-2-Book</h1>
+							</div>
+						</div>
+						<div id="side-panel" class="dark">
+
+							<div id="side-panel-trigger-close" class="side-panel-trigger"><a href="#"><i class="icon-line-cross"></i></a></div>
+
+							<div class="side-panel-wrap">
+
+								<div class="widget clearfix">
+
+									<h4>Menu</h4>
+
+									<nav class="nav-tree mb-0">
+										<ul>
+											<li>
+												<a href="~/Index"><i class="icon-home"></i>Home</a>
+											</li>
+											<li>
+												<a href="sales.html"><i class="icon-money"></i>Sell Your Books</a>
+											</li>
+											<li>
+												<a href="faqs.html"><i class="icon-question"></i>FAQs</a>
+											</li>
+											<li>
+												<a href="contact.html"><i class="icon-map-marker"></i>Contact Us</a>
+												<ul>
+													<li><i class="icon-envelope2"></i></li>
+													<li>info@Books2Book.com</li>
+													<li><i class="icon-phone1"></i>Cell:</li>
+													<li>083 468 1461</li>
+													<li><i class="icon-phone3"></i>Tel:</li>
+													<li>032 943 1348</li>
+												</ul>
+											</li>
+											<li>
+												<a href="contact.html"><i class="icon-phone2"></i>Follow Us</a>
+												<ul>
+													<li><a href="#"><i class="icon-facebook"></i>Facebook</a></li>
+													<li><a href="#"><i class="icon-github"></i>Github</a></li>
+													<li><a href="#"><i class="icon-linkedin"></i>LinkedIn</a></li>
+													<li><a href="#"><i class="icon-twitter"></i>Twitter</a></li>
+												</ul>
+											</li>
+											<li>
+												<a href="about.html"><i class="icon-book"></i>About</a>
+											</li>
+											<li>
+												<a href="help.html"><i class="icon-question-circle"></i>Help</a>
+											</li>
+										</ul>
+									</nav>
+
+								</div>
+
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div><!-- #top-bar end -->
+		<!-- Charts Area
+					============================================= -->
+		<section id="chart">
+			<div class="content-wrap">
+				<div class="container clearfix">
+
+					<div class="fancy-title title-center title-border topmargin-sm">
+						<h3>Trends</h3>
+					</div>
+					<div class="bottommargin mx-auto" style="max-width: 750px; min-height: 350px;">
+						<canvas id="chart-0"></canvas>
+					</div>
+
+					<div class="toolbar center">
+						<button class="btn btn-secondary btn-sm" id="addDataset">Add Dataset</button>
+						<button class="btn btn-secondary btn-sm" id="removeDataset">Remove Dataset</button>
+						<button class="btn btn-secondary btn-sm" id="addData">Add Data</button>
+						<button class="btn btn-secondary btn-sm" id="removeData">Remove Data</button>
+						<button class="btn btn-secondary btn-sm" onclick="toggleSmooth(this)">Smooth</button>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- Charts Area End -->
+		<section id="content">
+			<div class="content-wrap">
+				<div class="container clearfix">
+
+					<div class="fancy-title title-center title-border topmargin-sm">
+						<h3>Top Trending</h3>
+					</div>
+
+					<div class="owl-carousel image-carousel carousel-widget flip-card-wrapper clearfix" data-margin="20" data-nav="true" data-pagi="false" data-items-xs="2" data-items-sm="2" data-items-md="2" data-items-lg="3" data-items-xl="3" style="overflow: visible;">
+
+						<div class="flip-card">
+							<div class="flip-card-front dark" style="background-image: url('images/t4.jpg')">
+								<div class="flip-card-inner">
+									<div class="card bg-transparent border-0">
+										<div class="card-body">
+											<h3 class="card-title mb-0">Most Popular Book</h3>
+											<span class="fst-italic">What book has gotten rented the most so far?</span>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="flip-card-back bg-danger no-after">
+								<div class="flip-card-inner">
+									<p class="mb-2 text-white">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Alias cum repellat velit.</p>
+									<button type="button" class="btn btn-outline-light mt-2">View Details</button>
+								</div>
+							</div>
+						</div>
+
+						<div class="flip-card">
+							<div class="flip-card-front dark" style="background-image: url('images/t5.jpg');">
+								<div class="flip-card-inner">
+									<div class="card bg-transparent border-0">
+										<div class="card-body">
+											<h3 class="card-title mb-0">Most Liked Comment</h3>
+											<span class="fst-italic">What comment has gotten the most likes and which user made that comment?</span>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="flip-card-back" style="background-image: url('images/t6.jpg');">
+								<div class="flip-card-inner">
+									<p class="mb-2 text-white">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Alias cum repellat velit.</p>
+									<button type="button" class="btn btn-outline-light mt-2">View Details</button>
+								</div>
+							</div>
+						</div>
+
+						<div class="flip-card">
+							<div class="flip-card-front dark" style="background-image: url('images/t6.jpg');">
+								<div class="flip-card-inner">
+									<div class="card bg-transparent border-0">
+										<div class="card-body">
+											<h3 class="card-title mb-0">Highest Rated Book</h3>
+											<span class="fst-italic">Which book has received the highest rating?</span>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="flip-card-back" style="background-image: url('demos/photography/images/items/9.jpg');">
+								<div class="flip-card-inner">
+									<p class="mb-2 text-white">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Alias cum repellat velit.</p>
+									<button type="button" class="btn btn-outline-light mt-2">View Details</button>
+								</div>
+							</div>
+						</div>
+
+						<div class="flip-card">
+							<div class="flip-card-front dark" style="background-image: url('images/t4.jpg');">
+								<div class="flip-card-inner">
+									<div class="card bg-transparent border-0">
+										<div class="card-body">
+											<h3 class="card-title mb-0">Most Books for a User</h3>
+											<span class="fst-italic">Which user has rented the most amount of books?</span>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="flip-card-back" style="background-image: url('demos/photography/images/items/2.jpg');">
+								<div class="flip-card-inner">
+									<p class="mb-2 text-white">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Alias cum repellat velit.</p>
+									<button type="button" class="btn btn-outline-light mt-2">View Details</button>
+								</div>
+							</div>
+						</div>
+
+					</div>
+
+				</div>
+			</div>
+		</section>
+
+		<!-- Footer
+		============================================= -->
+		<footer id="footer" class="dark">
+
+			<!-- Copyrights
+			============================================= -->
+			<div id="copyrights">
+				<div class="container">
+
+					<div class="row col-mb-30">
+
+						<div class="col-md-6 text-center text-md-start">
+							Copyrights &copy; 2022 All Rights Reserved by Books-2-Book Inc.<br>
+							<div class="copyright-links"><a href="terms.html">Terms of Use</a> / <a href="#">Privacy Policy</a></div>
+						</div>
+
+						<div class="col-md-6 text-center text-md-end">
+							<div class="d-flex justify-content-center justify-content-md-end">
+								<a href="#" class="social-icon si-small si-borderless si-facebook">
+									<i class="icon-facebook"></i>
+									<i class="icon-facebook"></i>
+								</a>
+
+								<a href="#" class="social-icon si-small si-borderless si-twitter">
+									<i class="icon-twitter"></i>
+									<i class="icon-twitter"></i>
+								</a>
+
+								<a href="#" class="social-icon si-small si-borderless si-github">
+									<i class="icon-github"></i>
+									<i class="icon-github"></i>
+								</a>
+
+								<a href="#" class="social-icon si-small si-borderless si-linkedin">
+									<i class="icon-linkedin"></i>
+									<i class="icon-linkedin"></i>
+								</a>
+							</div>
+
+							<div class="clear"></div>
+
+							<i class="icon-envelope2"></i> info@books2book.com
+							<span class="middot">&middot;</span>
+							<i class="icon-phone1"></i> 083 468 1461
+							<span class="middot">&middot;</span>
+							<i class="icon-phone3"></i> 032 943 1348
+						</div>
+
+					</div>
+
+				</div>
+			</div><!-- #copyrights end -->
+		</footer><!-- #footer end -->
+
+	</div><!-- #wrapper end -->
+	@*	<!-- JavaScripts
+	============================================= -->
+	<script src="js/jquery.js"></script>
+	<script src="js/plugins.min.js"></script>
+
+	<!-- Footer Scripts
+	============================================= -->
+	<script src="js/functions.js"></script>*@
+
+	<!-- Charts JS
+	============================================= -->
+	<script src="js/chart.js"></script>
+	<script src="js/chart-utils.js"></script>
+
+	<script>
+
+		var MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+		var config = {
+			type: 'line',
+			data: {
+				labels: ["January", "February", "March", "April", "May", "June", "July"],
+				datasets: [{
+					label: "My First dataset",
+					backgroundColor: window.chartColors.red,
+					borderColor: window.chartColors.red,
+					data: [
+						randomScalingFactor(),
+						randomScalingFactor(),
+						randomScalingFactor(),
+						randomScalingFactor(),
+						randomScalingFactor(),
+						randomScalingFactor(),
+						randomScalingFactor()
+					],
+					fill: false
+				}]
+			},
+			options: {
+				responsive: true,
+				title: {
+					display: true,
+					text: 'Number of Subscribers per Month'
+				},
+				tooltips: {
+					mode: 'index',
+					intersect: false,
+				},
+				hover: {
+					mode: 'nearest',
+					intersect: true
+				},
+				scales: {
+					xAxes: [{
+						display: true,
+						scaleLabel: {
+							display: true,
+							labelString: 'Month'
+						}
+					}],
+					yAxes: [{
+						display: true,
+						scaleLabel: {
+							display: true,
+							labelString: 'Number of Subscribers'
+						}
+					}]
+				}
+			}
+		};
+
+		window.onload = function() {
+			var ctx = document.getElementById("chart-0").getContext("2d");
+			window.myLine = new Chart(ctx, config);
+		};
+
+
+		var colorNames = Object.keys(window.chartColors);
+		document.getElementById('addDataset').addEventListener('click', function() {
+			var colorName = colorNames[config.data.datasets.length % colorNames.length];
+			var newColor = window.chartColors[colorName];
+			var newDataset = {
+				label: 'Dataset ' + config.data.datasets.length,
+				backgroundColor: newColor,
+				borderColor: newColor,
+				data: [],
+				fill: false
+			};
+
+			for (var index = 0; index < config.data.labels.length; ++index) {
+				newDataset.data.push(randomScalingFactor());
+			}
+
+			config.data.datasets.push(newDataset);
+			window.myLine.update();
+		});
+
+		document.getElementById('addData').addEventListener('click', function() {
+			if (config.data.datasets.length > 0) {
+				var month = MONTHS[config.data.labels.length % MONTHS.length];
+				config.data.labels.push(month);
+
+				config.data.datasets.forEach(function(dataset) {
+					dataset.data.push(randomScalingFactor());
+				});
+
+				window.myLine.update();
+			}
+		});
+
+		document.getElementById('removeDataset').addEventListener('click', function() {
+			config.data.datasets.splice(0, 1);
+			window.myLine.update();
+		});
+
+		function toggleSmooth(btn) {
+			var value = btn.classList.toggle('btn-on');
+			Chart.helpers.each(Chart.instances, function(chart) {
+				chart.options.elements.line.tension = value ? 0.4 : 0.000001;
+				chart.update();
+			});
+		}
+
+		document.getElementById('removeData').addEventListener('click', function() {
+			config.data.labels.splice(-1, 1); // remove the label first
+
+			config.data.datasets.forEach(function(dataset, datasetIndex) {
+				dataset.data.pop();
+			});
+
+			window.myLine.update();
+		});
+
+	</script>
+
+</body>
+</html>
