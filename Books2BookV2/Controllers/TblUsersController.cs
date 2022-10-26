@@ -6,16 +6,19 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Books2BookV2.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace Books2BookV2.Controllers
 {
     public class TblUsersController : Controller
     {
         private readonly Book2BookContext _context;
+        public UserManager<IdentityUser> userManager;
 
         public TblUsersController(Book2BookContext context)
         {
             _context = context;
+            this.userManager = userManager;
         }
 
         // GET: TblUsers
@@ -58,6 +61,13 @@ namespace Books2BookV2.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("UserId,FirstName,LastName,Dob,Address,Password,Institution,SubscriptionType,AccountId")] TblUser tblUser)
         {
+
+            IdentityUser user = new IdentityUser();
+            user.Email = "TestDummy@gmail.com";
+            user.UserName = "Dum dumb";
+
+            userManager.CreateAsync(user,"Pass1234#");
+            
             if (ModelState.IsValid)
             {
                 _context.Add(tblUser);

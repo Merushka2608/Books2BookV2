@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Books2BookV2.Models;
 
 namespace Books2BookV2.Models
 {
@@ -94,5 +95,7 @@ namespace Books2BookV2.Models
         }
 
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
+
+        public DbSet<Books2BookV2.Models.StatsDetails> StatsDetails { get; set; }
     }
 }

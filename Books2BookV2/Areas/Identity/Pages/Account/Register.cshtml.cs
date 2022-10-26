@@ -21,7 +21,8 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
 using Books2BookV2.Models;
-
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using System.ComponentModel;
 
 namespace Books2BookV2.Areas.Identity.Pages.Account
 {
@@ -33,12 +34,13 @@ namespace Books2BookV2.Areas.Identity.Pages.Account
         private readonly IUserEmailStore<IdentityUser> _emailStore;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
+        private readonly Book2BookContext book2BookContext;
 
         public RegisterModel(
             UserManager<IdentityUser> userManager,
             IUserStore<IdentityUser> userStore,
             SignInManager<IdentityUser> signInManager,
-            ILogger<RegisterModel> logger,
+            ILogger<RegisterModel> logger,Book2BookContext book2BookContext,
             IEmailSender emailSender)
         {
             _userManager = userManager;
@@ -47,6 +49,7 @@ namespace Books2BookV2.Areas.Identity.Pages.Account
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
+            this.book2BookContext = book2BookContext;
         }
 
         /// <summary>
@@ -74,6 +77,27 @@ namespace Books2BookV2.Areas.Identity.Pages.Account
         /// </summary>
         public class InputModel
         {
+            [StringLength(50)]
+            [Required]
+            [DisplayName("Name")]
+            public string FirstName { get; set; }
+            [StringLength(50)]
+            [Required]
+            [DisplayName("Surname")]
+            public string LastName { get; set; }
+            [Required]
+            [DisplayName("Date of Birth")]
+            public DateTime Dob { get; set; }
+            [Required]
+            [StringLength(50)]
+            [DisplayName("Address")]
+            public string Address { get; set; }
+            [Required]
+            [StringLength(50)]
+            public string Institution { get; set; }
+            [Required]
+            [StringLength(50)]
+            public string SubscriptionType { get; set; }
             /// <summary>
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
@@ -118,7 +142,7 @@ namespace Books2BookV2.Areas.Identity.Pages.Account
             {
                 var user = CreateUser();
 
-                TblUser tblUser = new TblUser();
+               /* TblUser tblUser = new TblUser();
                 DateTime dateOfBirth = new DateTime(2001, 12, 04);
 
                 TblUser tbluser = new TblUser();  //name, whatever else  
@@ -133,14 +157,27 @@ namespace Books2BookV2.Areas.Identity.Pages.Account
                 tbluser.Dob = dateOfBirth;
               
 
-                Task<int> CreateUserId = CreateUser(tbluser, "https://localhost:7133/TblUsers/Create");
+                Task<int> CreateUserId = CreateUser(tbluser, "https://localhost:7133/TblUsers/Create");*/
 
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
+                
                 var result = await _userManager.CreateAsync(user, Input.Password);
 
                 if (result.Succeeded)
                 {
+                    AspNetUser netUser = book2BookContext.AspNetUsers.Find(user.Id);
+                    netUser.FirstName = Input.FirstName;
+                    netUser.LastName = Input.LastName;
+                    netUser.Address = Input.Address;
+                    netUser.Dob= Input.Dob;
+                    netUser.Institution = Input.Institution;
+                    netUser.SubscriptionType= Input.SubscriptionType;
+
+
+                    book2BookContext.Entry(netUser).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                    await book2BookContext.SaveChangesAsync();
+                    //update where ID 
                     _logger.LogInformation("User created a new account with password.");
 
                     var userId = await _userManager.GetUserIdAsync(user);

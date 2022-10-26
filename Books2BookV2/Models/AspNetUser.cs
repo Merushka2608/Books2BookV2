@@ -53,10 +53,6 @@ namespace Books2BookV2.Models
         [StringLength(50)]
         [Unicode(false)]
         public string? SubscriptionType { get; set; }
-        public int? AccountId { get; set; }
-        [StringLength(50)]
-        [Unicode(false)]
-        public string? Password { get; set; }
 
         [InverseProperty("User")]
         public virtual ICollection<AspNetUserClaim> AspNetUserClaims { get; set; }

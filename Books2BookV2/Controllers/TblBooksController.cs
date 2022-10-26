@@ -7,22 +7,31 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Books2BookV2.Models;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Books2BookV2.Data;
+using Microsoft.AspNetCore.Identity;
+using System.Security.Claims;
 
 namespace Books2BookV2.Controllers
 {
-   
+
+
     public class TblBooksController : Controller
     {
+        private readonly UserManager<IdentityUser> _userManager;
+
         private readonly Book2BookContext _context;
 
-        public TblBooksController(Book2BookContext context)
+        public TblBooksController(Book2BookContext context, UserManager<IdentityUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         public async Task<IActionResult> Index(string searchString, string sortBy, string filterBy)
         {
             //  ViewBag.SortCategoryParameter = string.IsNullOrEmpty(sortBy) ? "Title desc":"";
+
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // will give the user's userId
 
             var books = from m in _context.TblBooks
                          select m;
