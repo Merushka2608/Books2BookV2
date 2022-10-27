@@ -1,6 +1,7 @@
 ﻿@model IEnumerable<Books2BookV2.Models.StatsDetails>
 
 @{
+    
     ViewData["Title"] = "Home Page";
 }
 
@@ -15,6 +16,43 @@
         </div>
     </div>
 </div>
+<br />
+<div class="text-center">
+    <h4 class="display-4"> Chart</h4>
+    <h3><a href="~/Home/Index">Back</a></h3>
+    <div class="card">
+        <div class="card-header">
+            <div class="chart">
+                <canvas id="timesBorrowed"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="text-center">
+    <h4 class="display-4"> Chart</h4>
+    <h3><a href="~/Home/Index">Back</a></h3>
+    <div class="card">
+        <div class="card-header">
+            <div class="chart">
+                <canvas id="chart2"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+<br />
+<div class="text-center">
+    <h4 class="display-4"> Chart</h4>
+    <h3><a href="~/Home/Index">Back</a></h3>
+    <div class="card">
+        <div class="card-header">
+            <div class="chart">
+                <canvas id="timesBorrowed"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
@@ -23,6 +61,7 @@
 <script>
 
     var doughnutchartCanvas = document.getElementById("doughnutchart");
+    var timesBorrowedCanvas = document.getElementById("timesBorrowed");
 
          var bookCategory = [];
      var score = [];
@@ -30,7 +69,7 @@
     
         @foreach(var item in Model)
         {
-        @:bookCategory.push('@item.Name');
+            @:bookCategory.push('@item.Name');
             @:score.push(@item.total);
         }
     
@@ -61,6 +100,56 @@
     },
         options: {
             responsive:true,
+            legend: {
+                position: "bottom",
+                labels: {
+                    boxWidth: 11,
+                    fontColor: "#757681",
+                    fontSize: 11
+                }
+            }
+        }
+    });
+
+
+
+
+    var label = [];
+    var sumBorrowed = [];
+
+
+    @foreach (var item in Model)
+    {
+        @:label.push('@item.Name');
+        @:sumBorrowed.push(@item.numTimesBorrowed);
+    }
+
+
+        var chart2 = new Chart(timesBorrowedCanvas, {
+        type: 'doughnut',
+        data: {
+            labels: label,
+            datasets: [{
+                data: sumBorrowed,
+                borderWidth: 0,
+                backgroundColor: [
+                    'rgb(255, 99, 132)',
+                    'rgb(54, 162, 235)',
+                    'rgb(157, 230, 41)',
+                    'rgb(41, 224, 230)',
+                    'rgb(255, 255, 0)'
+                ],
+                hoverBackgroundColor: [
+                    'rgb(255, 99, 132)',
+                    'rgb(54, 162, 235)',
+                    'rgb(157, 230, 41)',
+                    'rgb(41, 224, 230)',
+                    'rgb(255, 255, 0)'
+                ]
+            }]
+        },
+        options: {
+            responsive: true,
             legend: {
                 position: "bottom",
                 labels: {

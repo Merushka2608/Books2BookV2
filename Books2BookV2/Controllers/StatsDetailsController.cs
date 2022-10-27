@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Books2BookV2.Models;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace Books2BookV2.Controllers
 {
@@ -21,7 +22,7 @@ namespace Books2BookV2.Controllers
         // GET: StatsDetails
         public async Task<IActionResult> Index()
         {
-
+            //counts
             int numbBooksFiction = (from book in _context.TblBooks
                                     where book.Category == "Fiction"
                                     select book).Count();
@@ -32,11 +33,28 @@ namespace Books2BookV2.Controllers
                                     where book.Category == "Business"
                                     select book).Count();
 
-            var details = new List<StatsDetails>
+            //times borrowed
+
+            int sumTimesBorrowedCoding = _context.TblBooks
+            .Where(b => b.Category == "Coding")
+            .Sum(b => b.NumberOfTimesBorrowed);  
+
+            int sumTimesBorrowedFiction = _context.TblBooks
+            .Where(b => b.Category == "Fiction")
+            .Sum(b => b.NumberOfTimesBorrowed);  
+            
+            int sumTimesBorrowedBusiness = _context.TblBooks
+            .Where(b => b.Category == "Business")
+            .Sum(b => b.NumberOfTimesBorrowed);
+
+
+
+
+var details = new List<StatsDetails>
             {
-                new StatsDetails(){Id = 1, Name= "Ficton" , total = numbBooksFiction},
-                new StatsDetails(){Id = 1, Name= "Coding" , total = numCodingBooks},
-                new StatsDetails(){Id = 1, Name= "Business" , total = numBusinessBooks}
+                new StatsDetails(){Id = 1, Name= "Ficton" , total = numbBooksFiction, numTimesBorrowed = sumTimesBorrowedFiction},
+                new StatsDetails(){Id = 2, Name= "Coding" , total = numCodingBooks, numTimesBorrowed = sumTimesBorrowedCoding},
+                new StatsDetails(){Id = 3, Name= "Business" , total = numBusinessBooks, numTimesBorrowed = sumTimesBorrowedBusiness}
 
             };
 
