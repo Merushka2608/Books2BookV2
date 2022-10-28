@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Books2BookV2.Models;
 
 namespace Books2BookV2.Models
 {
@@ -23,11 +22,13 @@ namespace Books2BookV2.Models
         public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; } = null!;
         public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; } = null!;
         public virtual DbSet<AspNetUserToken> AspNetUserTokens { get; set; } = null!;
+        public virtual DbSet<StatsDetail> StatsDetails { get; set; } = null!;
         public virtual DbSet<TblAccount> TblAccounts { get; set; } = null!;
         public virtual DbSet<TblAuthor> TblAuthors { get; set; } = null!;
         public virtual DbSet<TblBook> TblBooks { get; set; } = null!;
         public virtual DbSet<TblComment> TblComments { get; set; } = null!;
         public virtual DbSet<TblPublisher> TblPublishers { get; set; } = null!;
+        public virtual DbSet<TblSellBook> TblSellBooks { get; set; } = null!;
         public virtual DbSet<TblUser> TblUsers { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -95,7 +96,5 @@ namespace Books2BookV2.Models
         }
 
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
-
-        public DbSet<Books2BookV2.Models.StatsDetails> StatsDetails { get; set; }
     }
 }
