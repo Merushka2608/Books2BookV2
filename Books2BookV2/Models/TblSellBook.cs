@@ -10,6 +10,7 @@ namespace Books2BookV2.Models
     [Table("tblSellBooks")]
     public partial class TblSellBook
     {
+		[Key]
         [Column("ID")]
         public int Id { get; set; }
         [StringLength(50)]
