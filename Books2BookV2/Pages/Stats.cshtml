@@ -1,9 +1,9 @@
 ﻿@page
-@model IndexModel
+@model StatsModel
 @{
 	ViewData["Title"] = "Home page";
 }
-<!--<!DOCTYPE html>
+<!DOCTYPE html>
 <html dir="ltr" lang="en-US">
 <head>
 
@@ -116,6 +116,168 @@
 		</div><!-- #top-bar end -->
 
 		<section id="content">
+
+
+<!--Chart stuff-->
+    <h4 class="display-4"> Chart</h4>
+    <h3><a href="~/Home/Index">Back</a></h3>
+    <div class="card">
+        <div class="card-header">
+            <div class="chart">
+                <canvas id="doughnutchart"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+<br />
+<div class="text-center">
+    <h4 class="display-4"> Chart</h4>
+    <h3><a href="~/Home/Index">Back</a></h3>
+    <div class="card">
+        <div class="card-header">
+            <div class="chart">
+                <canvas id="timesBorrowed"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="text-center">
+    <h4 class="display-4"> Chart</h4>
+    <h3><a href="~/Home/Index">Back</a></h3>
+    <div class="card">
+        <div class="card-header">
+            <div class="chart">
+                <canvas id="chart2"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br />
+<div class="text-center">
+    <h4 class="display-4"> Chart</h4>
+    <h3><a href="~/Home/Index">Back</a></h3>
+    <div class="card">
+        <div class="card-header">
+            <div class="chart">
+                <canvas id="timesBorrowed"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!--Do not touch anything below me-->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
+<script>
+
+    var doughnutchartCanvas = document.getElementById("doughnutchart");
+    var timesBorrowedCanvas = document.getElementById("timesBorrowed");
+
+         var bookCategory = [];
+     var score = [];
+
+    
+      //  atforeach(var item in Model)
+        //{
+          //  at:bookCategory.push('atitem.Name');
+            //at:score.push(atitem.total);
+        //}
+    
+
+
+    var doughnutChart = new Chart(doughnutchartCanvas, {
+        type: 'doughnut',
+        data: {
+            labels: bookCategory,
+        datasets: [{
+            data: score,
+            borderWidth: 0,
+            backgroundColor: [
+                'rgb(255, 99, 132)',
+                'rgb(54, 162, 235)',
+                'rgb(157, 230, 41)',
+                'rgb(41, 224, 230)',
+                'rgb(255, 255, 0)'
+            ],
+            hoverBackgroundColor: [
+                'rgb(255, 99, 132)',
+                'rgb(54, 162, 235)',
+                'rgb(157, 230, 41)',
+                'rgb(41, 224, 230)',
+                'rgb(255, 255, 0)'
+            ]
+        }]
+    },
+        options: {
+            responsive:true,
+            legend: {
+                position: "bottom",
+                labels: {
+                    boxWidth: 11,
+                    fontColor: "#757681",
+                    fontSize: 11
+                }
+            }
+        }
+    });
+
+
+
+
+    var label = [];
+    var sumBorrowed = [];
+
+
+    //atforeach (var item in Model)
+   // {
+        //at:label.push('atitem.Name');
+        //at:sumBorrowed.push(atitem.numTimesBorrowed);
+   // }
+
+
+        var chart2 = new Chart(timesBorrowedCanvas, {
+        type: 'doughnut',
+        data: {
+            labels: label,
+            datasets: [{
+                data: sumBorrowed,
+                borderWidth: 0,
+                backgroundColor: [
+                    'rgb(255, 99, 132)',
+                    'rgb(54, 162, 235)',
+                    'rgb(157, 230, 41)',
+                    'rgb(41, 224, 230)',
+                    'rgb(255, 255, 0)'
+                ],
+                hoverBackgroundColor: [
+                    'rgb(255, 99, 132)',
+                    'rgb(54, 162, 235)',
+                    'rgb(157, 230, 41)',
+                    'rgb(41, 224, 230)',
+                    'rgb(255, 255, 0)'
+                ]
+            }]
+        },
+        options: {
+            responsive: true,
+            legend: {
+                position: "bottom",
+                labels: {
+                    boxWidth: 11,
+                    fontColor: "#757681",
+                    fontSize: 11
+                }
+            }
+        }
+    });
+</script>
 			<div class="content-wrap">
 				<div class="container clearfix">
 
@@ -273,4 +435,3 @@
 
 </body>
 </html>
--->
