@@ -50,7 +50,7 @@ namespace Books2BookV2.Controllers
 
 
 
-var details = new List<StatsDetails>
+            var details = new List<StatsDetails>
             {
                 new StatsDetails(){Id = 1, Name= "Ficton" , total = numbBooksFiction, numTimesBorrowed = sumTimesBorrowedFiction},
                 new StatsDetails(){Id = 2, Name= "Coding" , total = numCodingBooks, numTimesBorrowed = sumTimesBorrowedCoding},

@@ -24,6 +24,7 @@ builder.Services.AddDbContext<Books2BookV2.Models.Book2BookContext>();
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 //builder.Services.AddDbContext<Books2BookV2.Models.Book2BookContext>();
 
+
 //Added this builder 
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>();
