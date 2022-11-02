@@ -1,0 +1,433 @@
+﻿@page
+@model SalesModel
+@{
+	ViewData["Title"] = "Home page";
+}
+
+
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+<head>
+
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta name="author" content="SemiColonWeb" />
+
+	<!-- Stylesheets
+	============================================= -->
+	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700|Poppins:300,400,500,600,700|PT+Serif:400,400i&display=swap" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
+	<link rel="stylesheet" href="style.css" type="text/css" />
+	<link rel="stylesheet" href="css/dark.css" type="text/css" />
+	<link rel="stylesheet" href="css/font-icons.css" type="text/css" />
+	<link rel="stylesheet" href="css/animate.css" type="text/css" />
+	<link rel="stylesheet" href="css/magnific-popup.css" type="text/css" />
+
+	<!-- Bootstrap File Upload CSS -->
+	<link rel="stylesheet" href="css/components/bs-filestyle.css" type="text/css" />
+	<link rel="stylesheet" href="css/components/select-boxes.css" type="text/css" />
+	<!-- Bootstrap Select CSS -->
+	<link rel="stylesheet" href="css/components/bs-select.css" type="text/css" />
+
+	<link rel="stylesheet" href="css/custom.css" type="text/css" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+	<style>
+		.file-caption.icon-visible .file-caption-name {
+			font-family: 'Lato', sans-serif;
+			color: #666;
+		}
+
+		.form-process {
+			position: absolute;
+			-webkit-transition: all .3s ease;
+			-o-transition: all .3s ease;
+			transition: all .3s ease;
+			background-image: none;
+		}
+
+			.form-process > div {
+				background-color: #999;
+			}
+
+		.form-process,
+		#template-contactform-submitted,
+		.template-contactform-complete .form-process {
+			display: none;
+			opacity: 0;
+			background-color: rgba(255,255,255,0.7);
+		}
+
+		.template-contactform-processing .form-process {
+			display: block;
+			opacity: 1;
+		}
+	</style>
+
+</head>
+
+<body class="stretched">
+
+	<!-- Document Wrapper
+	============================================= -->
+	<div id="wrapper" class="clearfix">
+
+		<!-- Top Bar
+		============================================= -->
+		<div id="top-bar">
+			<div class="container clearfix">
+
+				<div class="row justify-content-between">
+					<div class="col-12 col-md-auto">
+
+						<a href="#" class="button button-mini button-rounded button-dark side-panel-trigger bottommargin">Menu</a>
+
+						<!-- Logo
+						============================================= -->
+						<div id="logo">
+							<div class="center">
+								<a href="index.html" class="standard-logo" data-dark-logo="images/logo-dark.png"><img src="images/logo.png" alt="Books2Book Logo"></a>
+							</div><!-- #logo end -->
+							<div class="fancy-title title-border">
+								<h1>Books-2-Book</h1>
+							</div>
+						</div>
+						<div id="side-panel" class="dark">
+
+							<div id="side-panel-trigger-close" class="side-panel-trigger"><a href="#"><i class="icon-line-cross"></i></a></div>
+
+							<div class="side-panel-wrap">
+
+								<div class="widget clearfix">
+
+									<h4>Menu</h4>
+
+									<nav class="nav-tree mb-0">
+										<ul>
+											<li>
+												<a href="~/Index"><i class="icon-home"></i>Home</a>
+											</li>
+											<li>
+												<a href="#"><i class="icon-money"></i>Sell Your Books</a>
+											</li>
+											<li>
+												<a href="faqs.html"><i class="icon-question"></i>FAQs</a>
+											</li>
+											<li>
+												<a href="contact.html"><i class="icon-map-marker"></i>Contact Us</a>
+												<ul>
+													<li><i class="icon-envelope2"></i></li>
+													<li>info@Books2Book.com</li>
+													<li><i class="icon-phone1"></i>Cell:</li>
+													<li>083 468 1461</li>
+													<li><i class="icon-phone3"></i>Tel:</li>
+													<li>032 943 1348</li>
+												</ul>
+											</li>
+											<li>
+												<a href="contact.html"><i class="icon-phone2"></i>Follow Us</a>
+												<ul>
+													<li><a href="#"><i class="icon-facebook"></i>Facebook</a></li>
+													<li><a href="#"><i class="icon-github"></i>Github</a></li>
+													<li><a href="#"><i class="icon-linkedin"></i>LinkedIn</a></li>
+													<li><a href="#"><i class="icon-twitter"></i>Twitter</a></li>
+												</ul>
+											</li>
+											<li>
+												<a href="~/About"><i class="icon-book"></i>About</a>
+											</li>
+											<li>
+												<a href="help.html"><i class="icon-question-circle"></i>Help</a>
+											</li>
+											<li>
+												<a href="~/Stats"><i class="icon-graph"></i>Statistics</a>
+											</li>
+										</ul>
+									</nav>
+
+								</div>
+
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div><!-- #top-bar end -->
+		<!-- Content
+		============================================= -->
+		<section id="content">
+			<div class="content-wrap">
+				<div class="container clearfix">
+					<div class="fancy-title title-border">
+						<h3>Sell Your Books!</h3>
+					</div>
+
+					<div class="row justify-content-center col-mb-50 mb-0">
+						<div class="col-sm-6 col-lg-4">
+							<div class="feature-box fbox-center fbox-bg fbox-light fbox-effect">
+								<div class="fbox-icon">
+									<a href="#"><i class="i-alt">1</i></a>
+								</div>
+								<div class="fbox-content">
+									<h3>Enter Book Details and Upload Images<span class="subtitle">Step 1</span></h3>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-sm-6 col-lg-4">
+							<div class="feature-box fbox-center fbox-bg fbox-border fbox-effect">
+								<div class="fbox-icon">
+									<a href="#"><i>2</i></a>
+								</div>
+								<div class="fbox-content">
+									<h3>Drop Book off at Your Nearest Campus<span class="subtitle">Step 2</span></h3>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-sm-6 col-lg-4">
+							<div class="feature-box fbox-center fbox-bg fbox-outline fbox-dark fbox-effect">
+								<div class="fbox-icon">
+									<a href="#"><i class="i-alt">3</i></a>
+								</div>
+								<div class="fbox-content">
+									<h3>Complete Transaction and Get Paid<span class="subtitle">Step 3</span></h3>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="content-wrap bg-light">
+
+						<div class="container">
+
+							<div class="row justify-content-center">
+								<div class="col-lg-7 col-md-10">
+									<div class="card shadow-sm">
+										<div class="card-header">
+											<h4 class="mb-0">Enter User and Book Information</h4>
+										</div>
+										<div class="card-body">
+
+											<div class="form-widget">
+
+												<div class="form-result"></div>
+
+												<div class="form-process">
+													<div class="css3-spinner">
+														<div class="css3-spinner-double-bounce1"></div>
+														<div class="css3-spinner-double-bounce2"></div>
+													</div>
+												</div>
+
+												<form class="mb-0" id="template-contactform" name="template-contactform" action="include/form.php" method="post" enctype="multipart/form-data">
+
+													<div class="row">
+
+														<div class="col-12 bottommargin-sm">
+															<label for="template-contactform-id">User ID<small class="text-danger">*</small></label>
+															<input type="text" id="template-contactform-id" name="template-contactform-id" value="" class="form-control required" placeholder="Enter your User ID" />
+														</div>
+
+														<div class="col-12 bottommargin-sm">
+															<label for="template-contactform-password">Password:<small class="text-danger">*</small></label>
+															<input type="password" id="template-contactform-password" name="template-contactform-password" value="" class="form-control" placeholder="Enter Password" />
+														</div>
+
+														<div class="col-12 bottommargin-sm">
+															<label for="template-contactform-name">Name<small class="text-danger">*</small></label>
+															<input type="text" id="template-contactform-name" name="template-contactform-name" value="" class="form-control required" placeholder="Enter your Full Name" />
+														</div>
+
+														<div class="col-12 bottommargin-sm">
+															<label for="template-contactform-email">Institution Email Address<small class="text-danger">*</small></label>
+															<input type="email" name="template-contactform-email" id="template-contactform-email" class="form-control required" value="" placeholder="name@institution.com">
+														</div>
+
+														<div class="col-12 bottommargin-sm">
+															<label for="template-contactform-phone">Contact Number:</label>
+															<input type="text" id="template-contactform-phone" name="template-contactform-phone" value="" class="form-control" placeholder="Enter your phone Number.." />
+														</div>
+
+														<div class="col-12 bottommargin-sm">
+															<label for="template-contactform-select-splitter">Select Your Institution and Campus Address:</label>
+															<select id="template-contactform-select-splitter" size="1" class="form-select selectsplitter" name="template-contactform-select-splitter">
+																<optgroup label="Alpha University">
+																	<option value="1-1">Umhlanga</option>
+																	<option value="1-2">Durban</option>
+																	<option value="1-3">Phoenix</option>
+																</optgroup>
+																<optgroup label="Beta University">
+																	<option value="2-1">Irene</option>
+																	<option value="2-2">Centurion</option>
+																	<option value="2-3">Johannesburg</option>
+																</optgroup>
+																<optgroup label="Omega University">
+																	<option value="3-1">Westering</option>
+																	<option value="3-2">Kabega</option>
+																	<option value="3-3">Sunridge</option>
+																</optgroup>
+															</select>
+														</div>
+
+														<div class="col-12 bottommargin-sm">
+															<label for="template-contactform-id">Book's ISBN<small class="text-danger">*</small></label>
+															<input type="text" id="template-contactform-isbn" name="template-contactform-isbn" value="" class="form-control required" placeholder="Enter the ISBN of the Book" />
+														</div>
+
+														<div class="col-12 bottommargin-sm">
+															<label for="template-contactform-id">Book's Title<small class="text-danger">*</small></label>
+															<input type="text" id="template-contactform-title" name="template-contactform-title" value="" class="form-control required" placeholder="Enter the Title of the Book" />
+														</div>
+
+														<div class="col-12 bottommargin-sm">
+															<label for="template-contactform-id">Book's Author<small class="text-danger">*</small></label>
+															<input type="text" id="template-contactform-author" name="template-contactform-author" value="" class="form-control required" placeholder="Enter the Author of the Book" />
+														</div>
+
+														<div class="col-12 bottommargin-sm">
+															<label for="template-contactform-upload">Upload Image of Front Cover:</label><br>
+															<input id="template-contactform-upload" type="file" name="template-contactform-upload[]" multiple class="file file-loading" data-show-preview="false">
+														</div>
+
+														<div class="col-12 bottommargin-sm">
+															<label for="template-contactform-upload">Upload Image of Back Cover:</label><br>
+															<input id="template-contactform-upload" type="file" name="template-contactform-upload[]" multiple class="file file-loading" data-show-preview="false">
+														</div>
+
+														<div class="col-12 bottommargin-sm">
+															<label for="template-contactform-message">Describe Book's Condition:<small class="text-danger">*</small></label>
+															<textarea class="required form-control textarea-message" id="template-contactform-message" name="template-contactform-message" rows="6" cols="30"></textarea>
+														</div>
+
+														<div class="col-12 d-none">
+															<input type="text" id="template-contactform-botcheck" name="template-contactform-botcheck" value="" />
+														</div>
+														<div class="col-12">
+															<button type="submit" name="template-contactform-submit" class="btn btn-secondary w-100 btn-lg">Submit Details</button>
+														</div>
+
+														<input type="hidden" name="prefix" value="template-contactform-">
+
+													</div>
+
+												</form>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</section><!-- #content end -->
+		<!-- Footer
+			============================================= -->
+		<footer id="footer" class="dark">
+
+			<!-- Copyrights
+			============================================= -->
+			<div id="copyrights">
+				<div class="container">
+
+					<div class="row col-mb-30">
+
+						<div class="col-md-6 text-center text-md-start">
+							Copyrights &copy; 2022 All Rights Reserved by Books-2-Book Inc.<br>
+							<div class="copyright-links"><a href="terms.html">Terms of Use</a> / <a href="#">Privacy Policy</a></div>
+						</div>
+
+						<div class="col-md-6 text-center text-md-end">
+							<div class="d-flex justify-content-center justify-content-md-end">
+								<a href="#" class="social-icon si-small si-borderless si-facebook">
+									<i class="icon-facebook"></i>
+									<i class="icon-facebook"></i>
+								</a>
+
+								<a href="#" class="social-icon si-small si-borderless si-twitter">
+									<i class="icon-twitter"></i>
+									<i class="icon-twitter"></i>
+								</a>
+
+								<a href="#" class="social-icon si-small si-borderless si-github">
+									<i class="icon-github"></i>
+									<i class="icon-github"></i>
+								</a>
+
+								<a href="#" class="social-icon si-small si-borderless si-linkedin">
+									<i class="icon-linkedin"></i>
+									<i class="icon-linkedin"></i>
+								</a>
+							</div>
+
+							<div class="clear"></div>
+
+							<i class="icon-envelope2"></i> info@books2book.com
+							<span class="middot">&middot;</span>
+							<i class="icon-phone1"></i> 083 468 1461
+							<span class="middot">&middot;</span>
+							<i class="icon-phone3"></i> 032 943 1348
+						</div>
+
+					</div>
+
+				</div>
+			</div><!-- #copyrights end -->
+		</footer><!-- #footer end -->
+
+
+	</div><!-- #wrapper end -->
+	<!-- Go To Top
+	============================================= -->
+	<div id="gotoTop" class="icon-angle-up"></div>
+
+	<!-- JavaScripts
+	============================================= -->
+	<script src="js/jquery.js"></script>
+	<script src="js/plugins.min.js"></script>
+
+	<!-- Bootstrap File Upload Plugin -->
+	<script src="js/components/bs-filestyle.js"></script>
+
+	<!-- Select-Boxes Plugin -->
+	<script src="js/components/select-boxes.js"></script>
+
+	<!-- Bootstrap Select Plugin -->
+	<script src="js/components/bs-select.js"></script>
+
+	<!-- Select-Splitter Plugin -->
+	<script src="js/components/selectsplitter.js"></script>
+
+	<!-- TinyMCE Plugin -->
+	<script src="js/components/tinymce/tinymce.min.js"></script>
+
+	<!-- Footer Scripts
+	============================================= -->
+	<script src="js/functions.js"></script>
+
+	<script>
+
+		jQuery(document).ready(function() {
+
+			jQuery('.selectsplitter').selectsplitter();
+
+			tinymce.init({
+				selector: '.textarea-message',
+				menubar: false,
+				setup: function(editor) {
+					editor.on('change', function(e) {
+						editor.save();
+					});
+				}
+			});
+
+		});
+
+
+	</script>
+
+
+</body>
+</html>

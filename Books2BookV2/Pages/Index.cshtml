@@ -67,53 +67,48 @@
 
                                     <h4>Menu</h4>
 
-                                    <nav class="nav-tree mb-0">
-                                        <ul>
-                                            <li>
-                                                <a href="index.html"><i class="icon-home"></i>Home</a>
-                                            </li>
-                                            <li>
-                                                <a href="sales.html"><i class="icon-money"></i>Sell Your Books</a>
-                                            </li>
-                                            <li>
-                                                <a href="faqs.html"><i class="icon-question"></i>FAQs</a>
-                                            </li>
-                                            <li>
-                                                <a href="contact.html"><i class="icon-map-marker"></i>Contact Us</a>
-                                                <ul>
-                                                    <li><i class="icon-envelope2"></i></li>
-                                                    <li>info@Books2Book.com</li>
-                                                    <li><i class="icon-phone1"></i>Cell:</li>
-                                                    <li>083 468 1461</li>
-                                                    <li><i class="icon-phone3"></i>Tel:</li>
-                                                    <li>032 943 1348</li>
-                                                </ul>
-                                            </li>
-                                            <li>
-                                                <a href="contact.html"><i class="icon-phone2"></i>Follow Us</a>
-                                                <ul>
-                                                    <li><a href="#"><i class="icon-facebook"></i>Facebook</a></li>
-                                                    <li><a href="#"><i class="icon-github"></i>Github</a></li>
-                                                    <li><a href="#"><i class="icon-linkedin"></i>LinkedIn</a></li>
-                                                    <li><a href="#"><i class="icon-twitter"></i>Twitter</a></li>
-                                                </ul>
-                                            </li>
-                                            <li>
-                                                <a href="~/About"><i class="icon-book"></i>About</a>
-                                            </li>
-                                            <li>
-                                                <a href="help.html"><i class="icon-question-circle"></i>Help</a>
-                                            </li>
-                                            @if (signInManager.IsSignedIn(User) && User.IsInRole("ADMIN"))
-                                            {
-                                                <li>
-
-                                                    <a href="~/StatsDetails/Index"><i class="icon-graph"></i>Statistics</a>
-                                                </li>
-                                            }
-
-                                        </ul>
-                                    </nav>
+									<nav class="nav-tree mb-0">
+										<ul>
+											<li>
+												<a href="index.html"><i class="icon-home"></i>Home</a>
+											</li>
+											<li>
+												<a href="~/Sales"><i class="icon-money"></i>Sell Your Books</a>
+											</li>
+											<li>
+												<a href="faqs.html"><i class="icon-question"></i>FAQs</a>
+											</li>
+											<li>
+												<a href="contact.html"><i class="icon-map-marker"></i>Contact Us</a>
+												<ul>
+													<li><i class="icon-envelope2"></i></li>
+													<li>info@Books2Book.com</li>
+													<li><i class="icon-phone1"></i>Cell:</li>
+													<li>083 468 1461</li>
+													<li><i class="icon-phone3"></i>Tel:</li>
+													<li>032 943 1348</li>
+												</ul>
+											</li>
+											<li>
+												<a href="contact.html"><i class="icon-phone2"></i>Follow Us</a>
+												<ul>
+													<li><a href="#"><i class="icon-facebook"></i>Facebook</a></li>
+													<li><a href="#"><i class="icon-github"></i>Github</a></li>
+													<li><a href="#"><i class="icon-linkedin"></i>LinkedIn</a></li>
+													<li><a href="#"><i class="icon-twitter"></i>Twitter</a></li>
+												</ul>
+											</li>
+											<li>
+												<a href="~/About"><i class="icon-book"></i>About</a>
+											</li>
+											<li>
+												<a href="help.html"><i class="icon-question-circle"></i>Help</a>
+											</li>
+											<li>
+												<a href="~/StatsDetails/Index"><i class="icon-graph"></i>Statistics</a>
+											</li>
+										</ul>
+									</nav>
 
                                 </div>
 
