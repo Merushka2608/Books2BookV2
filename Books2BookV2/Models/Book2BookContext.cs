@@ -21,14 +21,15 @@ namespace Books2BookV2.Models
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; } = null!;
         public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; } = null!;
         public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; } = null!;
+        public virtual DbSet<AspNetUserRole> AspNetUserRoles { get; set; } = null!;
         public virtual DbSet<AspNetUserToken> AspNetUserTokens { get; set; } = null!;
         public virtual DbSet<StatsDetail> StatsDetails { get; set; } = null!;
         public virtual DbSet<TblAccount> TblAccounts { get; set; } = null!;
         public virtual DbSet<TblAuthor> TblAuthors { get; set; } = null!;
         public virtual DbSet<TblBook> TblBooks { get; set; } = null!;
         public virtual DbSet<TblComment> TblComments { get; set; } = null!;
+        public virtual DbSet<TblImage> TblImages { get; set; } = null!;
         public virtual DbSet<TblPublisher> TblPublishers { get; set; } = null!;
-        public virtual DbSet<TblSellBook> TblSellBooks { get; set; } = null!;
         public virtual DbSet<TblUser> TblUsers { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -61,6 +62,21 @@ namespace Books2BookV2.Models
                 entity.HasKey(e => new { e.LoginProvider, e.ProviderKey });
             });
 
+            modelBuilder.Entity<AspNetUserRole>(entity =>
+            {
+                entity.HasOne(d => d.Role)
+                    .WithMany()
+                    .HasForeignKey(d => d.RoleId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_AspNetUserRoles_AspNetRoles");
+
+                entity.HasOne(d => d.User)
+                    .WithMany()
+                    .HasForeignKey(d => d.UserId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_AspNetUserRoles_AspNetUsers");
+            });
+
             modelBuilder.Entity<AspNetUserToken>(entity =>
             {
                 entity.HasKey(e => new { e.UserId, e.LoginProvider, e.Name });
@@ -82,6 +98,11 @@ namespace Books2BookV2.Models
                     .HasForeignKey(d => d.UserId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_tblComments_tblUsers");
+            });
+
+            modelBuilder.Entity<TblImage>(entity =>
+            {
+                entity.Property(e => e.Id).ValueGeneratedNever();
             });
 
             modelBuilder.Entity<TblUser>(entity =>
