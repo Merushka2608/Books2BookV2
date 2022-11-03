@@ -22,6 +22,7 @@
 
   <ItemGroup>
     <Folder Include="js\" />
+    <Folder Include="wwwroot\booksToSell\" />
   </ItemGroup>
 
 </Project>
