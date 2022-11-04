@@ -38,6 +38,8 @@ namespace Books2BookV2.Models
         [Unicode(false)]
         public string? SubscriptionType { get; set; }
         public int? AccountId { get; set; }
+        [Unicode(false)]
+        public string? BooksBorrowed { get; set; }
 
         [ForeignKey("AccountId")]
         [InverseProperty("TblUsers")]

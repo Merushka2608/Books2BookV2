@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Books2BookV2.Models;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using System.Web;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Books2BookV2.Controllers
 {
@@ -20,6 +22,8 @@ namespace Books2BookV2.Controllers
         }
 
         // GET: StatsDetails
+
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Index()
         {
             //counts

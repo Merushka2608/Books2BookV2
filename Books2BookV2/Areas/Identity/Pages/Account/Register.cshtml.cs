@@ -34,15 +34,20 @@ namespace Books2BookV2.Areas.Identity.Pages.Account
         private readonly IUserEmailStore<IdentityUser> _emailStore;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
+        private readonly RoleManager<IdentityRole> _roleManager;
         private readonly Book2BookContext book2BookContext;
 
         public RegisterModel(
             UserManager<IdentityUser> userManager,
             IUserStore<IdentityUser> userStore,
             SignInManager<IdentityUser> signInManager,
-            ILogger<RegisterModel> logger,Book2BookContext book2BookContext,
-            IEmailSender emailSender)
+            ILogger<RegisterModel> logger, Book2BookContext book2BookContext,
+            IEmailSender emailSender,
+            RoleManager<IdentityRole> roleManager)
+            
         {
+
+            _roleManager = roleManager;
             _userManager = userManager;
             _userStore = userStore;
             _emailStore = GetEmailStore();
@@ -131,6 +136,16 @@ namespace Books2BookV2.Areas.Identity.Pages.Account
         public async Task OnGetAsync(string returnUrl = null)
         {
             ReturnUrl = returnUrl;
+            if (!await _roleManager.RoleExistsAsync("Admin"))
+            {
+               await _roleManager.CreateAsync(new IdentityRole("Admin"));
+            }
+            
+            if (!await _roleManager.RoleExistsAsync("Student"))
+            {
+               await _roleManager.CreateAsync(new IdentityRole("Student"));
+            }
+
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
         }
 
@@ -173,7 +188,7 @@ namespace Books2BookV2.Areas.Identity.Pages.Account
                     netUser.Dob= Input.Dob;
                     netUser.Institution = Input.Institution;
                     netUser.SubscriptionType= Input.SubscriptionType;
-
+                    await _userManager.AddToRoleAsync(user, "Student");
 
                     book2BookContext.Entry(netUser).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
                     await book2BookContext.SaveChangesAsync();

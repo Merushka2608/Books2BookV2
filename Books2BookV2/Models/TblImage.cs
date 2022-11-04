@@ -17,9 +17,5 @@ namespace Books2BookV2.Models
         [Column("image")]
         [Unicode(false)]
         public string Image { get; set; } = null!;
-       
-
-
-
-    } 
+    }
 }
