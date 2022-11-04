@@ -1,9 +1,8 @@
 ﻿@page
 @model SalesModel
 @{
-	ViewData["Title"] = "Home page";
+	ViewData["Title"] = "Sales page";
 }
-
 
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US">
@@ -220,7 +219,8 @@
 													</div>
 												</div>
 
-												<form class="mb-0" id="template-contactform" name="template-contactform" action="include/form.php" method="post" enctype="multipart/form-data">
+												<form class="mb-0" id="template-contactform" name="template-contactform" method="post" enctype="multipart/form-data")">
+													<!--action=""-->
 
 													<div class="row">
 
@@ -284,15 +284,15 @@
 															<label for="template-contactform-id">Book's Author<small class="text-danger">*</small></label>
 															<input type="text" id="template-contactform-author" name="template-contactform-author" value="" class="form-control required" placeholder="Enter the Author of the Book" />
 														</div>
-
+														
+															<div class="col-12 bottommargin-sm">
+																<label for="front-image">Upload Image of Front Cover:</label><br>
+																<input id="front-image" type="file" name="front-image[]" multiple class="file file-loading" data-show-preview="false">
+															</div>
+												
 														<div class="col-12 bottommargin-sm">
-															<label for="template-contactform-upload">Upload Image of Front Cover:</label><br>
-															<input id="template-contactform-upload" type="file" name="template-contactform-upload[]" multiple class="file file-loading" data-show-preview="false">
-														</div>
-
-														<div class="col-12 bottommargin-sm">
-															<label for="template-contactform-upload">Upload Image of Back Cover:</label><br>
-															<input id="template-contactform-upload" type="file" name="template-contactform-upload[]" multiple class="file file-loading" data-show-preview="false">
+															<label for="back-image">Upload Image of Back Cover:</label><br>
+															<input id="back-image" type="file" name="back-image[]" multiple class="file file-loading" data-show-preview="false">
 														</div>
 
 														<div class="col-12 bottommargin-sm">
@@ -386,7 +386,7 @@
 	<!-- JavaScripts
 	============================================= -->
 	<script src="js/jquery.js"></script>
-	<script src="js/plugins.min.js"></script>
+	<!--<script src="js/plugins.min.js"></script>-->
 
 	<!-- Bootstrap File Upload Plugin -->
 	<script src="js/components/bs-filestyle.js"></script>
