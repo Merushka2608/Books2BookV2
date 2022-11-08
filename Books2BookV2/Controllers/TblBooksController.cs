@@ -234,6 +234,25 @@ namespace Books2BookV2.Controllers
 
         }
 
+        public ActionResult SaveRating(int BookRating, int id)
+        {
+            var tblBook =  _context.TblBooks.Find(id);
+            if (tblBook == null)
+            {
+                return NotFound();
+            }
+
+            double total = tblBook.NumberOfTimesBorrowed * tblBook.AverageRating;
+            total += total + BookRating;
+
+            tblBook.NumberOfTimesBorrowed += 1;
+            tblBook.AverageRating = (float)(total / tblBook.NumberOfTimesBorrowed);
+            _context.Update(tblBook);
+            _context.SaveChangesAsync();
+
+             return RedirectToAction("Index" , new RouteValueDictionary(new { Controller = "TblBooks", Action = "Index"}));
+
+        }
 
     }
 }
