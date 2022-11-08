@@ -108,6 +108,16 @@ namespace Books2BookV2.Controllers
             }
             return View(tblBook);
         }
+        //
+		[HttpPost]
+        public ActionResult AddReview(String rating)
+		{
+            string rate = rating.ToString();
+            Response.WriteAsync(rate);
+            return View();
+		}
+        //
+
 
         // GET: TblBooks/Edit/5
         public async Task<IActionResult> Edit(int? id)

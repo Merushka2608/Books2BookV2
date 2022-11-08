@@ -36,6 +36,27 @@
                     <h4>@Html.DisplayNameFor(model => model.Category): @Html.DisplayFor(model => model.Category) </h4>
                     <h4>@Html.DisplayNameFor(model => model.Description): @Html.DisplayFor(model => model.Description) </h4>
                 </div>
+                <form action="POST">
+                <div>
+                    <h3>Rate this Book</h3>
+
+
+         <!--Action method Controller, Get/PostMethod/-->           
+        @using (Html.BeginForm("AddReview", "TblBooks", FormMethod.Post))
+        {
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Title" id="rating" class="control-label">Rate </label>
+                <input name="Title" class="form-control" /> 
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                 <input id="input-10" type="number" class="rating" min="0" max="5" data-step=".1" data-stars="5" data-size="sm">
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        }
 
                 <div class="card-footer text-center">
                     <a asp-page="index" class="btn-primary">Back</a>
