@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace Books2BookV2.Models
 {
     [Index("NormalizedEmail", Name = "EmailIndex")]
+    [Index("UserName", Name = "UserName", IsUnique = true)]
     public partial class AspNetUser
     {
         public AspNetUser()

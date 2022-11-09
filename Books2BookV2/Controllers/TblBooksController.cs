@@ -10,6 +10,7 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Books2BookV2.Data;
 using Microsoft.AspNetCore.Identity;
 using System.Security.Claims;
+using System.Security.Principal;
 
 namespace Books2BookV2.Controllers
 {
@@ -224,6 +225,23 @@ namespace Books2BookV2.Controllers
 
         }
 
+        public ActionResult BorrowBook(int BookId)
+        {
+
+            DateTime DateBorrow = DateTime.Now;
+
+            string userId = User.Identity.Name;
+            var user =  _userManager.FindByNameAsync(userId);
+            TblBorrow borrow = new TblBorrow(BookId, userId, DateBorrow);
+            _context.TblBorrows.AddAsync(borrow);
+            _context.SaveChangesAsync();
+
+            return RedirectToAction("Details", "TblBooksController");
+
+        }
+
+
+        
         public ActionResult SaveRating(int BookRating, int id)
         {
             var tblBook =  _context.TblBooks.Find(id);

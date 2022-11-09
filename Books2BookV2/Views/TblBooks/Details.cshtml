@@ -14,13 +14,13 @@
 <link rel="stylesheet" href="/css/font-icons.css" type="text/css" />
 <link rel="stylesheet" href="/css/animate.css" type="text/css" />
 <link rel="stylesheet" href="/css/magnific-popup.css" type="text/css" />
-
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" href="css/custom.css" type="text/css" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 
 <div>
-    <div ggcclass="row justify-content-center m-3">
+    <div class="row justify-content-center m-3">
         <div class="col-sm-8">
             <div class="card">
                 <div class="card-header">
@@ -41,12 +41,19 @@
                     <a asp-page="index" class="btn-primary">Back</a>
                 </div>
             </div>
+
+            <form action="SaveRating" method="post">
+                <label for="">Borrow this book</label>
+                <input type="hidden" name="id" value="" />
+                <input type="text" name="BookRating" placeholder="rating..." />
+                <input type="submit" value="save rating" />
+
+            </form>
         </div>
 
-        <form action="SaveRating" method="post">
-            <input type="hidden" name="id" value="@Model.BookId"/>
-            <input type="text" name="BookRating" placeholder="rating..."/>
-            <input type="submit" value="save rating" />
+        <form action="BorrowBook" method="post">
+            <input type="hidden" name="BookId" value="@Model.BookId"/>
+            <input type="submit" value="book this" />
 
         </form>
     </div>
