@@ -251,28 +251,6 @@ namespace Books2BookV2.Areas.Identity.Pages.Account
         }
 
 
-        private async Task<int> CreateUser(TblUser tblUser, string controllerURL)
-        {
-            int result = 0;
-            using (HttpClient httpClient = new HttpClient())
-            {
-                try
-                {
-
-                    using (var response = await httpClient.PostAsJsonAsync(controllerURL, tblUser))
-                    {
-                        Stream apiResponse = await response.Content.ReadAsStreamAsync();
-                        result = await JsonSerializer.DeserializeAsync<int>(apiResponse);
-                    }
-                }
-                catch (Exception Ex1)
-                {
-
-                }
-            }
-            return result;
-        }
-
 
     }
 }

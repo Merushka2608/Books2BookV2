@@ -15,12 +15,13 @@ namespace Books2BookV2.Models
             AspNetUserClaims = new HashSet<AspNetUserClaim>();
             AspNetUserLogins = new HashSet<AspNetUserLogin>();
             AspNetUserTokens = new HashSet<AspNetUserToken>();
+            TblAccounts = new HashSet<TblAccount>();
         }
 
         [Key]
         public string Id { get; set; } = null!;
         [StringLength(256)]
-        public string? UserName { get; set; }
+        public string UserName { get; set; } = null!;
         [StringLength(256)]
         public string? NormalizedUserName { get; set; }
         [StringLength(256)]
@@ -61,5 +62,6 @@ namespace Books2BookV2.Models
         public virtual ICollection<AspNetUserLogin> AspNetUserLogins { get; set; }
         [InverseProperty("User")]
         public virtual ICollection<AspNetUserToken> AspNetUserTokens { get; set; }
+        public virtual ICollection<TblAccount> TblAccounts { get; set; }
     }
 }

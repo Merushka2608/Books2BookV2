@@ -213,28 +213,7 @@ namespace Books2BookV2.Controllers
           return _context.TblBooks.Any(e => e.BookId == id);
         }
 
-        private JsonResult LeaveComment(CommentViewModel model)
-        {
-                SharedController s = new SharedController();
-            var comment = new TblComment();
-            try
-            {
-                comment.BookId = model.bookId;
-                comment.Comment = model.CommentText;
-                comment.UserId = model.userId;
-                comment.CommentId = model.CommentId;
-                comment.Date = DateTime.Now;
-
-            }catch(Exception e)
-            {
-                return Json(new { Success = false, Message = e.Message});
-            }
-           
-            
-            return Json(new { Success = s.LeaveComment(comment) });
-
-        }
-
+       
         public ActionResult BorrowBook(int BookId)
         {
 
@@ -242,11 +221,20 @@ namespace Books2BookV2.Controllers
 
             string userId = User.Identity.Name;
             var user =  _userManager.FindByNameAsync(userId);
-            TblBorrow borrow = new TblBorrow(BookId, userId, DateBorrow);
+            bool isPaid = false;
+            TblBorrow borrow = new TblBorrow(BookId, userId, DateBorrow, isPaid );
+
+            //gets all the books where the user has not paid for as yet
+            var booksToPayFor = from b in _context.TblBorrows
+                                where (b.BookId == BookId && b.UserName == userId)
+                                select b;
+            List<TblBorrow> itemsToPayFor = booksToPayFor.ToList<TblBorrow>();
+
+
             _context.TblBorrows.AddAsync(borrow);
             _context.SaveChangesAsync();
 
-            return RedirectToAction("Details", "TblBooksController");
+            return RedirectToAction("Index", "TblBooks");
 
         }
 

@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Books2BookV2.Models;
+using System.Net;
 
 namespace Books2BookV2.Pages
 {
@@ -16,7 +17,7 @@ namespace Books2BookV2.Pages
 
         public  IEnumerable<TblBook> codingBooks { get; set; } 
         public  IEnumerable<TblBook> businessBooks { get; set; } 
-        public  IEnumerable<TblBook> fictionBooks { get; set; } 
+        public  IEnumerable<TblBook> fictionBooks { get; set; }
         public void OnGet()
         {
              codingBooks = from book in _context.TblBooks
@@ -29,6 +30,10 @@ namespace Books2BookV2.Pages
             fictionBooks = from book in _context.TblBooks
                             where book.Category == "Fiction"
                             select book;
+
+        
+         
+
         }
     }
 }

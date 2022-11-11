@@ -11,15 +11,6 @@ namespace Books2BookV2.Controllers
             return View();
         }
 
-        [HttpPost]
-      public bool LeaveComment(TblComment tblComment)
-        {
-            Book2BookContext context = new Book2BookContext();
-
-            context.TblComments.Add(tblComment);
-
-            return context.SaveChanges() > 0;
-        }
 
     }
 }

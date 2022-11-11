@@ -42,7 +42,7 @@
 
 
          <!--Action method Controller, Get/PostMethod/-->           
-        @using (Html.BeginForm("AddReview", "TblBooks", FormMethod.Post))
+        @using (Html.BeginForm("AddReview", "TblBooksController", FormMethod.Post))
         {
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">

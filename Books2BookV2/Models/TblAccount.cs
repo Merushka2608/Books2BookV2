@@ -11,7 +11,7 @@ namespace Books2BookV2.Models
     {
         public TblAccount()
         {
-            TblUsers = new HashSet<TblUser>();
+            TblPayments = new HashSet<TblPayment>();
         }
 
         [Key]
@@ -22,11 +22,11 @@ namespace Books2BookV2.Models
         [StringLength(20)]
         [Unicode(false)]
         public string AccountNumber { get; set; } = null!;
-        [StringLength(50)]
-        [Unicode(false)]
-        public string UserId { get; set; } = null!;
+        [StringLength(256)]
+        public string UserName { get; set; } = null!;
 
+        public virtual AspNetUser UserNameNavigation { get; set; } = null!;
         [InverseProperty("Account")]
-        public virtual ICollection<TblUser> TblUsers { get; set; }
+        public virtual ICollection<TblPayment> TblPayments { get; set; }
     }
 }

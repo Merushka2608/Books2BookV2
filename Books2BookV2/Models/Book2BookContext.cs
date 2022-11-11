@@ -28,10 +28,9 @@ namespace Books2BookV2.Models
         public virtual DbSet<TblAuthor> TblAuthors { get; set; } = null!;
         public virtual DbSet<TblBook> TblBooks { get; set; } = null!;
         public virtual DbSet<TblBorrow> TblBorrows { get; set; } = null!;
-        public virtual DbSet<TblComment> TblComments { get; set; } = null!;
         public virtual DbSet<TblImage> TblImages { get; set; } = null!;
+        public virtual DbSet<TblPayment> TblPayments { get; set; } = null!;
         public virtual DbSet<TblPublisher> TblPublishers { get; set; } = null!;
-        public virtual DbSet<TblUser> TblUsers { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -83,6 +82,16 @@ namespace Books2BookV2.Models
                 entity.HasKey(e => new { e.UserId, e.LoginProvider, e.Name });
             });
 
+            modelBuilder.Entity<TblAccount>(entity =>
+            {
+                entity.HasOne(d => d.UserNameNavigation)
+                    .WithMany(p => p.TblAccounts)
+                    .HasPrincipalKey(p => p.UserName)
+                    .HasForeignKey(d => d.UserName)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_tblAccount_AspNetUsers");
+            });
+
             modelBuilder.Entity<TblBook>(entity =>
             {
                 entity.HasOne(d => d.Author)
@@ -92,26 +101,18 @@ namespace Books2BookV2.Models
                     .HasConstraintName("FK_tblBooks_tblAuthor");
             });
 
-            modelBuilder.Entity<TblComment>(entity =>
-            {
-                entity.HasOne(d => d.User)
-                    .WithMany(p => p.TblComments)
-                    .HasForeignKey(d => d.UserId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_tblComments_tblUsers");
-            });
-
             modelBuilder.Entity<TblImage>(entity =>
             {
                 entity.Property(e => e.Id).ValueGeneratedNever();
             });
 
-            modelBuilder.Entity<TblUser>(entity =>
+            modelBuilder.Entity<TblPayment>(entity =>
             {
                 entity.HasOne(d => d.Account)
-                    .WithMany(p => p.TblUsers)
+                    .WithMany(p => p.TblPayments)
                     .HasForeignKey(d => d.AccountId)
-                    .HasConstraintName("FK_tblUsers_tblAccount");
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_tblPayments_tblAccount");
             });
 
             OnModelCreatingPartial(modelBuilder);

@@ -1,0 +1,23 @@
+﻿@page
+@model Shopping
+@{
+    ViewData["Title"] = "Shopping Cart";
+}
+<h1>@ViewData["Title"]</h1>
+<table class="table table-sm table-dark">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">First</th>
+            <th scope="col">Last</th>
+            <th scope="col">Handle</th>
+        </tr>
+    </thead>
+    <tbody>
+   @foreach(var i in Model.itemsToPayFor){
+            <tr>
+                               
+               </tr>
+   }
+    </tbody>
+</table>

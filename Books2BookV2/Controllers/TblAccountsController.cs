@@ -21,7 +21,8 @@ namespace Books2BookV2.Controllers
         // GET: TblAccounts
         public async Task<IActionResult> Index()
         {
-              return View(await _context.TblAccounts.ToListAsync());
+            var book2BookContext = _context.TblAccounts.Include(t => t.UserNameNavigation);
+            return View(await book2BookContext.ToListAsync());
         }
 
         // GET: TblAccounts/Details/5
@@ -33,6 +34,7 @@ namespace Books2BookV2.Controllers
             }
 
             var tblAccount = await _context.TblAccounts
+                .Include(t => t.UserNameNavigation)
                 .FirstOrDefaultAsync(m => m.AccountId == id);
             if (tblAccount == null)
             {
@@ -45,6 +47,7 @@ namespace Books2BookV2.Controllers
         // GET: TblAccounts/Create
         public IActionResult Create()
         {
+            ViewData["UserName"] = new SelectList(_context.AspNetUsers, "UserName", "Id");
             return View();
         }
 
@@ -53,7 +56,7 @@ namespace Books2BookV2.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("AccountId,Bank,AccountNumber,UserId")] TblAccount tblAccount)
+        public async Task<IActionResult> Create([Bind("AccountId,Bank,AccountNumber,UserName")] TblAccount tblAccount)
         {
             if (ModelState.IsValid)
             {
@@ -61,6 +64,7 @@ namespace Books2BookV2.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["UserName"] = new SelectList(_context.AspNetUsers, "UserName", "Id", tblAccount.UserName);
             return View(tblAccount);
         }
 
@@ -77,6 +81,7 @@ namespace Books2BookV2.Controllers
             {
                 return NotFound();
             }
+            ViewData["UserName"] = new SelectList(_context.AspNetUsers, "UserName", "Id", tblAccount.UserName);
             return View(tblAccount);
         }
 
@@ -85,7 +90,7 @@ namespace Books2BookV2.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("AccountId,Bank,AccountNumber,UserId")] TblAccount tblAccount)
+        public async Task<IActionResult> Edit(int id, [Bind("AccountId,Bank,AccountNumber,UserName")] TblAccount tblAccount)
         {
             if (id != tblAccount.AccountId)
             {
@@ -112,6 +117,7 @@ namespace Books2BookV2.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["UserName"] = new SelectList(_context.AspNetUsers, "UserName", "Id", tblAccount.UserName);
             return View(tblAccount);
         }
 
@@ -124,6 +130,7 @@ namespace Books2BookV2.Controllers
             }
 
             var tblAccount = await _context.TblAccounts
+                .Include(t => t.UserNameNavigation)
                 .FirstOrDefaultAsync(m => m.AccountId == id);
             if (tblAccount == null)
             {

@@ -3,18 +3,7 @@
 @{
     ViewData["Title"] = "Index";
 }
-<!-- Stylesheets
-============================================= -->
-<link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700|Poppins:300,400,500,600,700|PT+Serif:400,400i&display=swap" rel="stylesheet" type="text/css" />
-<link rel="stylesheet" href="/css/bootstrap.css" type="text/css" />
-<link rel="stylesheet" href="style.css" type="text/css" />
-<link rel="stylesheet" href="/css/dark.css" type="text/css" />
-<link rel="stylesheet" href="/css/font-icons.css" type="text/css" />
-<link rel="stylesheet" href="/css/animate.css" type="text/css" />
-<link rel="stylesheet" href="/css/magnific-popup.css" type="text/css" />
 
-<link rel="stylesheet" href="css/custom.css" type="text/css" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
 <h1>Index</h1>
 
 <p>
@@ -30,7 +19,7 @@
                 @Html.DisplayNameFor(model => model.AccountNumber)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.UserId)
+                @Html.DisplayNameFor(model => model.UserNameNavigation)
             </th>
             <th></th>
         </tr>
@@ -45,7 +34,7 @@
                 @Html.DisplayFor(modelItem => item.AccountNumber)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.UserId)
+                @Html.DisplayFor(modelItem => item.UserNameNavigation.Id)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.AccountId">Edit</a> |

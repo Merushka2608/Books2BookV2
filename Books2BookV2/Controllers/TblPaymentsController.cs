@@ -6,103 +6,96 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Books2BookV2.Models;
-using Microsoft.AspNetCore.Identity;
 
 namespace Books2BookV2.Controllers
 {
-    public class TblUsersController : Controller
+    public class TblPaymentsController : Controller
     {
         private readonly Book2BookContext _context;
-        public UserManager<IdentityUser> userManager;
+        private List<TblBorrow> itemsToPayFor;
 
-        public TblUsersController(Book2BookContext context)
+        public TblPaymentsController(Book2BookContext context)
         {
             _context = context;
-            this.userManager = userManager;
         }
 
-        // GET: TblUsers
+        // GET: TblPayments
         public async Task<IActionResult> Index()
         {
-            var book2BookContext = _context.TblUsers.Include(t => t.Account);
+            var book2BookContext = _context.TblPayments.Include(t => t.Account);
+
+            
             return View(await book2BookContext.ToListAsync());
         }
 
-        // GET: TblUsers/Details/5
+        // GET: TblPayments/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.TblUsers == null)
+            if (id == null || _context.TblPayments == null)
             {
                 return NotFound();
             }
 
-            var tblUser = await _context.TblUsers
+            var tblPayment = await _context.TblPayments
                 .Include(t => t.Account)
-                .FirstOrDefaultAsync(m => m.UserId == id);
-            if (tblUser == null)
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (tblPayment == null)
             {
                 return NotFound();
             }
 
-            return View(tblUser);
+            return View(tblPayment);
         }
 
-        // GET: TblUsers/Create
+        // GET: TblPayments/Create
         public IActionResult Create()
         {
             ViewData["AccountId"] = new SelectList(_context.TblAccounts, "AccountId", "AccountId");
             return View();
         }
 
-        // POST: TblUsers/Create
+        // POST: TblPayments/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("UserId,FirstName,LastName,Dob,Address,Password,Institution,SubscriptionType,AccountId")] TblUser tblUser)
+        public async Task<IActionResult> Create([Bind("Id,AccountId,BookIds")] TblPayment tblPayment)
         {
-
-            IdentityUser user = new IdentityUser();
-            user.Email = "TestDummy@gmail.com";
-            user.UserName = "Dum dumb";
-
-            userManager.CreateAsync(user,"Pass1234#");
-            
             if (ModelState.IsValid)
             {
-                _context.Add(tblUser);
+                _context.Add(tblPayment);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["AccountId"] = new SelectList(_context.TblAccounts, "AccountId", "AccountId", tblUser.AccountId);
-            return View(tblUser);
+            ViewData["AccountId"] = new SelectList(_context.TblAccounts, "AccountId", "AccountId", tblPayment.AccountId);
+            return View(tblPayment);
         }
 
-        // GET: TblUsers/Edit/5
+        // GET: TblPayments/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.TblUsers == null)
+            if (id == null || _context.TblPayments == null)
             {
                 return NotFound();
             }
 
-            var tblUser = await _context.TblUsers.FindAsync(id);
-            if (tblUser == null)
+            var tblPayment = await _context.TblPayments.FindAsync(id);
+            if (tblPayment == null)
             {
                 return NotFound();
             }
-            ViewData["AccountId"] = new SelectList(_context.TblAccounts, "AccountId", "AccountId", tblUser.AccountId);
-            return View(tblUser);
+            ViewData["AccountId"] = new SelectList(_context.TblAccounts, "AccountId", "AccountId", tblPayment.AccountId);
+            return View(tblPayment);
         }
 
-        // POST: TblUsers/Edit/5
+        // POST: TblPayments/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("UserId,FirstName,LastName,Dob,Address,Password,Institution,SubscriptionType,AccountId")] TblUser tblUser)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,AccountId,BookIds")] TblPayment tblPayment)
         {
-            if (id != tblUser.UserId)
+            if (id != tblPayment.Id)
             {
                 return NotFound();
             }
@@ -111,12 +104,12 @@ namespace Books2BookV2.Controllers
             {
                 try
                 {
-                    _context.Update(tblUser);
+                    _context.Update(tblPayment);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!TblUserExists(tblUser.UserId))
+                    if (!TblPaymentExists(tblPayment.Id))
                     {
                         return NotFound();
                     }
@@ -127,51 +120,51 @@ namespace Books2BookV2.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["AccountId"] = new SelectList(_context.TblAccounts, "AccountId", "AccountId", tblUser.AccountId);
-            return View(tblUser);
+            ViewData["AccountId"] = new SelectList(_context.TblAccounts, "AccountId", "AccountId", tblPayment.AccountId);
+            return View(tblPayment);
         }
 
-        // GET: TblUsers/Delete/5
+        // GET: TblPayments/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.TblUsers == null)
+            if (id == null || _context.TblPayments == null)
             {
                 return NotFound();
             }
 
-            var tblUser = await _context.TblUsers
+            var tblPayment = await _context.TblPayments
                 .Include(t => t.Account)
-                .FirstOrDefaultAsync(m => m.UserId == id);
-            if (tblUser == null)
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (tblPayment == null)
             {
                 return NotFound();
             }
 
-            return View(tblUser);
+            return View(tblPayment);
         }
 
-        // POST: TblUsers/Delete/5
+        // POST: TblPayments/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.TblUsers == null)
+            if (_context.TblPayments == null)
             {
-                return Problem("Entity set 'Book2BookContext.TblUsers'  is null.");
+                return Problem("Entity set 'Book2BookContext.TblPayments'  is null.");
             }
-            var tblUser = await _context.TblUsers.FindAsync(id);
-            if (tblUser != null)
+            var tblPayment = await _context.TblPayments.FindAsync(id);
+            if (tblPayment != null)
             {
-                _context.TblUsers.Remove(tblUser);
+                _context.TblPayments.Remove(tblPayment);
             }
             
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool TblUserExists(int id)
+        private bool TblPaymentExists(int id)
         {
-          return _context.TblUsers.Any(e => e.UserId == id);
+          return _context.TblPayments.Any(e => e.Id == id);
         }
     }
 }
