@@ -4,19 +4,23 @@
     ViewData["Title"] = "Shopping Cart";
 }
 <h1>@ViewData["Title"]</h1>
-<table class="table table-sm table-dark">
+<table class="table table-sm table-light">
     <thead>
         <tr>
-            <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
+            <th scope="col">BookId</th>
+            <th scope="col">Book Title</th>
+            <th scope="col">Condition</th>
+            <th scope="col">Price</th>
         </tr>
     </thead>
     <tbody>
-   @foreach(var i in Model.itemsToPayFor){
+        @foreach (var i in Model.bookTitles)
+        {
             <tr>
-                               
+                 <td>@i.BookId</td>
+                 <td>@i.Title</td>
+                 <td>@i.Condition</td>
+                 <td>price</td>
                </tr>
    }
     </tbody>
