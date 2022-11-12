@@ -256,7 +256,8 @@ namespace Books2BookV2.Controllers
             _context.Update(tblBook);
             _context.SaveChangesAsync();
 
-             return RedirectToAction("Index" , new RouteValueDictionary(new { Controller = "TblBooks", Action = "Index"}));
+            return RedirectToAction("Index", "TblBooks");
+
 
         }
 

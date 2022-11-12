@@ -8,14 +8,16 @@
 <!-- Stylesheets
 ============================================= -->
 <link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700|Poppins:300,400,500,600,700|PT+Serif:400,400i&display=swap" rel="stylesheet" type="text/css" />
-<link rel="stylesheet" href="/css/bootstrap.css" type="text/css" />
-<link rel="stylesheet" href="style.css" type="text/css" />
-<link rel="stylesheet" href="/css/dark.css" type="text/css" />
-<link rel="stylesheet" href="/css/font-icons.css" type="text/css" />
-<link rel="stylesheet" href="/css/animate.css" type="text/css" />
-<link rel="stylesheet" href="/css/magnific-popup.css" type="text/css" />
+<link rel="stylesheet" href="@Url.Content("~/css/bootstrap.css")" type="text/css" />
+<link rel="stylesheet" href="@Url.Content("~/style.css")" type="text/css" />
+<link rel="stylesheet" href="@Url.Content("~/css/dark.css")" type="text/css" />
+<link rel="stylesheet" href="@Url.Content("~/css/font-icons.css")" type="text/css" />
+<link rel="stylesheet" href="@Url.Content("~/css/animate.css")" type="text/css" />
+<link rel="stylesheet" href="@Url.Content("~/css/magnific-popup.css")" type="text/css" />
+<!-- Star Rating CSS -->
+	<link rel="stylesheet" href="@Url.Content("~/css/components/bs-rating.css")" type="text/css" />
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<link rel="stylesheet" href="css/custom.css" type="text/css" />
+<link rel="stylesheet" href="@Url.Content("~/css/custom.css")" type="text/css" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 
@@ -28,7 +30,7 @@
                 </div>
 
                 <div class="card-body text-center">
-                    <img class="card-img-top" src="~/images/book1.png" asp-append-version="true" />
+                    <img class="card-img-top" src="~/images/book1.jpg" asp-append-version="true" />
                     <h4>@Html.DisplayNameFor(model => model.Isbn): @Html.DisplayFor(model => model.Isbn) </h4>
                     <h4>@Html.DisplayNameFor(model => model.DatePublished): @Html.DisplayFor(model => model.DatePublished) </h4>
                     <h4>@Html.DisplayNameFor(model => model.AverageRating): @Html.DisplayFor(model => model.AverageRating) </h4>
@@ -50,12 +52,6 @@
                 <input name="Title" class="form-control" /> 
                 <span asp-validation-for="Title" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                 <input id="input-10" type="number" class="rating" min="0" max="5" data-step=".1" data-stars="5" data-size="sm">
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
         }
 
                 <div class="card-footer text-center">
@@ -65,8 +61,8 @@
 
             <form action="SaveRating" method="post">
                 <label for="">Borrow this book</label>
-                <input type="hidden" name="id" value="" />
-                <input type="text" name="BookRating" placeholder="rating..." />
+                <input type="hidden" name="id" value="@Model.BookId" />
+                <input id="input-10" type="number" name="BookRating" class="rating" min="0" max="5" data-step=".1" data-stars="5" data-size="sm">
                 <input type="submit" value="save rating" />
 
             </form>
@@ -102,3 +98,14 @@
         })();
     </script>
     <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    	<!-- JavaScripts
+	============================================= -->
+	<script src="/js/jquery.js"></script>
+	
+
+	<!-- Star Rating Plugin -->
+	<script src="/js/components/star-rating.js"></script>
+
+	<!-- Footer Scripts
+	============================================= -->
+	<script src="/js/functions.js"></script>
