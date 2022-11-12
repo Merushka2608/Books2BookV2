@@ -1,7 +1,7 @@
 ﻿@page
 @model Shopping
 @{
-	ViewData["Title"] = "Shopping Cart";
+	ViewData["Title"] = "Order Complete";
 }
 
 <!DOCTYPE html>
@@ -136,68 +136,29 @@
 				
 					<div id="processTabs" data-plugin="tabs" class="customjs">
 						<ul class="process-steps row col-mb-30 justify-content-center mb-4">
-							<li class="col-sm-6 col-lg-3 active">
-								<a href="#" class="i-circled i-alt mx-auto bg-color icon-shopping-cart"></a>
+							<li class="col-sm-6 col-lg-3">
+								<a href="#" class="i-circled i-alt mx-auto icon-shopping-cart"></a>
 								<h5>Review Cart</h5>
 							</li>
 							<li class="col-sm-6 col-lg-3">
 								<a href="#" class="i-circled i-alt mx-auto icon-like"></a>
 								<h5>Confirm Purchase</h5>
 							</li>
-							<li class="col-sm-6 col-lg-3">
-								<a href="#" class="i-circled i-alt mx-auto icon-ok"></a>
-								<h5>Order Ready for Pick-Up</h5>
+							<li class="col-sm-6 col-lg-3 active">
+								<a href="#" class="i-circled i-alt mx-auto bg-color icon-ok"></a>
+								<h5>Order Complete</h5>
 							</li>
 						</ul>
-							<div class="divider divider-center"><i class="icon-shopping-cart"></i></div>
+							<div class="divider divider-center"><i class="icon-ok"></i></div>
 						<div>
 							<div id="ptab1">
-
-								<div class="table-responsive">
-									<table class="table cart table-sm table-light">
-										<thead>
-											<tr>
-												<th class="cart-product-remove">&nbsp;</th>
-												<th class="cart-product-thumbnail">&nbsp;</th>
-												<th scope="col">BookId</th>
-												<th scope="col">Book Title</th>
-												<th scope="col">Condition</th>
-												<th scope="col">Price</th>
-											</tr>
-										</thead>
-										<tbody>
-											<tr class="cart_item">
-
-												@foreach (var i in Model.bookTitles)
-												{
-												<tr>
-													<td class="cart-product-remove">
-														<a href="#" class="remove" title="Remove this item"><i class="icon-trash2"></i></a>
-													</td>
-
-													<td class="cart-product-thumbnail">
-														<a href="#"><img width="64" height="64" img src="images/book2.jpg" alt="1st item"></a>
-													</td>
-													<td>@i.BookId</td>
-													<td>@i.Title</td>
-													<td>@i.Condition</td>
-													<td>price</td>
-												</tr>
-												}
-
-											</tr>
-
-										</tbody>
-
-									</table>
+								<div class="alert alert-success">
+									<strong>Thank You.</strong> Your order will be processed once we verify the payment.
 								</div>
-								<div class="divider divider-center"><i class="icon-like"></i></div>
-								<div id="ptab2">
-									<p>Please review the cart before confirming your purchase</p>
-								<div class="line line-sm mb-4"></div>
-								<a href="~/PurchaseComplete" class="button button-3d m-0 float-end tab-linker" rel="2">Purchase</a>
 							</div>
-
+								<div id="ptab2">
+								<div class="line line-sm mb-4"></div>
+								<a href="~/TblBooks" class="button button-3d m-0 float-end tab-linker" rel="2">Back</a>
 							</div>
 						</div>
 					</div>
@@ -272,16 +233,6 @@
 	<script src="js/jquery.js"></script>
 	<!--<script src="js/plugins.min.js"></script>-->
 	<script src="js/functions.js"></script>
-
-	<script>
-		jQuery(window).on('pluginTabsReady', function() {
-			$("#processTabs").tabs({ show: { effect: "fade", duration: 400 } });
-			$(".tab-linker").click(function() {
-				$("#processTabs").tabs("option", "active", $(this).attr('rel') - 1);
-				return false;
-			});
-		});
-	</script>
 
 </body>
 </html>
