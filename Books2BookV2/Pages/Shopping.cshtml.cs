@@ -2,6 +2,9 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Data;
+using System.Diagnostics;
 
 namespace Books2BookV2.Pages
 {
@@ -9,7 +12,13 @@ namespace Books2BookV2.Pages
     {
         private readonly ILogger<Shopping> _logger;
         private readonly Book2BookContext _context;
+        public IQueryable<TblBook> bookTitles;
+
         public IEnumerable<TblBorrow> itemsToPayFor { get; set; }
+        public List<string> bookNames { get; set; }
+        public IEnumerable<int> listOfIds { get; set; }
+        
+        
 
         public Shopping(ILogger<Shopping> logger, Book2BookContext context)
         {
@@ -22,12 +31,13 @@ namespace Books2BookV2.Pages
 
             string userId = User.Identity.Name;
 
-            //gets all the books where the user has not paid for as yet
-            var booksToPayFor = from b in _context.TblBorrows
-                                where (b.IsPaid == false)
-                                select b;
-
-            itemsToPayFor = booksToPayFor.ToList<TblBorrow>();
+           
+             bookTitles = from b in _context.TblBooks
+                                       join c in _context.TblBorrows
+                                       on b.BookId equals c.BookId
+                                       where (c.IsPaid == false && userId == c.UserName)
+                                       select b;
+         
         }
     }
 }
