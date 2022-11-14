@@ -1,8 +1,9 @@
-﻿@model Books2BookV2.Models.TblBook
-
+﻿@page
+@model Shopping
 @{
-    ViewData["Title"] = "Details";
+	ViewData["Title"] = "Order Complete";
 }
+
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US">
 <head>
@@ -10,22 +11,19 @@
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 	<meta name="author" content="SemiColonWeb" />
 
-<!-- Stylesheets
-============================================= -->
-<link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700|Poppins:300,400,500,600,700|PT+Serif:400,400i&display=swap" rel="stylesheet" type="text/css" />
-<link rel="stylesheet" href="@Url.Content("~/css/bootstrap.css")" type="text/css" />
-<link rel="stylesheet" href="@Url.Content("~/css/style.css")" type="text/css" />
-<link rel="stylesheet" href="@Url.Content("~/css/dark.css")" type="text/css" />
-<link rel="stylesheet" href="@Url.Content("~/css/font-icons.css")" type="text/css" />
-<link rel="stylesheet" href="@Url.Content("~/css/animate.css")" type="text/css" />
-<link rel="stylesheet" href="@Url.Content("~/css/magnific-popup.css")" type="text/css" />
-<!-- Star Rating CSS -->
-	<link rel="stylesheet" href="@Url.Content("~/css/components/bs-rating.css")" type="text/css" />
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<link rel="stylesheet" href="@Url.Content("~/css/custom.css")" type="text/css" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<!-- Stylesheets
+	============================================= -->
+	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700|Poppins:300,400,500,600,700|PT+Serif:400,400i&display=swap" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
+	<link rel="stylesheet" href="style.css" type="text/css" />
+	<link rel="stylesheet" href="css/dark.css" type="text/css" />
+	<link rel="stylesheet" href="css/font-icons.css" type="text/css" />
+	<link rel="stylesheet" href="css/animate.css" type="text/css" />
+	<link rel="stylesheet" href="css/magnific-popup.css" type="text/css" />
+	<link rel="stylesheet" href="css/custom.css" type="text/css" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<!-- Document Title
+	<!-- Document Title
 	============================================= -->
 	<title>@ViewData["Title"]</title>
 
@@ -116,7 +114,7 @@
 												<a href="~/Stats"><i class="icon-graph"></i>Statistics</a>
 											</li>
 											<li>
-												<a href="~/Shopping"><i class="icon-shopping-cart"></i>Checkout</a>
+												<a href="#"><i class="icon-cart"></i>Checkout</a>
 											</li>
 										</ul>
 									</nav>
@@ -135,85 +133,38 @@
 		<section id="content">
 			<div class="content-wrap">
 				<div class="container">
+				
+					<div id="processTabs" data-plugin="tabs" class="customjs">
+						<ul class="process-steps row col-mb-30 justify-content-center mb-4">
+							<li class="col-sm-6 col-lg-3">
+								<a href="#" class="i-circled i-alt mx-auto icon-shopping-cart"></a>
+								<h5>Review Cart</h5>
+							</li>
+							<li class="col-sm-6 col-lg-3">
+								<a href="#" class="i-circled i-alt mx-auto icon-like"></a>
+								<h5>Confirm Purchase</h5>
+							</li>
+							<li class="col-sm-6 col-lg-3 active">
+								<a href="#" class="i-circled i-alt mx-auto bg-color icon-ok"></a>
+								<h5>Order Complete</h5>
+							</li>
+						</ul>
+							<div class="divider divider-center"><i class="icon-ok"></i></div>
+						<div>
+							<div id="ptab1">
+								<div class="alert alert-success">
+									<strong>Thank You.</strong> Your order will be processed once we verify the payment.
+								</div>
+							</div>
+								<div id="ptab2">
+								<div class="line line-sm mb-4"></div>
+								<a href="~/TblBooks" class="button button-3d m-0 float-end tab-linker" rel="2">Back</a>
+							</div>
+						</div>
+					</div>
 
-<div>
-    <div class="row justify-content-center m-3">
-        <div class="col-sm-8">
-            <div class="card">
-                <div class="card-header">
-                    <h1></h1>
-                </div>
+					<div class="clear"></div>
 
-                <div class="card-body text-center">
-                    <img class="card-img-top" src="~/images/book1.jpg" asp-append-version="true" />
-                    <h4>@Html.DisplayNameFor(model => model.Isbn): @Html.DisplayFor(model => model.Isbn) </h4>
-                    <h4>@Html.DisplayNameFor(model => model.DatePublished): @Html.DisplayFor(model => model.DatePublished) </h4>
-                    <h4>@Html.DisplayNameFor(model => model.AverageRating): @Html.DisplayFor(model => model.AverageRating) </h4>
-                    <h4>@Html.DisplayNameFor(model => model.Condition): @Html.DisplayFor(model => model.Condition) </h4>
-                    <h4>@Html.DisplayNameFor(model => model.Category): @Html.DisplayFor(model => model.Category) </h4>
-                    <h4>@Html.DisplayNameFor(model => model.Description): @Html.DisplayFor(model => model.Description) </h4>
-                </div>
-                <form action="POST">
-                <div>
-                    <h3>Rate this Book</h3>
-
-
-         <!--Action method Controller, Get/PostMethod/-->           
-        @using (Html.BeginForm("AddReview", "TblBooksController", FormMethod.Post))
-        {
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Title" id="rating" class="control-label">Rate </label>
-                <input name="Title" class="form-control" /> 
-                <span asp-validation-for="Title" class="text-danger"></span>
-            </div>
-        }
-
-                <div class="card-footer text-center">
-                    <a asp-page="index" class="btn-primary">Back</a>
-                </div>
-            </div>
-
-            <form action="SaveRating" method="post">
-                <label for="">Borrow this book</label>
-                <input type="hidden" name="id" value="@Model.BookId" />
-                <input id="input-10" type="number" name="BookRating" class="rating" min="0" max="5" data-step=".1" data-stars="5" data-size="sm">
-                <input type="submit" value="save rating" />
-
-            </form>
-        </div>
-
-        <form action="BorrowBook" method="post">
-            <input type="hidden" name="BookId" value="@Model.BookId"/>
-            <input type="submit" value="Add to Cart"/>
-
-        </form>
-    </div>
-
-    <a asp-action="Edit" asp-route-id="@Model?.BookId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-
-
-    <div id="disqus_thread"></div>
-    <script>
-        /**
-        *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-        *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
-        /*
-        var disqus_config = function () {
-        this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
-        this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-        };
-        */
-        (function () { // DON'T EDIT BELOW THIS LINE
-            var d = document, s = d.createElement('script');
-            s.src = 'https://book2book-1.disqus.com/embed.js';
-            s.setAttribute('data-timestamp', +new Date());
-            (d.head || d.body).appendChild(s);
-        })();
-    </script>
-    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-	
 				</div>
 			</div>
 		</section><!-- #content end -->
@@ -276,17 +227,12 @@
 	<!-- Go To Top
 	============================================= -->
 	<div id="gotoTop" class="icon-angle-up"></div>
-    	<!-- JavaScripts
-	============================================= -->
-	<script src="/js/jquery.js"></script>
-	
 
-	<!-- Star Rating Plugin -->
-	<script src="/js/components/star-rating.js"></script>
-
-	<!-- Footer Scripts
+	<!-- JavaScripts
 	============================================= -->
-	<script src="/js/functions.js"></script>
+	<script src="js/jquery.js"></script>
+	<!--<script src="js/plugins.min.js"></script>-->
+	<script src="js/functions.js"></script>
 
 </body>
 </html>
