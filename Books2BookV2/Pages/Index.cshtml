@@ -141,6 +141,14 @@
                                     }
 
                                 </li>
+                                <li>
+                                    @if (User.IsInRole("Admin"))
+                                    {
+                                        <a href="~/Administration"><i class="icon-pencil"></i>Administration</a>
+
+                                    }
+
+                                </li>
                             </ul>
                         </nav>
 

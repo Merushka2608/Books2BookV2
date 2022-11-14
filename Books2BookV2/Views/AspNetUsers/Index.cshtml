@@ -103,9 +103,14 @@
                 @Html.DisplayFor(modelItem => item.AccessFailedCount)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+
+                  @if (User.IsInRole("Admin"))
+												{
+												   <a href="~/AspNetUsers/Edit?ID=@item.Id" asp-action="Edit" asp-route-id="@item.Id">Edit</a> 
+                <a href="~/AspNetUsers/Details?ID=@item.Id" asp-action="Details" asp-route-id="@item.Id">Details</a> 
+                <a href="~/AspNetUsers/Delete?ID=@item.Id" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+
+												}
             </td>
         </tr>
 }

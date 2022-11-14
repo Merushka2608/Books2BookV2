@@ -1,0 +1,316 @@
+﻿@page
+@model IndexModel
+@{
+	ViewData["Title"] = "Administration page";
+}
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+<head>
+
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta name="author" content="SemiColonWeb" />
+
+	<!-- Stylesheets
+	============================================= -->
+	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700|Poppins:300,400,500,600,700|PT+Serif:400,400i&display=swap" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
+	<link rel="stylesheet" href="style.css" type="text/css" />
+	<link rel="stylesheet" href="css/dark.css" type="text/css" />
+	<link rel="stylesheet" href="css/font-icons.css" type="text/css" />
+	<link rel="stylesheet" href="css/animate.css" type="text/css" />
+	<link rel="stylesheet" href="css/magnific-popup.css" type="text/css" />
+
+	<link rel="stylesheet" href="css/custom.css" type="text/css" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+	<!-- Document Title
+	============================================= -->
+	<title>Administration</title>
+
+</head>
+
+<body class="stretched">
+
+	<!-- Docume t Wrapper
+	============================================= -->
+	<div id="wrapper" class="clearfix">
+
+		<!-- Top Bar
+		============================================= -->
+		<div id="top-bar">
+			<div class="container clearfix">
+
+				<div class="row justify-content-between">
+					<div class="col-12 col-md-auto">
+
+						<a href="#" class="button button-mini button-rounded button-dark side-panel-trigger bottommargin">Menu</a>
+
+						<!-- Logo
+						============================================= -->
+						<div id="logo">
+							<div class="center">
+								<a href="index.html" class="standard-logo" data-dark-logo="images/logo-dark.png"><img src="images/logo.png" alt="Books2Book Logo"></a>
+							</div><!-- #logo end -->
+							<div class="fancy-title title-border">
+								<h1>Administration</h1>
+							</div>
+						</div>
+						<div id="side-panel" class="dark">
+
+							<div id="side-panel-trigger-close" class="side-panel-trigger"><a href="#"><i class="icon-line-cross"></i></a></div>
+
+							<div class="side-panel-wrap">
+
+								<div class="widget clearfix">
+
+									<h4>Menu</h4>
+
+									<nav class="nav-tree mb-0">
+										<ul>
+											<li>
+												<a href="~/Index"><i class="icon-home"></i>Home</a>
+											</li>
+											<li>
+												<a href="~/Shopping"><i class="icon-shopping-cart"></i>Checkout</a>
+											</li>
+											<li>
+												<a href="~/Sales"><i class="icon-money"></i>Sell Your Books</a>
+											</li>
+											<li>
+												<a href="~/TblBooks/Index"><i class="icon-search"></i>Search For Books</a>
+											</li>
+											<li>
+												<a href="faqs.html"><i class="icon-question"></i>FAQs</a>
+											</li>
+											<li>
+												<a href="contact.html"><i class="icon-map-marker"></i>Contact Us</a>
+												<ul>
+													<li><i class="icon-envelope2"></i></li>
+													<li>info@Books2Book.com</li>
+													<li><i class="icon-phone1"></i>Cell:</li>
+													<li>083 468 1461</li>
+													<li><i class="icon-phone3"></i>Tel:</li>
+													<li>032 943 1348</li>
+												</ul>
+											</li>
+											<li>
+												<a href="contact.html"><i class="icon-phone2"></i>Follow Us</a>
+												<ul>
+													<li><a href="#"><i class="icon-facebook"></i>Facebook</a></li>
+													<li><a href="#"><i class="icon-github"></i>Github</a></li>
+													<li><a href="#"><i class="icon-linkedin"></i>LinkedIn</a></li>
+													<li><a href="#"><i class="icon-twitter"></i>Twitter</a></li>
+												</ul>
+											</li>
+											<li>
+												<a href="~/About"><i class="icon-book"></i>About</a>
+											</li>
+											<li>
+												<a href="help.html"><i class="icon-question-circle"></i>Help</a>
+											</li>
+											<li>
+												@if (User.IsInRole("Admin"))
+												{
+													<a href="~/StatsDetails/Index"><i class="icon-graph"></i>Statistics</a>
+
+												}
+
+											</li>
+											<li>
+												@if (User.IsInRole("Admin"))
+												{
+													<a href="~/Administration"><i class="icon-pencil"></i>Administration</a>
+
+												}
+
+											</li>
+										</ul>
+									</nav>
+
+								</div>
+
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div><!-- #top-bar end -->
+
+		<section id="content">
+			<div class="content-wrap">
+				<div class="container clearfix">
+					<div class="fancy-title title-border title-center">
+						<h2>Choose a Page Below</h2>
+					</div>
+					<div class="divider divider-center"><i class="icon-clipboard1"></i></div>
+					<div class="fancy-title title-border title-center">
+						<h3>AspNetRoles</h3>
+					</div>
+					<div class="center">
+						<a href="~/AspNetRoles/Create" class="button button-3d m-0 tab-linker" rel="1">Create</a>
+						<a href="~/AspNetRoles/Edit" class="button button-3d m-0 tab-linker" rel="2">Edit</a>
+						<a href="~/AspNetRoles/Details" class="button button-3d m-0 tab-linker" rel="3">Details</a>
+						<a href="~/AspNetRoles/Delete" class="button button-3d m-0 tab-linker" rel="4">Delete</a>
+						<a href="~/AspNetRoles/Index" class="button button-3d m-0 tab-linker" rel="5">Index</a>
+					</div>
+					<div class="divider divider-center"><i class="icon-list"></i></div>
+					<div class="fancy-title title-border title-center">
+						<h3>AspNetUsers</h3>
+					</div>
+					<div class="center">
+						<a href="~/AspNetUsers/Create" class="button button-3d m-0 tab-linker" rel="1">Create</a>
+						<a href="~/AspNetUsers/Edit" class="button button-3d m-0 tab-linker" rel="2">Edit</a>
+						<a href="~/AspNetUsers/Details" class="button button-3d m-0 tab-linker" rel="3">Details</a>
+						<a href="~/AspNetUsers/Delete" class="button button-3d m-0 tab-linker" rel="4">Delete</a>
+						<a href="~/AspNetUsers/Index" class="button button-3d m-0 tab-linker" rel="5">Index</a>
+					</div>
+					<div class="divider divider-center"><i class="icon-graph"></i></div>
+					<div class="fancy-title title-border title-center">
+						<h3>StatsDetails</h3>
+					</div>
+					<div class="center">
+						<a href="~/StatsDetails/Create" class="button button-3d m-0 tab-linker" rel="1">Create</a>
+						<a href="~/StatsDetails/Edit" class="button button-3d m-0 tab-linker" rel="2">Edit</a>
+						<a href="~/StatsDetails/Details" class="button button-3d m-0 tab-linker" rel="3">Details</a>
+						<a href="~/StatsDetails/Delete" class="button button-3d m-0 tab-linker" rel="4">Delete</a>
+						<a href="~/StatsDetails/Index" class="button button-3d m-0 tab-linker" rel="5">Index</a>
+					</div>
+					<div class="divider divider-center"><i class="icon-money-bill"></i></div>
+					<div class="fancy-title title-border title-center">
+						<h3>TblAccounts</h3>
+					</div>
+					<div class="center">
+						<a href="~/TblAccounts/Create" class="button button-3d m-0 tab-linker" rel="1">Create</a>
+						<a href="~/TblAccounts/Edit" class="button button-3d m-0 tab-linker" rel="2">Edit</a>
+						<a href="~/TblAccounts/Details" class="button button-3d m-0 tab-linker" rel="3">Details</a>
+						<a href="~/TblAccounts/Delete" class="button button-3d m-0 tab-linker" rel="4">Delete</a>
+						<a href="~/TblAccounts/Index" class="button button-3d m-0 tab-linker" rel="5">Index</a>
+					</div>
+					<div class="divider divider-center"><i class="icon-book-open"></i></div>
+					<div class="fancy-title title-border title-center">
+						<h3>TblAuthors</h3>
+					</div>
+					<div class="center">
+						<a href="~/TblAuthors/Create" class="button button-3d m-0 tab-linker" rel="1">Create</a>
+						<a href="~/TblAuthors/Edit" class="button button-3d m-0 tab-linker" rel="2">Edit</a>
+						<a href="~/TblAuthors/Details" class="button button-3d m-0 tab-linker" rel="3">Details</a>
+						<a href="~/TblAuthors/Delete" class="button button-3d m-0 tab-linker" rel="4">Delete</a>
+						<a href="~/TblAuthors/Index" class="button button-3d m-0 tab-linker" rel="5">Index</a>
+					</div>
+					<div class="divider divider-center"><i class="icon-book"></i></div>
+					<div class="fancy-title title-border title-center">
+						<h3>TblBooks</h3>
+					</div>
+					<div class="center">
+						<a href="~/TblBooks/Create" class="button button-3d m-0 tab-linker" rel="1">Create</a>
+						<a href="~/TblBooks/Edit" class="button button-3d m-0 tab-linker" rel="2">Edit</a>
+						<a href="~/TblBooks/Details" class="button button-3d m-0 tab-linker" rel="3">Details</a>
+						<a href="~/TblBooks/Delete" class="button button-3d m-0 tab-linker" rel="4">Delete</a>
+						<a href="~/TblBooks/Index" class="button button-3d m-0 tab-linker" rel="5">Index</a>
+					</div>
+					<div class="divider divider-center"><i class="icon-picture"></i></div>
+					<div class="fancy-title title-border title-center">
+						<h3>TblImages</h3>
+					</div>
+					<div class="center">
+						<a href="~/TblImages/Create" class="button button-3d m-0 tab-linker" rel="1">Create</a>
+						<a href="~/TblImages/Edit" class="button button-3d m-0 tab-linker" rel="2">Edit</a>
+						<a href="~/TblImages/Details" class="button button-3d m-0 tab-linker" rel="3">Details</a>
+						<a href="~/TblImages/Delete" class="button button-3d m-0 tab-linker" rel="4">Delete</a>
+						<a href="~/TblImages/Index" class="button button-3d m-0 tab-linker" rel="5">Index</a>
+					</div>
+					<div class="divider divider-center"><i class="icon-money-check"></i></div>
+					<div class="fancy-title title-border title-center">
+						<h3>TblPayments</h3>
+					</div>
+					<div class="center">
+						<a href="~/TblPayments/Create" class="button button-3d m-0 tab-linker" rel="1">Create</a>
+						<a href="~/TblPayments/Edit" class="button button-3d m-0 tab-linker" rel="2">Edit</a>
+						<a href="~/TblPayments/Details" class="button button-3d m-0 tab-linker" rel="3">Details</a>
+						<a href="~/TblPayments/Delete" class="button button-3d m-0 tab-linker" rel="4">Delete</a>
+						<a href="~/TblPayments/Index" class="button button-3d m-0 tab-linker" rel="5">Index</a>
+					</div>
+					<div class="divider divider-center"><i class="icon-pen"></i></div>
+					<div class="fancy-title title-border title-center">
+						<h3>TblPublishers</h3>
+					</div>
+					<div class="center">
+						<a href="~/TblPublishers/Create" class="button button-3d m-0 tab-linker" rel="1">Create</a>
+						<a href="~/TblPublishers/Edit" class="button button-3d m-0 tab-linker" rel="2">Edit</a>
+						<a href="~/TblPublishers/Details" class="button button-3d m-0 tab-linker" rel="3">Details</a>
+						<a href="~/TblPublishers/Delete" class="button button-3d m-0 tab-linker" rel="4">Delete</a>
+						<a href="~/TblPublishers/Index" class="button button-3d m-0 tab-linker" rel="5">Index</a>
+					</div>
+
+				</div>
+
+			</div>
+	</div>
+	</section>
+
+	<!-- Footer
+	============================================= -->
+	<footer id="footer" class="dark">
+
+		<!-- Copyrights
+		============================================= -->
+		<div id="copyrights">
+			<div class="container">
+
+				<div class="row col-mb-30">
+
+					<div class="col-md-6 text-center text-md-start">
+						Copyrights &copy; 2022 All Rights Reserved by Books-2-Book Inc.<br>
+						<div class="copyright-links"><a href="terms.html">Terms of Use</a> / <a href="#">Privacy Policy</a></div>
+					</div>
+
+					<div class="col-md-6 text-center text-md-end">
+						<div class="d-flex justify-content-center justify-content-md-end">
+							<a href="#" class="social-icon si-small si-borderless si-facebook">
+								<i class="icon-facebook"></i>
+								<i class="icon-facebook"></i>
+							</a>
+
+							<a href="#" class="social-icon si-small si-borderless si-twitter">
+								<i class="icon-twitter"></i>
+								<i class="icon-twitter"></i>
+							</a>
+
+							<a href="#" class="social-icon si-small si-borderless si-github">
+								<i class="icon-github"></i>
+								<i class="icon-github"></i>
+							</a>
+
+							<a href="#" class="social-icon si-small si-borderless si-linkedin">
+								<i class="icon-linkedin"></i>
+								<i class="icon-linkedin"></i>
+							</a>
+						</div>
+
+						<div class="clear"></div>
+
+						<i class="icon-envelope2"></i> info@books2book.com
+						<span class="middot">&middot;</span>
+						<i class="icon-phone1"></i> 083 468 1461
+						<span class="middot">&middot;</span>
+						<i class="icon-phone3"></i> 032 943 1348
+					</div>
+
+				</div>
+
+			</div>
+		</div><!-- #copyrights end -->
+	</footer><!-- #footer end -->
+	</div><!-- #wrapper end -->
+	@*	<!-- JavaScripts
+	============================================= -->
+	<script src="js/jquery.js"></script>
+	<script src="js/plugins.min.js"></script>
+
+	<!-- Footer Scripts
+	============================================= -->
+	<script src="js/functions.js"></script>*@
+
+</body>
+</html>
