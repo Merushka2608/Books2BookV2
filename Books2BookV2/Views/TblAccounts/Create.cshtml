@@ -3,6 +3,10 @@
 @{
     ViewData["Title"] = "Create";
 }
+@{
+    string userId = User.Identity.Name;
+
+}
 
 <h1>Create</h1>
 
@@ -22,10 +26,13 @@
                 <input asp-for="AccountNumber" class="form-control" />
                 <span asp-validation-for="AccountNumber" class="text-danger"></span>
             </div>
+          
             <div class="form-group">
-                <label asp-for="UserName" class="control-label"></label>
-                <input asp-for="UserName" class ="form-control" asp-items="ViewBag.UserName"/>
-            </div>
+                            <label asp-for="UserName" class="control-label"></label>
+                            <input asp-for="UserName" value=@userId class ="form-control" asp-items="ViewBag.UserName"></input>
+                        </div>
+
+         
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
@@ -37,3 +44,4 @@
     <a asp-action="Index">Back to List</a>
 </div>
 
+     

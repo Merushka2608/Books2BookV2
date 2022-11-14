@@ -106,15 +106,6 @@ namespace Books2BookV2.Models
                 entity.Property(e => e.Id).ValueGeneratedNever();
             });
 
-            modelBuilder.Entity<TblPayment>(entity =>
-            {
-                entity.HasOne(d => d.Account)
-                    .WithMany(p => p.TblPayments)
-                    .HasForeignKey(d => d.AccountId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_tblPayments_tblAccount");
-            });
-
             OnModelCreatingPartial(modelBuilder);
         }
 
