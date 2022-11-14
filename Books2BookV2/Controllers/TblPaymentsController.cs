@@ -6,14 +6,14 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Books2BookV2.Models;
+using Newtonsoft.Json;
 
 namespace Books2BookV2.Controllers
 {
     public class TblPaymentsController : Controller
     {
         private readonly Book2BookContext _context;
-        private List<TblBorrow> itemsToPayFor;
-
+        
         public TblPaymentsController(Book2BookContext context)
         {
             _context = context;
@@ -22,10 +22,9 @@ namespace Books2BookV2.Controllers
         // GET: TblPayments
         public async Task<IActionResult> Index()
         {
-            var book2BookContext = _context.TblPayments.Include(t => t.Account);
-
-            
-            return View(await book2BookContext.ToListAsync());
+            //here we get the total price
+            var temp = TempData["priceTotal"];
+            return View(await _context.TblPayments.ToListAsync());
         }
 
         // GET: TblPayments/Details/5
@@ -37,7 +36,6 @@ namespace Books2BookV2.Controllers
             }
 
             var tblPayment = await _context.TblPayments
-                .Include(t => t.Account)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (tblPayment == null)
             {
@@ -50,7 +48,6 @@ namespace Books2BookV2.Controllers
         // GET: TblPayments/Create
         public IActionResult Create()
         {
-            ViewData["AccountId"] = new SelectList(_context.TblAccounts, "AccountId", "AccountId");
             return View();
         }
 
@@ -59,7 +56,7 @@ namespace Books2BookV2.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,AccountId,BookIds")] TblPayment tblPayment)
+        public async Task<IActionResult> Create([Bind("Id,UserName,DatePaid")] TblPayment tblPayment)
         {
             if (ModelState.IsValid)
             {
@@ -67,7 +64,6 @@ namespace Books2BookV2.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["AccountId"] = new SelectList(_context.TblAccounts, "AccountId", "AccountId", tblPayment.AccountId);
             return View(tblPayment);
         }
 
@@ -84,7 +80,6 @@ namespace Books2BookV2.Controllers
             {
                 return NotFound();
             }
-            ViewData["AccountId"] = new SelectList(_context.TblAccounts, "AccountId", "AccountId", tblPayment.AccountId);
             return View(tblPayment);
         }
 
@@ -93,7 +88,7 @@ namespace Books2BookV2.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,AccountId,BookIds")] TblPayment tblPayment)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,UserName,DatePaid")] TblPayment tblPayment)
         {
             if (id != tblPayment.Id)
             {
@@ -120,7 +115,6 @@ namespace Books2BookV2.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["AccountId"] = new SelectList(_context.TblAccounts, "AccountId", "AccountId", tblPayment.AccountId);
             return View(tblPayment);
         }
 
@@ -133,7 +127,6 @@ namespace Books2BookV2.Controllers
             }
 
             var tblPayment = await _context.TblPayments
-                .Include(t => t.Account)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (tblPayment == null)
             {

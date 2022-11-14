@@ -6,17 +6,22 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Books2BookV2.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace Books2BookV2.Controllers
 {
     public class TblAccountsController : Controller
     {
         private readonly Book2BookContext _context;
+        private readonly UserManager<IdentityUser> _userManager;
 
-        public TblAccountsController(Book2BookContext context)
+        public TblAccountsController(Book2BookContext context, UserManager<IdentityUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
+      
+
 
         // GET: TblAccounts
         public async Task<IActionResult> Index()
@@ -58,6 +63,7 @@ namespace Books2BookV2.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("AccountId,Bank,AccountNumber,UserName")] TblAccount tblAccount)
         {
+
             if (ModelState.IsValid)
             {
                 _context.Add(tblAccount);

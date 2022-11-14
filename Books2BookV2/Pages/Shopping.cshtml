@@ -14,14 +14,29 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var i in Model.bookTitles)
+        @if (Model.bookTitles == null)
         {
-            <tr>
-                 <td>@i.BookId</td>
-                 <td>@i.Title</td>
-                 <td>@i.Condition</td>
-                 <td>price</td>
-               </tr>
-   }
+            <tr>Your list is empty </tr>
+        }else{
+            @foreach (var i in Model.bookTitles)
+            {
+                <tr>
+                    <td>@i.BookId</td>
+                    <td>@i.Title</td>
+                    <td>@i.Condition</td>
+                    <td>price</td>
+                </tr>
+            }
+        }
+       
+
+        <!--Action method Controller, Get/PostMethod/-->
+        <input type="button" value="Check out" onclick="location.href='@Url.Action("Index", "TblPayments")'" />
+
+        
+        
+
+          
+
     </tbody>
 </table>
