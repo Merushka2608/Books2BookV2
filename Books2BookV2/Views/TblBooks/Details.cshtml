@@ -1,5 +1,4 @@
 ﻿@model Books2BookV2.Models.TblBook
-
 @{
     ViewData["Title"] = "Details";
 }
@@ -182,6 +181,9 @@
 
             </form>
         </div>
+
+		
+
 
         <form action="BorrowBook" method="post">
             <input type="hidden" name="BookId" value="@Model.BookId"/>

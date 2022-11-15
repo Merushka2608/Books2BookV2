@@ -23,8 +23,23 @@ namespace Books2BookV2.Controllers
         public async Task<IActionResult> Index()
         {
             //here we get the total price
-            var temp = TempData["priceTotal"];
-            return View(await _context.TblPayments.ToListAsync());
+            double temp = double.Parse((string)TempData["priceTotal"]);
+            var user = User.Identity.Name;
+            var AccountNumber = (from b in _context.AspNetUsers
+                                where b.UserName == user
+                                select b.AccountNumber).Single();
+
+            TblPayment tblPayment = new TblPayment(user,AccountNumber,DateTime.Now, temp);
+            var booksPaid = TempData["unPaid"];
+
+            //sets all the unpaid book values to paid
+            (from b in _context.TblBorrows
+                       where b.IsPaid == false && b.UserName == user
+                       select b).ToList().ForEach(x => x.IsPaid = true);
+
+            _context.Add(tblPayment);
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Successful","TblPayments");
         }
 
         // GET: TblPayments/Details/5
@@ -51,6 +66,11 @@ namespace Books2BookV2.Controllers
             return View();
         }
 
+        public IActionResult Successful()
+        {
+            return View();
+        }
+
         // POST: TblPayments/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -67,6 +87,14 @@ namespace Books2BookV2.Controllers
             return View(tblPayment);
         }
 
+        public IActionResult MakePayment()
+        {
+            
+            return View();
+        }
+
+
+        
         // GET: TblPayments/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -82,6 +110,9 @@ namespace Books2BookV2.Controllers
             }
             return View(tblPayment);
         }
+
+
+        
 
         // POST: TblPayments/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
