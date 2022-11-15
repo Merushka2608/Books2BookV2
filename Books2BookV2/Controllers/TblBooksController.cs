@@ -28,6 +28,7 @@ namespace Books2BookV2.Controllers
             _userManager = userManager;
         }
 
+       
         public async Task<IActionResult> Index(string searchString, string sortBy, string filterBy)
         {
             //  ViewBag.SortCategoryParameter = string.IsNullOrEmpty(sortBy) ? "Title desc":"";
@@ -260,6 +261,8 @@ namespace Books2BookV2.Controllers
 
 
         }
+
+
 
     }
 }
