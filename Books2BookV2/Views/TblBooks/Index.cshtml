@@ -19,7 +19,7 @@
 	<link rel="stylesheet" href="@Url.Content("~/css/font-icons.css")" type="text/css" />
 	<link rel="stylesheet" href="@Url.Content("~/css/animate.css")" type="text/css" />
 	<link rel="stylesheet" href="@Url.Content("~/css/magnific-popup.css")" type="text/css" />
-		<link rel="stylesheet" href="@Url.Content("css/custom.css")" type="text/css" />
+	<link rel="stylesheet" href="@Url.Content("css/custom.css")" type="text/css" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 
 	<style>
@@ -261,9 +261,13 @@
 								@Html.DisplayFor(modelItem => item.AuthorId)
 							</td>
 							<td>
-								<a asp-action="Edit" asp-route-id="@item.BookId">Edit</a> |
-								<a asp-action="Details" asp-route-id="@item.BookId">Details</a> |
-								<a asp-action="Delete" asp-route-id="@item.BookId">Delete</a>
+								@if (User.IsInRole("Admin"))
+								{
+									<a href="~/TblBooks/Edit?ID=@item.BookId" asp-action="Edit" asp-route-id="@item.BookId">Edit</a>
+									<a href="~/TblBooks/Details?ID=@item.BookId" asp-action="Details" asp-route-id="@item.BookId">Details</a>
+									<a href="~/TblBooks/Delete?ID=@item.BookId" asp-action="Delete" asp-route-id="@item.BookId">Delete</a>
+
+								}
 							</td>
 						</tr>
 					}
@@ -338,7 +342,7 @@
 		</footer><!-- #footer end -->
 
 	</div><!-- #wrapper end -->
-    	<!-- JavaScripts
+	<!-- JavaScripts
 	============================================= -->
 	<script src="/js/jquery.js"></script>
 

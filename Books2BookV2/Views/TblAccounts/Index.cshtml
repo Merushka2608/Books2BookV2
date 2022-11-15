@@ -37,9 +37,14 @@
                 @Html.DisplayFor(modelItem => item.UserName)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.AccountId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.AccountId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.AccountId">Delete</a>
+                @if (User.IsInRole("Admin"))
+                                    {
+                                         <a href="~/TblAccounts/Edit?ID=@item.AccountId" asp-action="Edit" asp-route-id="@item.AccountId">Edit</a> 
+                <a href="~/TblAccounts/Details?ID=@item.AccountId" asp-action="Details" asp-route-id="@item.AccountId">Details</a> 
+                <a href="~/TblAccounts/Delete?ID=@item.AccountId" asp-action="Delete" asp-route-id="@item.AccountId">Delete</a>
+
+                                    }
+           
             </td>
         </tr>
 }

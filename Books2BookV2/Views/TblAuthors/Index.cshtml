@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<Books2BookV2.Models.TblAuthor>
 
 @{
-    ViewData["Title"] = "Index";
+	ViewData["Title"] = "Index";
 }
 <!-- Stylesheets
 ============================================= -->
@@ -18,29 +18,34 @@
 <h1>Index</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+	<a asp-action="Create">Create New</a>
 </p>
 <table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.AuthorName)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.AuthorName)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.AuthorId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.AuthorId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.AuthorId">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
+	<thead>
+		<tr>
+			<th>
+				@Html.DisplayNameFor(model => model.AuthorName)
+			</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var item in Model)
+		{
+			<tr>
+				<td>
+					@Html.DisplayFor(modelItem => item.AuthorName)
+				</td>
+				<td>
+					@if (User.IsInRole("Admin"))
+					{
+						<a href="~/TblAuthors/Edit?ID=@item.AuthorId" asp-action="Edit" asp-route-id="@item.AuthorId">Edit</a>
+						<a href="~/TblAuthors/Details?ID=@item.AuthorId" asp-action="Details" asp-route-id="@item.AuthorId">Details</a>
+						<a href="~/TblAuthors/Delete?ID=@item.AuthorId" asp-action="Delete" asp-route-id="@item.AuthorId">Delete</a>
+
+					}
+				</td>
+			</tr>
+		}
+	</tbody>
 </table>
