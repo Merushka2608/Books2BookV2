@@ -31,11 +31,15 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <img src="/image/logo.png" style="max-width: 200px;" id="img-me" />
             <input id="img-me-file" type="file" class="d-none" accept="image/*" />
-            <div class="form-group">
-                <label asp-for="Id" class="control-label">ID</label>
-                <input name="Id" class="form-control" />
-                <span asp-validation-for="Id" class="text-danger"></span>
-            </div>
+           <!--
+                <div class="form-group">
+                 <label asp-for="Id" class="control-label">ID</label>
+                 <input name="Id" class="form-control" />
+                 <span asp-validation-for="Id" class="text-danger"></span>
+             </div>
+
+
+            --> 
             <div class="form-group">
                 <label asp-for="Title" class="control-label">Title </label>
                 <input name="Title" class="form-control" />
@@ -43,7 +47,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="Image" class="control-label">Image</label>
-                <input name="Image" id="Image" class="form-control" />
+                <input type="hidden" name="Image" id="Image" class="form-control" />
                 <span asp-validation-for="Image" class="text-danger"></span>
             </div>
             <input type="hidden" id="filename" name="filename" />

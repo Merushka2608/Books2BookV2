@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Books2BookV2.Models;
+using System.Data;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Books2BookV2.Controllers
 {
@@ -50,6 +52,8 @@ namespace Books2BookV2.Controllers
             return View();
         }
 
+
+        [Authorize]
         // POST: TblImages/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -57,10 +61,16 @@ namespace Books2BookV2.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Title,Image")] TblImage tblImage,string filename)
         {
+           
+            int count = _context.TblImages.Count();
+            
+
             //store as url 
+
 
             if (ModelState.IsValid)
             {
+                tblImage.Id = count + 1;
                 byte[] image = Convert.FromBase64String(tblImage.Image.Split(',')[1]);
                 string newName = Guid.NewGuid().ToString() + $"{Path.GetExtension(filename)}";
                 string path = $"/booksToSell/{newName}";

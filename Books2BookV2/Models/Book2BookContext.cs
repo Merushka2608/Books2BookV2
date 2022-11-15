@@ -90,11 +90,6 @@ namespace Books2BookV2.Models
                     .HasConstraintName("FK_tblBooks_tblAuthor");
             });
 
-            modelBuilder.Entity<TblImage>(entity =>
-            {
-                entity.Property(e => e.Id).ValueGeneratedNever();
-            });
-
             OnModelCreatingPartial(modelBuilder);
         }
 
