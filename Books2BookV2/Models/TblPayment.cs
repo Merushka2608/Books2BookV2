@@ -11,10 +11,12 @@ namespace Books2BookV2.Models
     {
         [Key]
         public int Id { get; set; }
-        public string UserName { get; set; } = null!;
-        [Column(TypeName = "date")]
-        public DateTime DatePaid { get; set; }
-        [Column("total")]
-        public double Total { get; set; }
+        public int AccountId { get; set; }
+        [Unicode(false)]
+        public string BookIds { get; set; } = null!;
+
+        [ForeignKey("AccountId")]
+        [InverseProperty("TblPayments")]
+        public virtual TblAccount Account { get; set; } = null!;
     }
 }

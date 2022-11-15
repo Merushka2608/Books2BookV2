@@ -17,5 +17,18 @@ namespace Books2BookV2.Models
         [Column("image")]
         [Unicode(false)]
         public string Image { get; set; } = null!;
+        [Column("ISBN")]
+        [StringLength(15)]
+        [Unicode(false)]
+        public string Isbn { get; set; } = null!;
+        [StringLength(50)]
+        [Unicode(false)]
+        public string BookTitle { get; set; } = null!;
+        [StringLength(50)]
+        [Unicode(false)]
+        public string Author { get; set; } = null!;
+        [StringLength(300)]
+        [Unicode(false)]
+        public string DescriptionOfCondition { get; set; } = null!;
     }
 }
