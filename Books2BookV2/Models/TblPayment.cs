@@ -9,14 +9,23 @@ namespace Books2BookV2.Models
     [Table("tblPayments")]
     public partial class TblPayment
     {
+        public TblPayment( string userName, string accNumber, DateTime datePaid, double total)
+        {
+            UserName = userName;
+            AccNumber = accNumber;
+            DatePaid = datePaid;
+            Total = total;
+        }
+
         [Key]
         public int Id { get; set; }
-        public int AccountId { get; set; }
+        public string UserName { get; set; } = null!;
+        [StringLength(50)]
         [Unicode(false)]
-        public string BookIds { get; set; } = null!;
-
-        [ForeignKey("AccountId")]
-        [InverseProperty("TblPayments")]
-        public virtual TblAccount Account { get; set; } = null!;
+        public string AccNumber { get; set; } = null!;
+        [Column(TypeName = "date")]
+        public DateTime DatePaid { get; set; }
+        [Column("total")]
+        public double Total { get; set; }
     }
 }

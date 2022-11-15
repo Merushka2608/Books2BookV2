@@ -24,7 +24,6 @@ namespace Books2BookV2.Models
         public virtual DbSet<AspNetUserRole> AspNetUserRoles { get; set; } = null!;
         public virtual DbSet<AspNetUserToken> AspNetUserTokens { get; set; } = null!;
         public virtual DbSet<StatsDetail> StatsDetails { get; set; } = null!;
-        public virtual DbSet<TblAccount> TblAccounts { get; set; } = null!;
         public virtual DbSet<TblAuthor> TblAuthors { get; set; } = null!;
         public virtual DbSet<TblBook> TblBooks { get; set; } = null!;
         public virtual DbSet<TblBorrow> TblBorrows { get; set; } = null!;
@@ -80,16 +79,6 @@ namespace Books2BookV2.Models
             modelBuilder.Entity<AspNetUserToken>(entity =>
             {
                 entity.HasKey(e => new { e.UserId, e.LoginProvider, e.Name });
-            });
-
-            modelBuilder.Entity<TblAccount>(entity =>
-            {
-                entity.HasOne(d => d.UserNameNavigation)
-                    .WithMany(p => p.TblAccounts)
-                    .HasPrincipalKey(p => p.UserName)
-                    .HasForeignKey(d => d.UserName)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_tblAccount_AspNetUsers");
             });
 
             modelBuilder.Entity<TblBook>(entity =>

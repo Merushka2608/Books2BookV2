@@ -111,6 +111,11 @@ namespace Books2BookV2.Areas.Identity.Pages.Account
             [EmailAddress]
             [Display(Name = "Email")]
             public string Email { get; set; }
+            
+            [Required]
+            [StringLength(50)]
+            [Display(Name = "Account Number")]
+            public string AccountNumber { get; set; }
 
             /// <summary>
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
@@ -188,6 +193,7 @@ namespace Books2BookV2.Areas.Identity.Pages.Account
                     netUser.Dob= Input.Dob;
                     netUser.Institution = Input.Institution;
                     netUser.SubscriptionType= Input.SubscriptionType;
+                    netUser.AccountNumber = Input.AccountNumber;    
                     await _userManager.AddToRoleAsync(user, "Student");
 
                     book2BookContext.Entry(netUser).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
