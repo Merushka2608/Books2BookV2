@@ -52,6 +52,11 @@ namespace Books2BookV2.Controllers
             return View();
         }
 
+        public IActionResult Success()
+        {
+            return View();
+        }
+
 
         [Authorize]
         // POST: TblImages/Create
@@ -59,7 +64,7 @@ namespace Books2BookV2.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Title,Image")] TblImage tblImage,string filename)
+        public async Task<IActionResult> Create([Bind("Id,Title,Image,Isbn,Author,DescriptionOfBook")] TblImage tblImage,string filename)
         {
            
             int count = _context.TblImages.Count();
@@ -78,8 +83,10 @@ namespace Books2BookV2.Controllers
                 tblImage.Image = path;
                 _context.Add(tblImage);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                // return RedirectToAction(nameof(Index));
+                return RedirectToAction("Success", "TblImages");
             }
+            //return RedirectToAction("Success", "TblImages");
             return View(tblImage);
         }
 
@@ -104,7 +111,7 @@ namespace Books2BookV2.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Image")] TblImage tblImage)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Image,Isbn,Author,DescriptionOfBook")] TblImage tblImage)
         {
             if (id != tblImage.Id)
             {

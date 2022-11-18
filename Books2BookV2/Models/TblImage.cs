@@ -23,12 +23,8 @@ namespace Books2BookV2.Models
         public string Isbn { get; set; } = null!;
         [StringLength(50)]
         [Unicode(false)]
-        public string BookTitle { get; set; } = null!;
-        [StringLength(50)]
-        [Unicode(false)]
         public string Author { get; set; } = null!;
-        [StringLength(300)]
         [Unicode(false)]
-        public string DescriptionOfCondition { get; set; } = null!;
+        public string DescriptionOfBook { get; set; } = null!;
     }
 }

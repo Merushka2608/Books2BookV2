@@ -13,12 +13,23 @@
 	<thead>
 		<tr>
 			<th>
+				@Html.DisplayNameFor(model => model.Id)
+			</th>
+			<th>
 				@Html.DisplayNameFor(model => model.Title)
 			</th>
 			<th>
 				@Html.DisplayNameFor(model => model.Image)
 			</th>
-			<th></th>
+			<th>
+				@Html.DisplayNameFor(model => model.Isbn)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Author)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.DescriptionOfBook)
+			</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -26,10 +37,22 @@
 		{
 			<tr>
 				<td>
+					@Html.DisplayFor(modelItem => item.Id)
+				</td>
+				<td>
 					@Html.DisplayFor(modelItem => item.Title)
 				</td>
 				<td>
 					@Html.DisplayFor(modelItem => item.Image)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Isbn)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Author)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.DescriptionOfBook)
 				</td>
 				<td>
 					@if (User.IsInRole("Admin"))

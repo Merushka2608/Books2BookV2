@@ -249,11 +249,11 @@ namespace Books2BookV2.Controllers
                 return NotFound();
             }
 
-            double total = tblBook.NumberOfTimesBorrowed * tblBook.AverageRating;
-            total += total + BookRating;
+         // double total = tblBook.NumberOfTimesBorrowed * tblBook.AverageRating;
+           // total += total + BookRating;
 
             tblBook.NumberOfTimesBorrowed += 1;
-            tblBook.AverageRating = (float)(total / tblBook.NumberOfTimesBorrowed);
+        //   tblBook.AverageRating = (float)(total / tblBook.NumberOfTimesBorrowed);
             _context.Update(tblBook);
             _context.SaveChangesAsync();
 

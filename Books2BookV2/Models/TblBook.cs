@@ -32,15 +32,13 @@ namespace Books2BookV2.Models
         [StringLength(300)]
         [Unicode(false)]
         public string Description { get; set; } = null!;
-        public float AverageRating { get; set; }
+        public float RatingTotal { get; set; }
         [Column(TypeName = "date")]
         public DateTime DatePublished { get; set; }
         [Column("AuthorID")]
         public int AuthorId { get; set; }
-        [Column("comments")]
-        [StringLength(200)]
-        [Unicode(false)]
-        public string? Comments { get; set; }
+        public int? NumberOfTimesRated { get; set; }
+        public float? AverageRating { get; set; }
 
         [ForeignKey("AuthorId")]
         [InverseProperty("TblBooks")]

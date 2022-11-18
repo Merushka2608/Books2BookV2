@@ -14,12 +14,12 @@
 	============================================= -->
 	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700|Poppins:300,400,500,600,700|PT+Serif:400,400i&display=swap" rel="stylesheet" type="text/css" />
 	<link rel="stylesheet" href="@Url.Content("~/css/bootstrap.css")" type="text/css" />
-	<link rel="stylesheet" href="@Url.Content("~/style.css")" type="text/css" />
+	<link rel="stylesheet" href="@Url.Content("~/css/style.css")" type="text/css" />
 	<link rel="stylesheet" href="@Url.Content("~/css/dark.css")" type="text/css" />
 	<link rel="stylesheet" href="@Url.Content("~/css/font-icons.css")" type="text/css" />
 	<link rel="stylesheet" href="@Url.Content("~/css/animate.css")" type="text/css" />
 	<link rel="stylesheet" href="@Url.Content("~/css/magnific-popup.css")" type="text/css" />
-	<link rel="stylesheet" href="@Url.Content("css/custom.css")" type="text/css" />
+	<link rel="stylesheet" href="@Url.Content("~/css/custom.css")" type="text/css" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 
 	<style>
@@ -65,7 +65,7 @@
 						============================================= -->
 						<div id="logo">
 							<div class="center">
-								<a href="#" class="standard-logo" data-dark-logo="@Url.Content("~/images/logo-dark.png")"><img src="images/logo1.png" alt="Books2Book Logo"></a>
+								<a href="#" class="standard-logo" data-dark-logo="@Url.Content("~/images/logo-dark.png")"><img src="~/images/logo1.png" alt="Books2Book Logo"></a>
 							</div><!-- #logo end -->
 							<div class="fancy-title title-border">
 								<h1>Books-2-Book</h1>
@@ -84,7 +84,7 @@
 									<nav class="nav-tree mb-0">
 										<ul>
 											<li>
-												<a href="~/Shared/Index"><i class="icon-home"></i>Home</a>
+												<a href="~/Index"><i class="icon-home"></i>Home</a>
 											</li>
 											<li>
 												<a href="~/Sales"><i class="icon-money"></i>Sell Your Books</a>
@@ -199,7 +199,7 @@
 						@Html.DisplayNameFor(model => model.Description)
 					</th>
 					<th>
-						@Html.DisplayNameFor(model => model.AverageRating)
+					@*	@Html.DisplayNameFor(model => model.AverageRating)*@
 					</th>
 					<th>
 						@Html.DisplayNameFor(model => model.DatePublished)
@@ -252,7 +252,7 @@
 								@Html.DisplayFor(modelItem => item.Description)
 							</td>
 							<td>
-								@Html.DisplayFor(modelItem => item.AverageRating)
+								@*@Html.DisplayFor(modelItem => item.AverageRating)*@
 							</td>
 							<td>
 								@Html.DisplayFor(modelItem => item.DatePublished)

@@ -55,7 +55,7 @@
 						============================================= -->
 						<div id="logo">
 							<div class="center">
-								<a href="#" class="standard-logo" data-dark-logo="images/logo-dark.png"><img src="images/logo1.png" alt="Books2Book Logo"></a>
+								<a href="#" class="standard-logo" data-dark-logo="images/logo-dark.png"><img src="~/images/logo1.png" alt="Books2Book Logo"></a>
 							</div><!-- #logo end -->
 							<div class="fancy-title title-border">
 								<h1>Books-2-Book</h1>
@@ -147,7 +147,7 @@
                     <img class="card-img-top" src="~/images/book1.jpg" asp-append-version="true" />
                     <h4>@Html.DisplayNameFor(model => model.Isbn): @Html.DisplayFor(model => model.Isbn) </h4>
                     <h4>@Html.DisplayNameFor(model => model.DatePublished): @Html.DisplayFor(model => model.DatePublished) </h4>
-                    <h4>@Html.DisplayNameFor(model => model.AverageRating): @Html.DisplayFor(model => model.AverageRating) </h4>
+					@*<h4>@Html.DisplayNameFor(model => model.AverageRating): @Html.DisplayFor(model => model.AverageRating) </h4>*@
                     <h4>@Html.DisplayNameFor(model => model.Condition): @Html.DisplayFor(model => model.Condition) </h4>
                     <h4>@Html.DisplayNameFor(model => model.Category): @Html.DisplayFor(model => model.Category) </h4>
                     <h4>@Html.DisplayNameFor(model => model.Description): @Html.DisplayFor(model => model.Description) </h4>
@@ -162,8 +162,8 @@
         {
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Title" id="rating" class="control-label">Rate </label>
-                <input name="Title" class="form-control" /> 
+              
+                <input name="Title" type="hidden" class="form-control" /> 
                 <span asp-validation-for="Title" class="text-danger"></span>
             </div>
         }
@@ -174,10 +174,10 @@
             </div>
 
             <form action="SaveRating" method="post">
-                <label for="">Borrow this book</label>
+               
                 <input type="hidden" name="id" value="@Model.BookId" />
                 <input id="input-10" type="number" name="BookRating" class="rating" min="0" max="5" data-step=".1" data-stars="5" data-size="sm">
-                <input type="submit" value="save rating" />
+                <input type="submit" value="Save Rating" />
 
             </form>
         </div>
@@ -186,6 +186,7 @@
 
 
         <form action="BorrowBook" method="post">
+			<label for="BookId">Borrow this book</label>
             <input type="hidden" name="BookId" value="@Model.BookId"/>
             <input type="submit" value="Add to Cart"/>
 

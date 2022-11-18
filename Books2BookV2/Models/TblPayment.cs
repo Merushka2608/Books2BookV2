@@ -9,19 +9,6 @@ namespace Books2BookV2.Models
     [Table("tblPayments")]
     public partial class TblPayment
     {
-		private string? user;
-		private string accountNumber;
-		private DateTime now;
-		private double temp;
-
-        public TblPayment(string userName, string accNumber, DateTime datePaid, double total)
-        {
-            UserName = userName;
-            AccNumber = accNumber;
-            DatePaid = datePaid;
-            Total = total;
-        }
-
         [Key]
         public int Id { get; set; }
         public string UserName { get; set; } = null!;
