@@ -184,17 +184,28 @@
 
 		
 
-
+		
+            
         <form action="BorrowBook" method="post">
 			<label for="BookId">Borrow this book</label>
             <input type="hidden" name="BookId" value="@Model.BookId"/>
             <input type="submit" value="Add to Cart"/>
-
         </form>
+
+
+		 
+						<form action="ViewPdfVersion" method="post">
+							<label for="BookId">View Pdf</label>
+							<input type="hidden" name="BookId" value="@Model.BookId" />
+							<input type="submit" value="Add to Cart" />
+						</form>
+
     </div>
 
     <a asp-action="Edit" asp-route-id="@Model?.BookId">Edit</a> |
     <a asp-action="Index">Back to List</a>
+
+
 
 
     <div id="disqus_thread"></div>

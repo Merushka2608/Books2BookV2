@@ -27,5 +27,14 @@ namespace Books2BookV2.Models
         public DateTime DatePaid { get; set; }
         [Column("total")]
         public double Total { get; set; }
+
+        public TblPayment(string UserName, string AccNumber, DateTime DatePaid, double Total)
+        {
+            this.UserName = UserName;
+            this.AccNumber = AccNumber;
+            this.DatePaid = DatePaid;
+            this.Total = Total;
+        }
+
     }
 }
