@@ -147,7 +147,7 @@
                     <img class="card-img-top" src="~/images/book1.jpg" asp-append-version="true" />
                     <h4>@Html.DisplayNameFor(model => model.Isbn): @Html.DisplayFor(model => model.Isbn) </h4>
                     <h4>@Html.DisplayNameFor(model => model.DatePublished): @Html.DisplayFor(model => model.DatePublished) </h4>
-					@*<h4>@Html.DisplayNameFor(model => model.AverageRating): @Html.DisplayFor(model => model.AverageRating) </h4>*@
+					<h4>@Html.DisplayNameFor(model => model.AverageRating): @Html.DisplayFor(model => model.AverageRating) (@Html.DisplayFor(model => model.NumberOfTimesRated))</h4>
                     <h4>@Html.DisplayNameFor(model => model.Condition): @Html.DisplayFor(model => model.Condition) </h4>
                     <h4>@Html.DisplayNameFor(model => model.Category): @Html.DisplayFor(model => model.Category) </h4>
                     <h4>@Html.DisplayNameFor(model => model.Description): @Html.DisplayFor(model => model.Description) </h4>
@@ -176,7 +176,7 @@
             <form action="SaveRating" method="post">
                
                 <input type="hidden" name="id" value="@Model.BookId" />
-                <input id="input-10" type="number" name="BookRating" class="rating" min="0" max="5" data-step=".1" data-stars="5" data-size="sm">
+                <input id="input-10" type="number" name="BookRating" class="rating" min="0" max="5" data-step="1" data-stars="5" data-size="sm">
                 <input type="submit" value="Save Rating" />
 
             </form>
