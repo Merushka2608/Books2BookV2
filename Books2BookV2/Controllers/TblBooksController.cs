@@ -11,6 +11,7 @@ using Books2BookV2.Data;
 using Microsoft.AspNetCore.Identity;
 using System.Security.Claims;
 using System.Security.Principal;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace Books2BookV2.Controllers
 {
@@ -214,7 +215,41 @@ namespace Books2BookV2.Controllers
           return _context.TblBooks.Any(e => e.BookId == id);
         }
 
-       
+
+
+        public ActionResult ViewPdfVersion(int BookId)
+        {
+
+            DateTime DateBorrow = DateTime.Now;
+
+            string userId = User.Identity.Name;
+            var userType = (from b in _context.AspNetUsers
+                           where b.UserName == userId
+                           select b.SubscriptionType).FirstOrDefault();
+
+            if(userType.Equals("premium"))
+            {
+                TempData["BookString"] = (from b in _context.TblBooks
+                                     where b.BookId == BookId
+                                     select b.Pdflink).FirstOrDefault();
+                return View("ViewPdf");
+            }
+            else
+            {
+                ViewBag.Message = "Message Sent";
+                return View("NotAllowed", "TblBooksController");
+            }
+
+            return RedirectToAction("Index", "TblBooks");
+
+        }
+
+
+        public IActionResult NotAllowed()
+        {
+            return View();
+        }
+
         public ActionResult BorrowBook(int BookId)
         {
 

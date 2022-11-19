@@ -22,6 +22,7 @@
 
   <ItemGroup>
     <Folder Include="js\" />
+    <Folder Include="Views\PdfViewer\" />
     <Folder Include="wwwroot\booksToSell\" />
   </ItemGroup>
 

@@ -1,6 +1,9 @@
 ﻿
 @{
     ViewData["Title"] = "View";
+
+    var link = TempData["BookString"];
+
 }
 
 <h1>View</h1>
@@ -34,9 +37,10 @@
 <div id="container">
     <div id="overlay">
     </div>
-    <iframe src="https://drive.google.com/file/d/1fw_2cgzqNLJB25a8VZT8FVTZ7nleLkkg/preview" width="1000" height="500" />
-\</div>
+    <iframe src="@link" width="1000" height="500" />
+</div>
 
+<p>@link</p>
 
 
 
