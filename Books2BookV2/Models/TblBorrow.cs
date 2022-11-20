@@ -9,6 +9,7 @@ namespace Books2BookV2.Models
     [Table("tblBorrow")]
     public partial class TblBorrow
     {
+
         public TblBorrow(int bookId, string userName, DateTime? dateToBorrow, bool? isPaid)
         {
 
@@ -19,7 +20,6 @@ namespace Books2BookV2.Models
         }
 
         [Key]
-
         public int Id { get; set; }
         public int BookId { get; set; }
         [StringLength(256)]
@@ -28,14 +28,5 @@ namespace Books2BookV2.Models
         public DateTime? DateToBorrow { get; set; }
         [Column("isPaid")]
         public bool? IsPaid { get; set; }
-
-        public TblBorrow(int bookId, string userName, DateTime? dateToBorrow, bool? isPaid)
-        {
-
-            BookId = bookId;
-            UserName = userName;
-            DateToBorrow = dateToBorrow;
-            IsPaid = isPaid;
-        }
     }
 }

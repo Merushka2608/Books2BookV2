@@ -10,185 +10,191 @@ using Newtonsoft.Json;
 
 namespace Books2BookV2.Controllers
 {
-    public class TblPaymentsController : Controller
-    {
-        private readonly Book2BookContext _context;
-        
-        public TblPaymentsController(Book2BookContext context)
-        {
-            _context = context;
-        }
+	public class TblPaymentsController : Controller
+	{
+		private readonly Book2BookContext _context;
 
-        // GET: TblPayments
-        public async Task<IActionResult> Index()
-        {
-            //here we get the total price
-            double temp = double.Parse((string)TempData["priceTotal"]);
-            var user = User.Identity.Name;
-            var AccountNumber = (from b in _context.AspNetUsers
-                                where b.UserName == user
-                                select b.AccountNumber).Single();
+		public TblPaymentsController(Book2BookContext context)
+		{
+			_context = context;
+		}
 
-            TblPayment tblPayment = new TblPayment(user,AccountNumber,DateTime.Now, temp);
-            var booksPaid = TempData["unPaid"];
+		// GET: TblPayments
+		public async Task<IActionResult> Index()
+		{
 
-            //sets all the unpaid book values to paid
-            (from b in _context.TblBorrows
-                       where b.IsPaid == false && b.UserName == user
-                       select b).ToList().ForEach(x => x.IsPaid = true);
+			if (TempData["priceTotal"] == null)
+			{
+				TempData["priceTotal"] = "0";
+			}
 
-            _context.Add(tblPayment);
-            await _context.SaveChangesAsync();
-            return RedirectToAction("Successful","TblPayments");
-        }
+			//here we get the total price
+			double temp = double.Parse((string)TempData["priceTotal"]);
+			var user = User.Identity.Name;
+			var AccountNumber = (from b in _context.AspNetUsers
+								 where b.UserName == user
+								 select b.AccountNumber).Single();
 
-        // GET: TblPayments/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null || _context.TblPayments == null)
-            {
-                return NotFound();
-            }
+			TblPayment tblPayment = new TblPayment(user, AccountNumber, DateTime.Now, temp);
+			var booksPaid = TempData["unPaid"];
 
-            var tblPayment = await _context.TblPayments
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (tblPayment == null)
-            {
-                return NotFound();
-            }
+			//sets all the unpaid book values to paid
+			(from b in _context.TblBorrows
+			 where b.IsPaid == false && b.UserName == user
+			 select b).ToList().ForEach(x => x.IsPaid = true);
 
-            return View(tblPayment);
-        }
+			_context.Add(tblPayment);
+			await _context.SaveChangesAsync();
+			return RedirectToAction("Successful", "TblPayments");
+		}
 
-        // GET: TblPayments/Create
-        public IActionResult Create()
-        {
-            return View();
-        }
+		// GET: TblPayments/Details/5
+		public async Task<IActionResult> Details(int? id)
+		{
+			if (id == null || _context.TblPayments == null)
+			{
+				return NotFound();
+			}
 
-        public IActionResult Successful()
-        {
-            return View();
-        }
+			var tblPayment = await _context.TblPayments
+				.FirstOrDefaultAsync(m => m.Id == id);
+			if (tblPayment == null)
+			{
+				return NotFound();
+			}
 
-        // POST: TblPayments/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,UserName,DatePaid")] TblPayment tblPayment)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Add(tblPayment);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(tblPayment);
-        }
+			return View(tblPayment);
+		}
 
-        public IActionResult MakePayment()
-        {
-            
-            return View();
-        }
+		// GET: TblPayments/Create
+		public IActionResult Create()
+		{
+			return View();
+		}
 
+		public IActionResult Successful()
+		{
+			return View();
+		}
 
-        
-        // GET: TblPayments/Edit/5
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null || _context.TblPayments == null)
-            {
-                return NotFound();
-            }
+		// POST: TblPayments/Create
+		// To protect from overposting attacks, enable the specific properties you want to bind to.
+		// For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+		public async Task<IActionResult> Create([Bind("Id,UserName,DatePaid")] TblPayment tblPayment)
+		{
+			if (ModelState.IsValid)
+			{
+				_context.Add(tblPayment);
+				await _context.SaveChangesAsync();
+				return RedirectToAction(nameof(Index));
+			}
+			return View(tblPayment);
+		}
 
-            var tblPayment = await _context.TblPayments.FindAsync(id);
-            if (tblPayment == null)
-            {
-                return NotFound();
-            }
-            return View(tblPayment);
-        }
+		public IActionResult MakePayment()
+		{
+
+			return View();
+		}
 
 
-        
 
-        // POST: TblPayments/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,UserName,DatePaid")] TblPayment tblPayment)
-        {
-            if (id != tblPayment.Id)
-            {
-                return NotFound();
-            }
+		// GET: TblPayments/Edit/5
+		public async Task<IActionResult> Edit(int? id)
+		{
+			if (id == null || _context.TblPayments == null)
+			{
+				return NotFound();
+			}
 
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(tblPayment);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!TblPaymentExists(tblPayment.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            return View(tblPayment);
-        }
+			var tblPayment = await _context.TblPayments.FindAsync(id);
+			if (tblPayment == null)
+			{
+				return NotFound();
+			}
+			return View(tblPayment);
+		}
 
-        // GET: TblPayments/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null || _context.TblPayments == null)
-            {
-                return NotFound();
-            }
 
-            var tblPayment = await _context.TblPayments
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (tblPayment == null)
-            {
-                return NotFound();
-            }
 
-            return View(tblPayment);
-        }
 
-        // POST: TblPayments/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            if (_context.TblPayments == null)
-            {
-                return Problem("Entity set 'Book2BookContext.TblPayments'  is null.");
-            }
-            var tblPayment = await _context.TblPayments.FindAsync(id);
-            if (tblPayment != null)
-            {
-                _context.TblPayments.Remove(tblPayment);
-            }
-            
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
+		// POST: TblPayments/Edit/5
+		// To protect from overposting attacks, enable the specific properties you want to bind to.
+		// For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+		public async Task<IActionResult> Edit(int id, [Bind("Id,UserName,DatePaid")] TblPayment tblPayment)
+		{
+			if (id != tblPayment.Id)
+			{
+				return NotFound();
+			}
 
-        private bool TblPaymentExists(int id)
-        {
-          return _context.TblPayments.Any(e => e.Id == id);
-        }
-    }
+			if (ModelState.IsValid)
+			{
+				try
+				{
+					_context.Update(tblPayment);
+					await _context.SaveChangesAsync();
+				}
+				catch (DbUpdateConcurrencyException)
+				{
+					if (!TblPaymentExists(tblPayment.Id))
+					{
+						return NotFound();
+					}
+					else
+					{
+						throw;
+					}
+				}
+				return RedirectToAction(nameof(Index));
+			}
+			return View(tblPayment);
+		}
+
+		// GET: TblPayments/Delete/5
+		public async Task<IActionResult> Delete(int? id)
+		{
+			if (id == null || _context.TblPayments == null)
+			{
+				return NotFound();
+			}
+
+			var tblPayment = await _context.TblPayments
+				.FirstOrDefaultAsync(m => m.Id == id);
+			if (tblPayment == null)
+			{
+				return NotFound();
+			}
+
+			return View(tblPayment);
+		}
+
+		// POST: TblPayments/Delete/5
+		[HttpPost, ActionName("Delete")]
+		[ValidateAntiForgeryToken]
+		public async Task<IActionResult> DeleteConfirmed(int id)
+		{
+			if (_context.TblPayments == null)
+			{
+				return Problem("Entity set 'Book2BookContext.TblPayments'  is null.");
+			}
+			var tblPayment = await _context.TblPayments.FindAsync(id);
+			if (tblPayment != null)
+			{
+				_context.TblPayments.Remove(tblPayment);
+			}
+
+			await _context.SaveChangesAsync();
+			return RedirectToAction(nameof(Index));
+		}
+
+		private bool TblPaymentExists(int id)
+		{
+			return _context.TblPayments.Any(e => e.Id == id);
+		}
+	}
 }

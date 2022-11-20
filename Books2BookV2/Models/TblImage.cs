@@ -26,5 +26,7 @@ namespace Books2BookV2.Models
         public string Author { get; set; } = null!;
         [Unicode(false)]
         public string DescriptionOfBook { get; set; } = null!;
+        [Unicode(false)]
+        public string? UserEmailAddress { get; set; }
     }
 }

@@ -9,6 +9,7 @@ namespace Books2BookV2.Models
     [Table("tblPayments")]
     public partial class TblPayment
     {
+
         public TblPayment(string userName, string accNumber, DateTime datePaid, double total)
         {
             UserName = userName;
@@ -27,14 +28,5 @@ namespace Books2BookV2.Models
         public DateTime DatePaid { get; set; }
         [Column("total")]
         public double Total { get; set; }
-
-        public TblPayment(string UserName, string AccNumber, DateTime DatePaid, double Total)
-        {
-            this.UserName = UserName;
-            this.AccNumber = AccNumber;
-            this.DatePaid = DatePaid;
-            this.Total = Total;
-        }
-
     }
 }

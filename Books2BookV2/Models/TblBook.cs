@@ -37,8 +37,8 @@ namespace Books2BookV2.Models
         public DateTime DatePublished { get; set; }
         [Column("AuthorID")]
         public int AuthorId { get; set; }
-        public int? NumberOfTimesRated { get; set; }
-        public float? AverageRating { get; set; }
+        public int NumberOfTimesRated { get; set; }
+        public float AverageRating { get; set; }
         [Column("PDFLink")]
         [Unicode(false)]
         public string? Pdflink { get; set; }

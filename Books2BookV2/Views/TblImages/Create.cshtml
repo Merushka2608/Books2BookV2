@@ -239,7 +239,7 @@
 																<span asp-validation-for="Id" class="text-danger"></span>
 															</div>-->
 															<div asp-validation-summary="ModelOnly" class="text-danger"></div>
-															<img src="/image/logo1.png" style="max-width: 200px;" id="img-me" />
+															<img src="~/images/book1.png" style="max-width: 200px;" id="img-me" />
 															<input id="img-me-file" type="file" class="d-none" accept="image/*" />
 															<!--
 																 <div class="form-group">
@@ -275,6 +275,7 @@
 															<div class="col-12 bottommargin-sm">
 																<label for="Isbn">Book's ISBN<small class="text-danger">*</small></label>
 																<input type="text" id="template-contactform-isbn" name="Isbn" value="" class="form-control required" placeholder="Enter the ISBN of the Book" />
+																<span asp-validation-for="Isbn" class="text-danger"></span>
 															</div>
 
 															//<div class="col-12 bottommargin-sm">
@@ -285,6 +286,7 @@
 															<div class="col-12 bottommargin-sm">
 																<label for="Author">Book's Author<small class="text-danger">*</small></label>
 																<input type="text" id="template-contactform-author" name="Author" value="" class="form-control required" placeholder="Enter the Author of the Book" />
+																<span asp-validation-for="Author" class="text-danger"></span>
 															</div>
 
 															//<div class="col-12 bottommargin-sm">
@@ -295,6 +297,7 @@
 															<div class="col-12 bottommargin-sm">
 																<label for="DescriptionOfBook">Describe Book's Condition:<small class="text-danger">*</small></label>
 																<textarea class="required form-control textarea-message" id="template-contactform-message" name="DescriptionOfBook" rows="6" cols="30"></textarea>
+																<span asp-validation-for="DescriptionOfBook" class="text-danger"></span>
 															</div>
 
 															<div class="col-12 d-none">

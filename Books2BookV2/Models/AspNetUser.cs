@@ -57,6 +57,7 @@ namespace Books2BookV2.Models
         [StringLength(50)]
         [Unicode(false)]
         public string? AccountNumber { get; set; }
+        public double? DamageFeeOwed { get; set; }
 
         [InverseProperty("User")]
         public virtual ICollection<AspNetUserClaim> AspNetUserClaims { get; set; }
