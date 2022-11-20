@@ -22,6 +22,8 @@
 <h4>TblBook</h4>
 <hr />
 <div class="row">
+    @using (Html.BeginForm("Create", "TblBooks", FormMethod.Post))
+														{
     <div class="col-md-4">
         <form asp-action="View">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -90,6 +92,7 @@
             </div>
         </form>
     </div>
+    }
 </div>
 
 <div>

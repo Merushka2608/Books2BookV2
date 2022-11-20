@@ -57,6 +57,11 @@ namespace Books2BookV2.Controllers
             return View();
         }
 
+        public IActionResult Error()
+        {
+            return View();
+        }
+
 
         [Authorize]
         // POST: TblImages/Create
@@ -82,12 +87,13 @@ namespace Books2BookV2.Controllers
                 System.IO.File.WriteAllBytes($"{_webHostEnvironment.WebRootPath}/" +path, image);
                 tblImage.Image = path;
                 _context.Add(tblImage);
+                tblImage.UserEmailAddress = User.Identity.Name;
                 await _context.SaveChangesAsync();
                 // return RedirectToAction(nameof(Index));
                 return RedirectToAction("Success", "TblImages");
             }
             //return RedirectToAction("Success", "TblImages");
-            return View(tblImage);
+            return RedirectToAction("Error", "TblImages");
         }
 
         // GET: TblImages/Edit/5

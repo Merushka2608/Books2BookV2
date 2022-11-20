@@ -173,6 +173,7 @@ namespace Books2BookV2.Controllers
 			return View(tblBook);
 		}
 
+		/*
 		// GET: TblBooks/Delete/5
 		public async Task<IActionResult> Delete(int? id)
 		{
@@ -208,6 +209,17 @@ namespace Books2BookV2.Controllers
 
 			await _context.SaveChangesAsync();
 			return RedirectToAction(nameof(Index));
+		}*/
+
+		public ActionResult DeleteBook(int bookId) {
+
+			var book = (from b in _context.TblBooks
+					.Where(x => x.BookId == bookId)
+					   select b).FirstOrDefault();
+			_context.TblBooks.Remove(book);
+			_context.SaveChanges();
+			return RedirectToAction(nameof(Index));
+
 		}
 
 		private bool TblBookExists(int id)
