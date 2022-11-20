@@ -24,7 +24,6 @@ namespace Books2BookV2.Models
         public virtual DbSet<AspNetUserRole> AspNetUserRoles { get; set; } = null!;
         public virtual DbSet<AspNetUserToken> AspNetUserTokens { get; set; } = null!;
         public virtual DbSet<StatsDetail> StatsDetails { get; set; } = null!;
-        public virtual DbSet<TblAuthor> TblAuthors { get; set; } = null!;
         public virtual DbSet<TblBook> TblBooks { get; set; } = null!;
         public virtual DbSet<TblBorrow> TblBorrows { get; set; } = null!;
         public virtual DbSet<TblImage> TblImages { get; set; } = null!;
@@ -36,7 +35,7 @@ namespace Books2BookV2.Models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Data Source=LAPTOP-0OD2B6A6;Initial Catalog=Book2Book;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+                optionsBuilder.UseSqlServer("Server=VIDUR\\MSSQLSERVER01;Database=Book2Book;Trusted_Connection=True;");
             }
         }
 
@@ -79,15 +78,6 @@ namespace Books2BookV2.Models
             modelBuilder.Entity<AspNetUserToken>(entity =>
             {
                 entity.HasKey(e => new { e.UserId, e.LoginProvider, e.Name });
-            });
-
-            modelBuilder.Entity<TblBook>(entity =>
-            {
-                entity.HasOne(d => d.Author)
-                    .WithMany(p => p.TblBooks)
-                    .HasForeignKey(d => d.AuthorId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_tblBooks_tblAuthor");
             });
 
             modelBuilder.Entity<TblImage>(entity =>

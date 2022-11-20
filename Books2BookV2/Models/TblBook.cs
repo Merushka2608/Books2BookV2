@@ -35,16 +35,29 @@ namespace Books2BookV2.Models
         public float RatingTotal { get; set; }
         [Column(TypeName = "date")]
         public DateTime DatePublished { get; set; }
-        [Column("AuthorID")]
-        public int AuthorId { get; set; }
         public int NumberOfTimesRated { get; set; }
         public float AverageRating { get; set; }
         [Column("PDFLink")]
         [Unicode(false)]
         public string? Pdflink { get; set; }
 
-        [ForeignKey("AuthorId")]
-        [InverseProperty("TblBooks")]
-        public virtual TblAuthor Author { get; set; } = null!;
+        public TblBook(int bookId, string isbn, string title, string category, bool inStock, int edition, int pages, string condition, int numberOfTimesBorrowed, string description, float ratingTotal, DateTime datePublished, int numberOfTimesRated, float averageRating, string? pdflink)
+        {
+            BookId = bookId;
+            Isbn = isbn;
+            Title = title;
+            Category = category;
+            InStock = inStock;
+            Edition = edition;
+            Pages = pages;
+            Condition = condition;
+            NumberOfTimesBorrowed = numberOfTimesBorrowed;
+            Description = description;
+            RatingTotal = ratingTotal;
+            DatePublished = datePublished;
+            NumberOfTimesRated = numberOfTimesRated;
+            AverageRating = averageRating;
+            Pdflink = pdflink;
+        }
     }
 }
