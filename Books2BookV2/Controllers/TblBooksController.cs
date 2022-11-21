@@ -70,6 +70,20 @@ namespace Books2BookV2.Controllers
             return View();
         }
 
+        [HttpGet]
+        public void remove(int id)
+        {
+            string userId = User.Identity.Name;
+
+            var book = (from b in _context.TblBorrows
+                        where (b.Id == id && b.UserName == userId)
+                        select b).FirstOrDefault();
+
+            _context.TblBorrows.Remove(book);
+
+            Redirect("https://localhost:7133/Shopping");
+        }
+
 
         [HttpPost]
         public ActionResult EditBook(int bookId, string ISBN, string title, string Category, bool inStock,

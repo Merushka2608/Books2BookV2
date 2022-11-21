@@ -24,20 +24,38 @@
                     <td>@i.BookId</td>
                     <td>@i.Title</td>
                     <td>@i.Condition</td>
-                    <td>price</td>
+                    @if (i.Condition == "A")
+                    {
+                        <td>R150</td>
+                    }
+                    @if (i.Condition == "B")
+                    {
+                        <td>R100</td>
+                    }
+                     @if (i.Condition == "C")
+                    {
+                        <td>R50</td>
+                    }
+
+                    <td>
+                        @using (Html.BeginForm("remove", "TblBorrows", FormMethod.Post))
+                        {
+                            <input type="hidden" value="@i.BookId" id="bookid" name="bookid" />
+                            <input type="submit" value="delete" />
+                        }
+                          
+                    </td>
+
                 </tr>
             }
         }
-       
-
         <!--Action method Controller, Get/PostMethod/-->
         <input type="button" value="Check out" onclick="location.href='@Url.Action("Index", "TblPayments")'" />
-
-        
-        
-
-          
-
-
     </tbody>
+
+    <table>
+        <tr>
+            <td align="right">R @TempData["priceTotal"]</td>
+        </tr>
+    </table>
 </table>
