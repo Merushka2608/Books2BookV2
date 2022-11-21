@@ -4,93 +4,23 @@
     ViewData["Title"] = "Create";
 }
 
+
+<!-- Stylesheets
+============================================= -->
+<link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700|Poppins:300,400,500,600,700|PT+Serif:400,400i&display=swap" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="/css/bootstrap.css" type="text/css" />
+<link rel="stylesheet" href="style.css" type="text/css" />
+<link rel="stylesheet" href="/css/dark.css" type="text/css" />
+<link rel="stylesheet" href="/css/font-icons.css" type="text/css" />
+<link rel="stylesheet" href="/css/animate.css" type="text/css" />
+<link rel="stylesheet" href="/css/magnific-popup.css" type="text/css" />
+
+<link rel="stylesheet" href="css/custom.css" type="text/css" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <h1>Create</h1>
 
 <h4>TblBook</h4>
 <hr />
-<div class="row">
-    @using (Html.BeginForm("Create", "TblBooks", FormMethod.Post))
-														{
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Isbn" class="control-label"></label>
-                <input asp-for="Isbn" class="form-control" />
-                <span asp-validation-for="Isbn" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Title" class="control-label"></label>
-                <input asp-for="Title" class="form-control" />
-                <span asp-validation-for="Title" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Category" class="control-label"></label>
-                <input asp-for="Category" class="form-control" />
-                <span asp-validation-for="Category" class="text-danger"></span>
-            </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="InStock" /> @Html.DisplayNameFor(model => model.InStock)
-                </label>
-            </div>
-            <div class="form-group">
-                <label asp-for="Edition" class="control-label"></label>
-                <input asp-for="Edition" class="form-control" />
-                <span asp-validation-for="Edition" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Pages" class="control-label"></label>
-                <input asp-for="Pages" class="form-control" />
-                <span asp-validation-for="Pages" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Condition" class="control-label"></label>
-                <input asp-for="Condition" class="form-control" />
-                <span asp-validation-for="Condition" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="NumberOfTimesBorrowed" class="control-label"></label>
-                <input asp-for="NumberOfTimesBorrowed" class="form-control" />
-                <span asp-validation-for="NumberOfTimesBorrowed" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Description" class="control-label"></label>
-                <input asp-for="Description" class="form-control" />
-                <span asp-validation-for="Description" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="RatingTotal" class="control-label"></label>
-                <input asp-for="RatingTotal" class="form-control" />
-                <span asp-validation-for="RatingTotal" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DatePublished" class="control-label"></label>
-                <input asp-for="DatePublished" class="form-control" />
-                <span asp-validation-for="DatePublished" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="NumberOfTimesRated" class="control-label"></label>
-                <input asp-for="NumberOfTimesRated" class="form-control" />
-                <span asp-validation-for="NumberOfTimesRated" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="AverageRating" class="control-label"></label>
-                <input asp-for="AverageRating" class="form-control" />
-                <span asp-validation-for="AverageRating" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Pdflink" class="control-label"></label>
-                <input asp-for="Pdflink" class="form-control" />
-                <span asp-validation-for="Pdflink" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="AddBook" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
-    }
-</div>
 
 <div>
     <a asp-action="Index">Back to List</a>

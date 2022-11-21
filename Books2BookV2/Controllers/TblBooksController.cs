@@ -64,7 +64,42 @@ namespace Books2BookV2.Controllers
                     return View(await _context.TblBooks.ToListAsync());
               }*/
 
+        public ActionResult Test(int ID)
+        {
+            int i;
+            return View();
+        }
 
+
+        [HttpPost]
+        public ActionResult EditBook(int bookId, string ISBN, string title, string Category, bool inStock,
+            int edition, int pages, string condition, int numberOfTimesBorrowed, string description, float ratingTotal,
+            DateTime datePublished, int numTimesRated, float averageRating, string pdflink)
+        {
+            var book = (from b in _context.TblBooks
+                        where b.BookId == bookId
+                        select b).FirstOrDefault();
+
+            book.Isbn = ISBN;
+            book.Title = title;
+            book.Category = Category;
+            book.InStock = inStock;
+            book.Edition = edition;
+            book.Pages = pages;
+            book.Condition = condition;
+            book.NumberOfTimesBorrowed = numberOfTimesBorrowed;
+            book.Description = description;
+            book.RatingTotal = ratingTotal;
+            book.DatePublished = datePublished;
+            book.NumberOfTimesRated = numTimesRated;
+            book.AverageRating = averageRating;
+            book.Pdflink = pdflink;
+
+            _context.Update(book);
+
+            _context.SaveChanges();
+            return RedirectToAction("Index", "TblBooks");
+        }
 
         public TblBook GetBookById(int id)
         {
@@ -282,7 +317,7 @@ namespace Books2BookV2.Controllers
 
         }
 
-
+        [HttpPost]
         public ActionResult AddBook(string ISBN, string title, string Category, bool inStock, 
             int edition, int pages,  string condition, int numberOfTimesBorrowed, string description, float ratingTotal,
             DateTime datePublished, int numTimesRated,  float averageRating, string pdflink)

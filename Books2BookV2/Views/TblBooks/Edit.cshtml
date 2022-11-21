@@ -1,96 +1,105 @@
 ﻿@model Books2BookV2.Models.TblBook
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Create";
 }
 
-<h1>Edit</h1>
+
+<!-- Stylesheets
+============================================= -->
+<link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700|Poppins:300,400,500,600,700|PT+Serif:400,400i&display=swap" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="/css/bootstrap.css" type="text/css" />
+<link rel="stylesheet" href="style.css" type="text/css" />
+<link rel="stylesheet" href="/css/dark.css" type="text/css" />
+<link rel="stylesheet" href="/css/font-icons.css" type="text/css" />
+<link rel="stylesheet" href="/css/animate.css" type="text/css" />
+<link rel="stylesheet" href="/css/magnific-popup.css" type="text/css" />
+
+<link rel="stylesheet" href="css/custom.css" type="text/css" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<h1>Create</h1>
 
 <h4>TblBook</h4>
 <hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="BookId" />
-            <div class="form-group">
-                <label asp-for="Isbn" class="control-label"></label>
-                <input asp-for="Isbn" class="form-control" />
-                <span asp-validation-for="Isbn" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Title" class="control-label"></label>
-                <input asp-for="Title" class="form-control" />
-                <span asp-validation-for="Title" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Category" class="control-label"></label>
-                <input asp-for="Category" class="form-control" />
-                <span asp-validation-for="Category" class="text-danger"></span>
-            </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="InStock" /> @Html.DisplayNameFor(model => model.InStock)
-                </label>
-            </div>
-            <div class="form-group">
-                <label asp-for="Edition" class="control-label"></label>
-                <input asp-for="Edition" class="form-control" />
-                <span asp-validation-for="Edition" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Pages" class="control-label"></label>
-                <input asp-for="Pages" class="form-control" />
-                <span asp-validation-for="Pages" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Condition" class="control-label"></label>
-                <input asp-for="Condition" class="form-control" />
-                <span asp-validation-for="Condition" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="NumberOfTimesBorrowed" class="control-label"></label>
-                <input asp-for="NumberOfTimesBorrowed" class="form-control" />
-                <span asp-validation-for="NumberOfTimesBorrowed" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Description" class="control-label"></label>
-                <input asp-for="Description" class="form-control" />
-                <span asp-validation-for="Description" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="RatingTotal" class="control-label"></label>
-                <input asp-for="RatingTotal" class="form-control" />
-                <span asp-validation-for="RatingTotal" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DatePublished" class="control-label"></label>
-                <input asp-for="DatePublished" class="form-control" />
-                <span asp-validation-for="DatePublished" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="NumberOfTimesRated" class="control-label"></label>
-                <input asp-for="NumberOfTimesRated" class="form-control" />
-                <span asp-validation-for="NumberOfTimesRated" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="AverageRating" class="control-label"></label>
-                <input asp-for="AverageRating" class="form-control" />
-                <span asp-validation-for="AverageRating" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Pdflink" class="control-label"></label>
-                <input asp-for="Pdflink" class="form-control" />
-                <span asp-validation-for="Pdflink" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
-</div>
 
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
 
+<form action="EditBook" method="post" class="mb-0" id="template-contactform" enctype="multipart/form-data">
+    <div class="row">
+        <div class="col-12 bottommargin-sm">
+            <input type="text" type = "hidden" ="template-contactform-BookId" name="BookId" value="@Model.BookId" class="form-control required" placeholder="Enter the ISBN of the Book" />
+            <span asp-validation-for="Isbn" class="text-danger"></span>
+        </div>
+        <div class="col-12 bottommargin-sm">
+            <label for="Isbn">Book's ISBN<small class="text-danger">*</small></label>
+            <input type="text" id="template-contactform-isbn" name="Isbn" value="@Model.Isbn" class="form-control required" placeholder="Enter the ISBN of the Book" />
+            <span asp-validation-for="Isbn" class="text-danger"></span>
+        </div>
+        <div class="col-12 bottommargin-sm">
+            <label for="Title">Title<small class="text-danger">*</small></label>
+            <input type="text" id="template-contactform-title" name="Title" value="@Model.Title" class="form-control required" placeholder="Enter the Title of the Book" />
+            <span asp-validation-for="Isbn" class="text-danger"></span>
+        </div>
+        <div class="col-12 bottommargin-sm">
+            <label for="Category">Book's Category<small class="text-danger">*</small></label>
+            <input type="text" id="template-contactform-category" name="Category" value="@Model.Category" class="form-control required" placeholder="Enter the Category of the Book" />
+            <span asp-validation-for="Category" class="text-danger"></span>
+        </div>
+        <div class="col-12 bottommargin-sm">
+            <label for="Stock">In Stock<small class="text-danger">*</small></label>
+            <input type="text" id="template-contactform-isbn" name="Stock" value="@Model.InStock" class="form-control required" placeholder="Stock" />
+            <span asp-validation-for="Stock" class="text-danger"></span>
+        </div>
+        <div class="col-12 bottommargin-sm">
+            <label for="Isbn">Book's Edition<small class="text-danger">*</small></label>
+            <input type="text" id="template-contactform-isbn" name="Edition" value="@Model.Edition" class="form-control required" placeholder="Enter the Edition of the Book" />
+            <span asp-validation-for="Edition" class="text-danger"></span>
+        </div>
+        <div class="col-12 bottommargin-sm">
+            <label for="Pages">Book's Pages<small class="text-danger">*</small></label>
+            <input type="text" id="template-contactform-isbn" name="Pages" value="@Model.Pages" class="form-control required" placeholder="Enter the Pages of the Book" />
+            <span asp-validation-for="Pages" class="text-danger"></span>
+        </div>
+        <div class="col-12 bottommargin-sm">
+            <label for="Condition">Book's Condition<small class="text-danger">*</small></label>
+            <input type="text" id="template-contactform-isbn" name="Condition" value="@Model.Condition" class="form-control required" placeholder="Enter the Condition of the Book" />
+            <span asp-validation-for="Condition" class="text-danger"></span>
+        </div>
+        <div class="col-12 bottommargin-sm">
+            <label for="NumberOfTimesBorrowed">Number Of Times Borrowed<small class="text-danger">*</small></label>
+            <input type="text" id="template-contactform-NumberOfTimesBorrowed" name="NumberOfTimesBorrowed" value="@Model.NumberOfTimesBorrowed" class="form-control required" placeholder="NumberOfTimesBorrowed" />
+            <span asp-validation-for="NumberOfTimesBorrowed" class="text-danger"></span>
+        </div>
+        <div class="col-12 bottommargin-sm">
+            <label for="Description">Description<small class="text-danger">*</small></label>
+            <input type="text" id="template-contactform-Description" name="Description" value="@Model.Description" class="form-control required" placeholder="Description" />
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+        <div class="col-12 bottommargin-sm">
+            <label for="RatingTotal">RatingTotal<small class="text-danger">*</small></label>
+            <input type="text" id="template-contactform-RatingTotal" name="RatingTotal" value="@Model.RatingTotal" class="form-control required" placeholder="RatingTotal" />
+            <span asp-validation-for="RatingTotal" class="text-danger"></span>
+        </div>
+        <div class="col-12 bottommargin-sm">
+            <label for="DatePublished">DatePublished<small class="text-danger">*</small></label>
+            <input type="text" id="template-contactform-DatePublished" name="DatePublished" value="@Model.DatePublished" class="form-control required" placeholder="DatePublished" />
+            <span asp-validation-for="DatePublished" class="text-danger"></span>
+        </div>
+        <div class="col-12 bottommargin-sm">
+            <label for="AverageRating">AverageRating<small class="text-danger">*</small></label>
+            <input type="text" id="template-contactform-AverageRating" name="AverageRating" value="@Model.AverageRating" class="form-control required" placeholder="AverageRating" />
+            <span asp-validation-for="DatePublished" class="text-danger"></span>
+        </div>
+        <div class="col-12 bottommargin-sm">
+            <label for="PDFLink">PDFLink<small class="text-danger">*</small></label>
+            <input type="text" id="template-contactform-PDFLink" name="PDFLink" value="@Model.Pdflink" class="form-control required" placeholder="PDFLink" />
+            <span asp-validation-for="PDFLink" class="text-danger"></span>
+        </div>
+        <div class="col-12">
+            <button type="submit" value="Edit" name="template-contactform-submit" class="btn btn-secondary w-100 btn-lg">Submit Details</button>
+        </div>
+
+    </div>
+</form>
