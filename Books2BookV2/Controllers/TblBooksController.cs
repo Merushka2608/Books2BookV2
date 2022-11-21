@@ -173,13 +173,13 @@ namespace Books2BookV2.Controllers
             return View(tblBook);
         }
 
-        // GET: TblBooks/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null || _context.TblBooks == null)
-            {
-                return NotFound();
-            }
+		// GET: TblBooks/Delete/5
+		public async Task<IActionResult> Delete(int? id)
+		{
+			if (id == null || _context.TblBooks == null)
+			{
+				return NotFound();
+			}
 
             var tblBook = await _context.TblBooks
                 .FirstOrDefaultAsync(m => m.BookId == id);
@@ -206,9 +206,9 @@ namespace Books2BookV2.Controllers
                 _context.TblBooks.Remove(tblBook);
             }
 
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
+			await _context.SaveChangesAsync();
+			return RedirectToAction(nameof(Index));
+		}
 
         private bool TblBookExists(int id)
         {
