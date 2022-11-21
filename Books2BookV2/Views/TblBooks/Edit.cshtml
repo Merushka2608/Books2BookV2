@@ -1,105 +1,339 @@
 ﻿@model Books2BookV2.Models.TblBook
 
 @{
-    ViewData["Title"] = "Create";
+	ViewData["Title"] = "Edit";
 }
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+<head>
+
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta name="author" content="SemiColonWeb" />
 
 
-<!-- Stylesheets
-============================================= -->
-<link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700|Poppins:300,400,500,600,700|PT+Serif:400,400i&display=swap" rel="stylesheet" type="text/css" />
-<link rel="stylesheet" href="/css/bootstrap.css" type="text/css" />
-<link rel="stylesheet" href="style.css" type="text/css" />
-<link rel="stylesheet" href="/css/dark.css" type="text/css" />
-<link rel="stylesheet" href="/css/font-icons.css" type="text/css" />
-<link rel="stylesheet" href="/css/animate.css" type="text/css" />
-<link rel="stylesheet" href="/css/magnific-popup.css" type="text/css" />
+	<!-- Stylesheets
+	============================================= -->
+	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700|Poppins:300,400,500,600,700|PT+Serif:400,400i&display=swap" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" href="~/css/bootstrap.css" type="text/css" />
+	<link rel="stylesheet" href="~/css/style.css" type="text/css" />
+	<link rel="stylesheet" href="~/css/dark.css" type="text/css" />
+	<link rel="stylesheet" href="~/css/font-icons.css" type="text/css" />
+	<link rel="stylesheet" href="~/css/animate.css" type="text/css" />
+	<link rel="stylesheet" href="~/css/magnific-popup.css" type="text/css" />
 
-<link rel="stylesheet" href="css/custom.css" type="text/css" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<h1>Create</h1>
+	<link rel="stylesheet" href="~/css/custom.css" type="text/css" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<style>
+		.file-caption.icon-visible .file-caption-name {
+			font-family: 'Lato', sans-serif;
+			color: #666;
+		}
 
-<h4>TblBook</h4>
-<hr />
+		.form-process {
+			position: absolute;
+			-webkit-transition: all .3s ease;
+			-o-transition: all .3s ease;
+			transition: all .3s ease;
+			background-image: none;
+		}
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+			.form-process > div {
+				background-color: #999;
+			}
 
-<form action="EditBook" method="post" class="mb-0" id="template-contactform" enctype="multipart/form-data">
-    <div class="row">
-        <div class="col-12 bottommargin-sm">
-            <input type="text" type = "hidden" ="template-contactform-BookId" name="BookId" value="@Model.BookId" class="form-control required" placeholder="Enter the ISBN of the Book" />
-            <span asp-validation-for="Isbn" class="text-danger"></span>
-        </div>
-        <div class="col-12 bottommargin-sm">
-            <label for="Isbn">Book's ISBN<small class="text-danger">*</small></label>
-            <input type="text" id="template-contactform-isbn" name="Isbn" value="@Model.Isbn" class="form-control required" placeholder="Enter the ISBN of the Book" />
-            <span asp-validation-for="Isbn" class="text-danger"></span>
-        </div>
-        <div class="col-12 bottommargin-sm">
-            <label for="Title">Title<small class="text-danger">*</small></label>
-            <input type="text" id="template-contactform-title" name="Title" value="@Model.Title" class="form-control required" placeholder="Enter the Title of the Book" />
-            <span asp-validation-for="Isbn" class="text-danger"></span>
-        </div>
-        <div class="col-12 bottommargin-sm">
-            <label for="Category">Book's Category<small class="text-danger">*</small></label>
-            <input type="text" id="template-contactform-category" name="Category" value="@Model.Category" class="form-control required" placeholder="Enter the Category of the Book" />
-            <span asp-validation-for="Category" class="text-danger"></span>
-        </div>
-        <div class="col-12 bottommargin-sm">
-            <label for="Stock">In Stock<small class="text-danger">*</small></label>
-            <input type="text" id="template-contactform-isbn" name="Stock" value="@Model.InStock" class="form-control required" placeholder="Stock" />
-            <span asp-validation-for="Stock" class="text-danger"></span>
-        </div>
-        <div class="col-12 bottommargin-sm">
-            <label for="Isbn">Book's Edition<small class="text-danger">*</small></label>
-            <input type="text" id="template-contactform-isbn" name="Edition" value="@Model.Edition" class="form-control required" placeholder="Enter the Edition of the Book" />
-            <span asp-validation-for="Edition" class="text-danger"></span>
-        </div>
-        <div class="col-12 bottommargin-sm">
-            <label for="Pages">Book's Pages<small class="text-danger">*</small></label>
-            <input type="text" id="template-contactform-isbn" name="Pages" value="@Model.Pages" class="form-control required" placeholder="Enter the Pages of the Book" />
-            <span asp-validation-for="Pages" class="text-danger"></span>
-        </div>
-        <div class="col-12 bottommargin-sm">
-            <label for="Condition">Book's Condition<small class="text-danger">*</small></label>
-            <input type="text" id="template-contactform-isbn" name="Condition" value="@Model.Condition" class="form-control required" placeholder="Enter the Condition of the Book" />
-            <span asp-validation-for="Condition" class="text-danger"></span>
-        </div>
-        <div class="col-12 bottommargin-sm">
-            <label for="NumberOfTimesBorrowed">Number Of Times Borrowed<small class="text-danger">*</small></label>
-            <input type="text" id="template-contactform-NumberOfTimesBorrowed" name="NumberOfTimesBorrowed" value="@Model.NumberOfTimesBorrowed" class="form-control required" placeholder="NumberOfTimesBorrowed" />
-            <span asp-validation-for="NumberOfTimesBorrowed" class="text-danger"></span>
-        </div>
-        <div class="col-12 bottommargin-sm">
-            <label for="Description">Description<small class="text-danger">*</small></label>
-            <input type="text" id="template-contactform-Description" name="Description" value="@Model.Description" class="form-control required" placeholder="Description" />
-            <span asp-validation-for="Description" class="text-danger"></span>
-        </div>
-        <div class="col-12 bottommargin-sm">
-            <label for="RatingTotal">RatingTotal<small class="text-danger">*</small></label>
-            <input type="text" id="template-contactform-RatingTotal" name="RatingTotal" value="@Model.RatingTotal" class="form-control required" placeholder="RatingTotal" />
-            <span asp-validation-for="RatingTotal" class="text-danger"></span>
-        </div>
-        <div class="col-12 bottommargin-sm">
-            <label for="DatePublished">DatePublished<small class="text-danger">*</small></label>
-            <input type="text" id="template-contactform-DatePublished" name="DatePublished" value="@Model.DatePublished" class="form-control required" placeholder="DatePublished" />
-            <span asp-validation-for="DatePublished" class="text-danger"></span>
-        </div>
-        <div class="col-12 bottommargin-sm">
-            <label for="AverageRating">AverageRating<small class="text-danger">*</small></label>
-            <input type="text" id="template-contactform-AverageRating" name="AverageRating" value="@Model.AverageRating" class="form-control required" placeholder="AverageRating" />
-            <span asp-validation-for="DatePublished" class="text-danger"></span>
-        </div>
-        <div class="col-12 bottommargin-sm">
-            <label for="PDFLink">PDFLink<small class="text-danger">*</small></label>
-            <input type="text" id="template-contactform-PDFLink" name="PDFLink" value="@Model.Pdflink" class="form-control required" placeholder="PDFLink" />
-            <span asp-validation-for="PDFLink" class="text-danger"></span>
-        </div>
-        <div class="col-12">
-            <button type="submit" value="Edit" name="template-contactform-submit" class="btn btn-secondary w-100 btn-lg">Submit Details</button>
-        </div>
+		.form-process,
+		#template-contactform-submitted,
+		.template-contactform-complete .form-process {
+			display: none;
+			opacity: 0;
+			background-color: rgba(255,255,255,0.7);
+		}
 
-    </div>
-</form>
+		.template-contactform-processing .form-process {
+			display: block;
+			opacity: 1;
+		}
+	</style>
+
+</head>
+<body class="stretched">
+	<!-- Document Wrapper
+		============================================= -->
+	<div id="wrapper" class="clearfix">
+
+		<!-- Top Bar
+		============================================= -->
+		<div id="top-bar">
+			<div class="container clearfix">
+
+				<div class="row justify-content-between">
+					<div class="col-12 col-md-auto">
+
+						<a href="#" class="button button-mini button-rounded button-dark side-panel-trigger bottommargin">Menu</a>
+
+						<!-- Logo
+						============================================= -->
+						<div id="logo">
+							<div class="center">
+								<a href="index.html" class="standard-logo" data-dark-logo="images/logo-dark.png"><img src="~/images/logo1.png" alt="Books2Book Logo"></a>
+							</div><!-- #logo end -->
+							<div class="fancy-title title-border">
+								<h1>Books-2-Book</h1>
+							</div>
+						</div>
+						<div id="side-panel" class="dark">
+
+							<div id="side-panel-trigger-close" class="side-panel-trigger"><a href="#"><i class="icon-line-cross"></i></a></div>
+
+							<div class="side-panel-wrap">
+
+								<div class="widget clearfix">
+
+									<h4>Menu</h4>
+
+									<nav class="nav-tree mb-0">
+										<ul>
+											<li>
+												<a href="~/Index"><i class="icon-home"></i>Home</a>
+											</li>
+											<li>
+												<a href="#"><i class="icon-money"></i>Sell Your Books</a>
+											</li>
+											<li>
+												<a href="~/TblBooks/Index"><i class="icon-search"></i>Search For Books</a>
+											</li>
+											<li>
+												<a href="faqs.html"><i class="icon-question"></i>FAQs</a>
+											</li>
+											<li>
+												<a href="contact.html"><i class="icon-map-marker"></i>Contact Us</a>
+												<ul>
+													<li><i class="icon-envelope2"></i></li>
+													<li>info@Books2Book.com</li>
+													<li><i class="icon-phone1"></i>Cell:</li>
+													<li>083 468 1461</li>
+													<li><i class="icon-phone3"></i>Tel:</li>
+													<li>032 943 1348</li>
+												</ul>
+											</li>
+											<li>
+												<a href="contact.html"><i class="icon-phone2"></i>Follow Us</a>
+												<ul>
+													<li><a href="#"><i class="icon-facebook"></i>Facebook</a></li>
+													<li><a href="#"><i class="icon-github"></i>Github</a></li>
+													<li><a href="#"><i class="icon-linkedin"></i>LinkedIn</a></li>
+													<li><a href="#"><i class="icon-twitter"></i>Twitter</a></li>
+												</ul>
+											</li>
+											<li>
+												<a href="~/About"><i class="icon-book"></i>About</a>
+											</li>
+											<li>
+												<a href="help.html"><i class="icon-question-circle"></i>Help</a>
+											</li>
+											<li>
+												<a href="~/Stats"><i class="icon-graph"></i>Statistics</a>
+											</li>
+										</ul>
+									</nav>
+
+								</div>
+
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div><!-- #top-bar end -->
+		<!-- Content
+		============================================= -->
+
+		<section id="content">
+			<div class="content-wrap">
+				<div class="container clearfix">
+
+
+					<div class="fancy-title title-border">
+						<h3>Edit Book Details</h3>
+					</div>
+					<div class="content-wrap bg-light">
+						<div class="container">
+							<div class="row justify-content-center">
+								<div class="col-lg-7 col-md-10">
+									<div class="card shadow-sm">
+										<div class="card-header">
+											<h4 class="mb-0">Enter Book Information</h4>
+										</div>
+										<div class="card-body">
+
+											<div class="form-widget">
+
+												<div class="form-result"></div>
+
+												@*<div class="form-process">
+												<div class="css3-spinner">
+												<div class="css3-spinner-double-bounce1"></div>
+												<div class="css3-spinner-double-bounce2"></div>
+												</div>
+												</div>*@
+
+												<form action="EditBook" method="post" class="mb-0" id="template-contactform" enctype="multipart/form-data">
+													<div class="row">
+
+														<input type="hidden" ="template-contactform-BookId" name="BookId" value="@Model.BookId" class="form-control required" placeholder="Enter the ISBN of the Book" />
+														<span asp-validation-for="Isbn" class="text-danger"></span>
+
+														<div class="col-12 bottommargin-sm">
+															<label for="Isbn">ISBN<small class="text-danger">*</small></label>
+															<input type="text" id="template-contactform-isbn" name="Isbn" value="@Model.Isbn" class="form-control required" placeholder="Enter the ISBN of the Book" />
+															<span asp-validation-for="Isbn" class="text-danger"></span>
+														</div>
+														<div class="col-12 bottommargin-sm">
+															<label for="Title">Title<small class="text-danger">*</small></label>
+															<input type="text" id="template-contactform-title" name="Title" value="@Model.Title" class="form-control required" placeholder="Enter the Title of the Book" />
+															<span asp-validation-for="Isbn" class="text-danger"></span>
+														</div>
+														<div class="col-12 bottommargin-sm">
+															<label for="Category">Category<small class="text-danger">*</small></label>
+															<input type="text" id="template-contactform-category" name="Category" value="@Model.Category" class="form-control required" placeholder="Enter the Category of the Book" />
+															<span asp-validation-for="Category" class="text-danger"></span>
+														</div>
+														<div class="col-12 bottommargin-sm">
+															<label for="Stock">In Stock<small class="text-danger">*</small></label>
+															<input type="text" id="template-contactform-isbn" name="Stock" value="@Model.InStock" class="form-control required" placeholder="Stock" />
+															<span asp-validation-for="Stock" class="text-danger"></span>
+														</div>
+														<div class="col-12 bottommargin-sm">
+															<label for="Isbn">Edition<small class="text-danger">*</small></label>
+															<input type="text" id="template-contactform-isbn" name="Edition" value="@Model.Edition" class="form-control required" placeholder="Enter the Edition of the Book" />
+															<span asp-validation-for="Edition" class="text-danger"></span>
+														</div>
+														<div class="col-12 bottommargin-sm">
+															<label for="Pages">Number of Pages<small class="text-danger">*</small></label>
+															<input type="text" id="template-contactform-isbn" name="Pages" value="@Model.Pages" class="form-control required" placeholder="Enter the Pages of the Book" />
+															<span asp-validation-for="Pages" class="text-danger"></span>
+														</div>
+														<div class="col-12 bottommargin-sm">
+															<label for="Condition">Condition<small class="text-danger">*</small></label>
+															<input type="text" id="template-contactform-isbn" name="Condition" value="@Model.Condition" class="form-control required" placeholder="Enter the Condition of the Book" />
+															<span asp-validation-for="Condition" class="text-danger"></span>
+														</div>
+														<div class="col-12 bottommargin-sm">
+															<label for="NumberOfTimesBorrowed">Number of Times Borrowed<small class="text-danger">*</small></label>
+															<input type="text" id="template-contactform-NumberOfTimesBorrowed" name="NumberOfTimesBorrowed" value="@Model.NumberOfTimesBorrowed" class="form-control required" placeholder="NumberOfTimesBorrowed" />
+															<span asp-validation-for="NumberOfTimesBorrowed" class="text-danger"></span>
+														</div>
+														<div class="col-12 bottommargin-sm">
+															<label for="Description">Description<small class="text-danger">*</small></label>
+															<input type="text" id="template-contactform-Description" name="Description" value="@Model.Description" class="form-control required" placeholder="Description" />
+															<span asp-validation-for="Description" class="text-danger"></span>
+														</div>
+														<div class="col-12 bottommargin-sm">
+															<label for="RatingTotal">Rating Total<small class="text-danger">*</small></label>
+															<input type="text" id="template-contactform-RatingTotal" name="RatingTotal" value="@Model.RatingTotal" class="form-control required" placeholder="RatingTotal" />
+															<span asp-validation-for="RatingTotal" class="text-danger"></span>
+														</div>
+														<div class="col-12 bottommargin-sm">
+															<label for="DatePublished">Date Published<small class="text-danger">*</small></label>
+															<input type="text" id="template-contactform-DatePublished" name="DatePublished" value="@Model.DatePublished" class="form-control required" placeholder="DatePublished" />
+															<span asp-validation-for="DatePublished" class="text-danger"></span>
+														</div>
+														<div class="col-12 bottommargin-sm">
+															<label for="NumberOfTimesRated">Number of Times Rated<small class="text-danger">*</small></label>
+															<input type="text" id="template-contactform-DatePublished" name="NumberOfTimesRated" value="@Model.NumberOfTimesRated" class="form-control required" placeholder="Enter number of times Book has been rated" />
+															<span asp-validation-for="NumberOfTimesRated" class="text-danger"></span>
+														</div>
+														<div class="col-12 bottommargin-sm">
+															<label for="AverageRating">Average Rating<small class="text-danger">*</small></label>
+															<input type="text" id="template-contactform-AverageRating" name="AverageRating" value="@Model.AverageRating" class="form-control required" placeholder="AverageRating" />
+															<span asp-validation-for="DatePublished" class="text-danger"></span>
+														</div>
+														<div class="col-12 bottommargin-sm">
+															<label for="PDFLink">PDF Link<small class="text-danger">*</small></label>
+															<input type="text" id="template-contactform-PDFLink" name="PDFLink" value="@Model.Pdflink" class="form-control required" placeholder="Enter the PDF link for ebook" />
+															<span asp-validation-for="PDFLink" class="text-danger"></span>
+														</div>
+														<div class="col-12">
+															<button type="submit" value="Edit" name="template-contactform-submit" class="btn btn-secondary w-100 btn-lg">Edit</button>
+														</div>
+
+													</div>
+												</form>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</section><!-- #content end -->
+		<!-- Footer
+			============================================= -->
+		<footer id="footer" class="dark">
+
+			<!-- Copyrights
+			============================================= -->
+			<div id="copyrights">
+				<div class="container">
+
+					<div class="row col-mb-30">
+
+						<div class="col-md-6 text-center text-md-start">
+							Copyrights &copy; 2022 All Rights Reserved by Books-2-Book Inc.<br>
+							<div class="copyright-links"><a href="terms.html">Terms of Use</a> / <a href="#">Privacy Policy</a></div>
+						</div>
+
+						<div class="col-md-6 text-center text-md-end">
+							<div class="d-flex justify-content-center justify-content-md-end">
+								<a href="#" class="social-icon si-small si-borderless si-facebook">
+									<i class="icon-facebook"></i>
+									<i class="icon-facebook"></i>
+								</a>
+
+								<a href="#" class="social-icon si-small si-borderless si-twitter">
+									<i class="icon-twitter"></i>
+									<i class="icon-twitter"></i>
+								</a>
+
+								<a href="#" class="social-icon si-small si-borderless si-github">
+									<i class="icon-github"></i>
+									<i class="icon-github"></i>
+								</a>
+
+								<a href="#" class="social-icon si-small si-borderless si-linkedin">
+									<i class="icon-linkedin"></i>
+									<i class="icon-linkedin"></i>
+								</a>
+							</div>
+
+							<div class="clear"></div>
+
+							<i class="icon-envelope2"></i> info@books2book.com
+							<span class="middot">&middot;</span>
+							<i class="icon-phone1"></i> 083 468 1461
+							<span class="middot">&middot;</span>
+							<i class="icon-phone3"></i> 032 943 1348
+						</div>
+
+					</div>
+
+				</div>
+			</div><!-- #copyrights end -->
+		</footer><!-- #footer end -->
+
+
+	</div><!-- #wrapper end -->
+
+	<!-- JavaScripts
+	============================================= -->
+	<script src="/js/jquery.js"></script>
+	<!--<script src="js/plugins.min.js"></script>-->
+	<!-- Footer Scripts
+	============================================= -->
+	<script src="/js/functions.js"></script>
+</body>
+</html>

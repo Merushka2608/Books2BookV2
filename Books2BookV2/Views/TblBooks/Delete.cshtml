@@ -97,8 +97,8 @@
         </dd>
     </dl>
     
-    <form asp-action="Delete">
-        <input type="hidden" asp-for="BookId" />
+    <form action="DeleteBook" method="post">
+        <input type="hidden" ="template-contactform-BookId" name="BookId" value="@Model.BookId" class="form-control required"/>
         <input type="submit" value="Delete" class="btn btn-danger" /> |
         <a asp-action="Index">Back to List</a>
     </form>

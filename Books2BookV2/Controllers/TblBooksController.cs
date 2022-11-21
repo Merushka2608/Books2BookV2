@@ -293,6 +293,16 @@ namespace Books2BookV2.Controllers
             return View();
         }
 
+        public ActionResult DeleteBook(int bookId)
+		{
+            var book = (from m in _context.TblBooks
+                        where m.BookId == bookId
+                        select m).FirstOrDefault();
+            _context.TblBooks.Remove(book);
+            _context.SaveChanges();
+            return RedirectToAction("Index", "TblBooks");
+		}
+
         public ActionResult BorrowBook(int BookId)
         {
 
