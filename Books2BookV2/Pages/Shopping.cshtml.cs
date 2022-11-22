@@ -29,7 +29,8 @@ namespace Books2BookV2.Pages
 
 
 
-        [Authorize]
+		[Authorize]
+       
         public void OnGet()
         {
             string userId = User.Identity.Name;
@@ -69,9 +70,12 @@ namespace Books2BookV2.Pages
 
 
             double sum = prices.Sum();
+            
+
             TempData["priceTotal"] = JsonConvert.SerializeObject(sum);
+            TempData.Keep();
 
-
+            // }
 
         }
 

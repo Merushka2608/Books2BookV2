@@ -23,20 +23,21 @@ namespace Books2BookV2.Controllers
 
 		// GET: TblPayments
 		[Authorize]
+
 		public async Task<IActionResult> Index()
 		{
-
-			if (TempData["priceTotal"] == null)
-			{
-                
-
-                    return RedirectToAction("NoPurchases", "TblPayments");
-
-            }
-
+           
             //here we get the total price
             double temp = double.Parse((string)TempData["priceTotal"]);
-			var user = User.Identity.Name;
+
+			if (temp == 0) 
+			{
+                return RedirectToAction("NoPurchases", "TblPayments");
+            }
+            
+			
+			TempData.Remove("priceTotal");
+            var user = User.Identity.Name;
 			var AccountNumber = (from b in _context.AspNetUsers
 								 where b.UserName == user
 								 select b.AccountNumber).Single();
