@@ -170,7 +170,7 @@ namespace Books2BookV2.Controllers
             _context.TblBorrows.Remove(book);
             _context.SaveChanges();
 
-            return RedirectToAction("Success", "TblImages");
+            return Redirect("~/Shopping");
         }
     }
 }
