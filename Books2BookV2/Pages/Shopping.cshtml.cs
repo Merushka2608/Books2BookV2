@@ -42,10 +42,10 @@ namespace Books2BookV2.Pages
                          where (c.IsPaid == false && userId == c.UserName)
                          select b;
 
-        
-          
 
-            if(bookTitles.Count() == 0 || bookTitles == null)
+
+
+            if (bookTitles.Count() == 0 || bookTitles == null)
             {
                 Redirect("~/TblPayments/NoPurchases");
 
@@ -67,7 +67,7 @@ namespace Books2BookV2.Pages
                     prices.Add(50);
                 }
             }
-            
+
 
             double sum = prices.Sum();
             
