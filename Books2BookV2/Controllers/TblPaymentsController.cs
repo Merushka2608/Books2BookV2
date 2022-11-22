@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Books2BookV2.Models;
 using Newtonsoft.Json;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Books2BookV2.Controllers
 {
@@ -19,6 +20,7 @@ namespace Books2BookV2.Controllers
 			_context = context;
 		}
 
+		[Authorize]
 		// GET: TblPayments
 		public async Task<IActionResult> Index()
 		{
