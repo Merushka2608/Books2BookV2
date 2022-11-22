@@ -134,7 +134,6 @@
 		<section id="content">
 			<div class="content-wrap">
 				<div class="container">
-
 					<div>
 						<div class="row justify-content-center m-3">
 							<div class="col-sm-8">
@@ -185,19 +184,22 @@
 
 
 
+								@if(User.Identity.IsAuthenticated){
+									<form action="BorrowBook" method="post">
+										<label for="BookId">Borrow this book</label>
+										<input type="hidden" name="BookId" value="@Model.BookId" />
+										<input type="submit" value="Add to Cart" />
+									</form>
 
-								<form action="BorrowBook" method="post">
-									<label for="BookId">Borrow this book</label>
-									<input type="hidden" name="BookId" value="@Model.BookId" />
-									<input type="submit" value="Add to Cart" />
-								</form>
+									<form action="ViewPdfVersion" method="post">
+										<label for="BookId">View e-Book Version</label>
+										<input type="hidden" name="BookId" value="@Model.BookId" />
+										<input type="submit" value="Load" />
+									</form>
 
-								<form action="ViewPdfVersion" method="post">
-									<label for="BookId">View e-Book Version</label>
-									<input type="hidden" name="BookId" value="@Model.BookId" />
-									<input type="submit" value="Load" />
-								</form>
+								}
 
+							
 							</div>
 
 							<a asp-action="Edit" asp-route-id="@Model?.BookId"></a>
