@@ -33,7 +33,7 @@ namespace Books2BookV2.Areas.Identity.Pages.Account
         {
             if (userId == null || code == null)
             {
-                return RedirectToPage("/TblAccounts/Create");
+                return RedirectToPage("~/Index");
             }
 
             var user = await _userManager.FindByIdAsync(userId);

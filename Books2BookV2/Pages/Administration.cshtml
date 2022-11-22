@@ -49,7 +49,7 @@
 						============================================= -->
 						<div id="logo">
 							<div class="center">
-								<a href="index.html" class="standard-logo" data-dark-logo="images/logo-dark.png"><img src="~/images/logo1.png" alt="Books2Book Logo"></a>
+								<a href="#" class="standard-logo" data-dark-logo="images/logo-dark.png"><img src="~/images/logo1.png" alt="Books2Book Logo"></a>
 							</div><!-- #logo end -->
 							<div class="fancy-title title-border">
 								<h1>Administration</h1>
@@ -71,30 +71,39 @@
 												<a href="~/Index"><i class="icon-home"></i>Home</a>
 											</li>
 											<li>
-												<a href="~/Shopping"><i class="icon-shopping-cart"></i>Checkout</a>
-											</li>
-											<li>
-												<a href="~/Sales"><i class="icon-money"></i>Sell Your Books</a>
-											</li>
-											<li>
 												<a href="~/TblBooks/Index"><i class="icon-search"></i>Search For Books</a>
 											</li>
+											
+												@if ((User.Identity.IsAuthenticated))
+												{
+													<li>
+													<a href="~/Shopping"><i class="icon-shopping-cart"></i>Checkout</a>
+													</li>
+												}
+											
+											
+											@if(User.Identity.IsAuthenticated){
+												<li>
+												<a href="~/TblImages/Create"><i class="icon-money"></i>Sell Your Books</a>
+											</li>
+											}
+										
 											<li>
 												<a href="faqs.html"><i class="icon-question"></i>FAQs</a>
 											</li>
 											<li>
-												<a href="contact.html"><i class="icon-map-marker"></i>Contact Us</a>
+												<a href="contact.html"><i class="icon-phone2"></i>Contact Us</a>
 												<ul>
 													<li><i class="icon-envelope2"></i></li>
-													<li>info@Books2Book.com</li>
+													<li>books2book@gmail.com</li>
 													<li><i class="icon-phone1"></i>Cell:</li>
-													<li>083 468 1461</li>
+													<li>065 600 1461</li>
 													<li><i class="icon-phone3"></i>Tel:</li>
-													<li>032 943 1348</li>
+													<li>032 943 4831</li>
 												</ul>
 											</li>
 											<li>
-												<a href="contact.html"><i class="icon-phone2"></i>Follow Us</a>
+												<a href="contact.html"><i class="icon-map-marker"></i>Follow Us</a>
 												<ul>
 													<li><a href="#"><i class="icon-facebook"></i>Facebook</a></li>
 													<li><a href="#"><i class="icon-github"></i>Github</a></li>
@@ -143,46 +152,12 @@
 					<div class="fancy-title title-border title-center">
 						<h2>Choose a Page Below</h2>
 					</div>
-					<div class="divider divider-center"><i class="icon-clipboard1"></i></div>
-					<div class="fancy-title title-border title-center">
-						<h3>AspNetRoles</h3>
-					</div>
-					<div class="center">
-						<a href="~/AspNetRoles/Create" class="button button-3d m-0 tab-linker" rel="1">Create</a>
-						<a href="~/AspNetRoles/Edit" class="button button-3d m-0 tab-linker" rel="2">Edit</a>
-						<a href="~/AspNetRoles/Details" class="button button-3d m-0 tab-linker" rel="3">Details</a>
-						<a href="~/AspNetRoles/Delete" class="button button-3d m-0 tab-linker" rel="4">Delete</a>
-						<a href="~/AspNetRoles/Index" class="button button-3d m-0 tab-linker" rel="5">Index</a>
-					</div>
-					<div class="divider divider-center"><i class="icon-list"></i></div>
-					<div class="fancy-title title-border title-center">
-						<h3>AspNetUsers</h3>
-					</div>
-					<div class="center">
-						<a href="~/AspNetUsers/Create" class="button button-3d m-0 tab-linker" rel="1">Create</a>
-						<a href="~/AspNetUsers/Edit" class="button button-3d m-0 tab-linker" rel="2">Edit</a>
-						<a href="~/AspNetUsers/Details" class="button button-3d m-0 tab-linker" rel="3">Details</a>
-						<a href="~/AspNetUsers/Delete" class="button button-3d m-0 tab-linker" rel="4">Delete</a>
-						<a href="~/AspNetUsers/Index" class="button button-3d m-0 tab-linker" rel="5">Index</a>
-					</div>
 					<div class="divider divider-center"><i class="icon-graph"></i></div>
 					<div class="fancy-title title-border title-center">
-						<h3>StatsDetails</h3>
+						<h3>Statistics</h3>
 					</div>
 					<div class="center">
-						<a href="~/StatsDetails/Create" class="button button-3d m-0 tab-linker" rel="1">Create</a>
-						<a href="~/StatsDetails/Edit" class="button button-3d m-0 tab-linker" rel="2">Edit</a>
-						<a href="~/StatsDetails/Details" class="button button-3d m-0 tab-linker" rel="3">Details</a>
-						<a href="~/StatsDetails/Delete" class="button button-3d m-0 tab-linker" rel="4">Delete</a>
 						<a href="~/StatsDetails/Index" class="button button-3d m-0 tab-linker" rel="5">Index</a>
-					</div>
-					<div class="divider divider-center"><i class="icon-book-open"></i></div>
-					<div class="fancy-title title-border title-center">
-						<h3>TblAuthors</h3>
-					</div>
-					<div class="center">
-						<a href="~/TblAuthors/Create" class="button button-3d m-0 tab-linker" rel="1">Create</a>
-						<a href="~/TblAuthors/Index" class="button button-3d m-0 tab-linker" rel="5">Index</a>
 					</div>
 					<div class="divider divider-center"><i class="icon-book"></i></div>
 					<div class="fancy-title title-border title-center">
@@ -200,27 +175,11 @@
 						<a href="~/TblImages/Create" class="button button-3d m-0 tab-linker" rel="1">Create</a>
 						<a href="~/TblImages/Index" class="button button-3d m-0 tab-linker" rel="5">Index</a>
 					</div>
-					<!--<div class="divider divider-center"><i class="icon-money-check"></i></div>
-					<div class="fancy-title title-border title-center">
-						<h3>TblPayments</h3>
-					</div>
-					<div class="center">
-						<a href="~/TblPayments/Create" class="button button-3d m-0 tab-linker" rel="1">Create</a>
-						<a href="~/TblPayments/Index" class="button button-3d m-0 tab-linker" rel="5">Index</a>
-					</div>-->
-					<div class="divider divider-center"><i class="icon-pen"></i></div>
-					<div class="fancy-title title-border title-center">
-						<h3>TblPublishers</h3>
-					</div>
-					<div class="center">
-						<a href="~/TblPublishers/Create" class="button button-3d m-0 tab-linker" rel="1">Create</a>
-						<a href="~/TblPublishers/Index" class="button button-3d m-0 tab-linker" rel="5">Index</a>
-					</div>
 
 				</div>
 
 			</div>
-	</div>
+
 	</section>
 
 	<!-- Footer
