@@ -48,7 +48,7 @@ namespace Books2BookV2.Areas.Identity.Pages.Account
         {
             if (email == null)
             {
-                return RedirectToPage("/TblAccounts/Create");
+                return RedirectToPage("~/Register");
             }
             returnUrl = returnUrl ?? Url.Content("~/");
 

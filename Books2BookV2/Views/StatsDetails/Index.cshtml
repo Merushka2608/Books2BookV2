@@ -130,22 +130,22 @@
 
 
     var doughnutChart = new Chart(doughnutchartCanvas, {
-        type: 'doughnut',
+        type: 'pie',
         data: {
             labels: bookCategory,
         datasets: [{
             data: score,
             borderWidth: 0,
             backgroundColor: [
+                        'rgb(54, 162, 235)',
                 'rgb(255, 99, 132)',
-                'rgb(54, 162, 235)',
                 'rgb(157, 230, 41)',
                 'rgb(41, 224, 230)',
                 'rgb(255, 255, 0)'
             ],
             hoverBackgroundColor: [
+                        'rgb(54, 162, 235)',
                 'rgb(255, 99, 132)',
-                'rgb(54, 162, 235)',
                 'rgb(157, 230, 41)',
                 'rgb(41, 224, 230)',
                 'rgb(255, 255, 0)'
