@@ -3,99 +3,303 @@
 @{
 	ViewData["Title"] = "Shopping Cart";
 }
-<h1>@ViewData["Title"]</h1>
-<table class="table table-sm table-light">
-	<thead>
-		<tr>
-			<th scope="col">BookId</th>
-			<th scope="col">Book Title</th>
-			<th scope="col">Condition</th>
-			<th scope="col">Price</th>
-		</tr>
-	</thead>
-	<tbody>
-	@*	@if (Model.bookTitles == null)
-		{
-			<div class="modal fade bs-example-modal-centered" tabindex="-1" role="dialog" aria-labelledby="centerModalLabel" aria-hidden="true">
-				<div class="modal-dialog modal-dialog-centered">
-					<div class="modal-content">
-						<div class="modal-header">
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+<head>
+
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta name="author" content="SemiColonWeb" />
+	<!-- Stylesheets
+	============================================= -->
+	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700|Poppins:300,400,500,600,700|PT+Serif:400,400i&display=swap" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" href="@Url.Content("~/css/bootstrap.css")" type="text/css" />
+	<link rel="stylesheet" href="@Url.Content("~/css/style.css")" type="text/css" />
+	<link rel="stylesheet" href="@Url.Content("~/css/dark.css")" type="text/css" />
+	<link rel="stylesheet" href="@Url.Content("~/css/font-icons.css")" type="text/css" />
+	<link rel="stylesheet" href="@Url.Content("~/css/animate.css")" type="text/css" />
+	<link rel="stylesheet" href="@Url.Content("~/css/magnific-popup.css")" type="text/css" />
+
+	<link rel="stylesheet" href="@Url.Content("~/css/custom.css")" type="text/css" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+	<!-- Document Title
+		============================================= -->
+</head>
+
+<body class="stretched">
+
+	<!-- Document Wrapper
+	============================================= -->
+	<div id="wrapper" class="clearfix">
+
+		<!-- Top Bar
+		============================================= -->
+		<div id="top-bar">
+			<div class="container clearfix">
+
+				<div class="row justify-content-between">
+					<div class="col-12 col-md-auto">
+
+
+
+						<!-- Logo
+						============================================= -->
+						<div id="logo">
+
+							<a href="#" class="standard-logo" data-dark-logo="images/logo-dark.png"><img src="images/logo1.png" alt="Books2Book Logo"></a>
+							<!-- #logo end -->
+							<div class="fancy-title title-border">
+								<h1>Books-2-Book</h1>
+							</div>
+							<a href="#" class="button button-mini button-rounded button-dark side-panel-trigger bottommargin">Menu</a>
+						</div>
+						<div id="side-panel" class="dark">
+
+							<div id="side-panel-trigger-close" class="side-panel-trigger"><a href="#"><i class="icon-line-cross"></i></a></div>
+
+							<div class="side-panel-wrap">
+
+								<div class="widget clearfix">
+
+									<h4>Menu</h4>
+
+									<nav class="nav-tree mb-0">
+										<ul>
+											<li>
+												<a href="~/Index"><i class="icon-home"></i>Home</a>
+											</li>
+											<li>
+												<a href="~/TblBooks/Index"><i class="icon-search"></i>Search For Books</a>
+											</li>
+											<li>
+												<a href="~/Shopping"><i class="icon-shopping-cart"></i>Checkout</a>
+											</li>
+											<li>
+												<a href="~/TblImages/Create"><i class="icon-money"></i>Sell Your Books</a>
+											</li>
+											<li>
+												<a href="faqs.html"><i class="icon-question"></i>FAQs</a>
+											</li>
+											<li>
+												<a href="contact.html"><i class="icon-phone2"></i>Contact Us</a>
+												<ul>
+													<li><i class="icon-envelope2"></i></li>
+													<li>books2book@gmail.com</li>
+													<li><i class="icon-phone1"></i>Cell:</li>
+													<li>065 600 1461</li>
+													<li><i class="icon-phone3"></i>Tel:</li>
+													<li>032 943 4831</li>
+												</ul>
+											</li>
+											<li>
+												<a href="contact.html"><i class="icon-map-marker"></i>Follow Us</a>
+												<ul>
+													<li><a href="#"><i class="icon-facebook"></i>Facebook</a></li>
+													<li><a href="#"><i class="icon-github"></i>Github</a></li>
+													<li><a href="#"><i class="icon-linkedin"></i>LinkedIn</a></li>
+													<li><a href="#"><i class="icon-twitter"></i>Twitter</a></li>
+												</ul>
+											</li>
+											<li>
+												<a href="~/About"><i class="icon-book"></i>About</a>
+											</li>
+											<li>
+												<a href="help.html"><i class="icon-question-circle"></i>Help</a>
+											</li>
+											<li>
+												@if (User.IsInRole("Admin"))
+												{
+													<a href="~/StatsDetails/Index"><i class="icon-graph"></i>Statistics</a>
+
+												}
+
+											</li>
+											<li>
+												@if (User.IsInRole("Admin"))
+												{
+													<a href="~/Administration"><i class="icon-pencil"></i>Administration</a>
+
+												}
+
+											</li>
+										</ul>
+									</nav>
+
+								</div>
+
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div><!-- #top-bar end -->
+		<!-- Content
+		============================================= -->
+		<section id="content">
+			<div class="content-wrap">
+				<div class="container">
+					<h1>@ViewData["Title"]</h1>
+					<table class="table table-sm table-light">
+						<thead>
+							<tr>
+								<th scope="col">BookId</th>
+								<th scope="col">Book Title</th>
+								<th scope="col">Condition</th>
+								<th scope="col">Price</th>
+							</tr>
+						</thead>
+						<tbody>
+							@*	@if (Model.bookTitles == null)
+							{
+							<div class="modal fade bs-example-modal-centered" tabindex="-1" role="dialog" aria-labelledby="centerModalLabel" aria-hidden="true">
+							<div class="modal-dialog modal-dialog-centered">
+							<div class="modal-content">
+							<div class="modal-header">
 							<h4 class="modal-title" id="myModalLabel">No Items Selected</h4>
 							<button type="button" class="btn-close btn-sm" data-bs-dismiss="modal" aria-hidden="true"></button>
-						</div>
-						<div class="modal-body">
+							</div>
+							<div class="modal-body">
 							<p class="mb-0">Please add books to cart before making your purchase.</p>
+							</div>
+							</div>
+							</div>
+							</div>
+							}
+							else
+							{*@
+							@foreach (var i in Model.bookTitles)
+							{
+								<tr>
+									<td>@i.BookId</td>
+									<td>@i.Title</td>
+									<td>@i.Condition</td>
+									@if (i.Condition == "A")
+									{
+										<td>R150</td>
+									}
+									@if (i.Condition == "B")
+									{
+										<td>R100</td>
+									}
+									@if (i.Condition == "C")
+									{
+										<td>R50</td>
+									}
+
+									<td>
+										@using (Html.BeginForm("remove", "TblBorrows", FormMethod.Post))
+										{
+											<input type="hidden" value="@i.BookId" id="bookid" name="bookid" />
+											<input type="submit" value="delete" />
+										}
+
+									</td>
+
+								</tr>
+							}
+							@*}*@
+							<tr>
+
+								<!--Action method Controller, Get/PostMethod/-->
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>Total = R @TempData["priceTotal"]</td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td><input type="button" value="Check out" data-bs-toggle="modal" data-bs-target=".bs-example-modal-centered" /></td> @*data-bs-toggle="modal" data-bs-target=".bs-example-modal-centered" *@
+							</tr>
+
+						</tbody>
+
+
+					</table>
+
+					<div class="modal fade bs-example-modal-centered" tabindex="-1" role="dialog" aria-labelledby="centerModalLabel" aria-hidden="true">
+						<div class="modal-dialog modal-dialog-centered">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h4 class="modal-title" id="myModalLabel">Confirm Purchase?</h4>
+									<button type="button" class="btn-close btn-sm" data-bs-dismiss="modal" aria-hidden="true"></button>
+								</div>
+								<div class="modal-body">
+									<p class="mb-0">Please click "confirm" to make your purchase.</p>
+									<input type="button" value="Confirm" onclick="location.href='@Url.Action("Index", "TblPayments")'" />
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-		}
-		else
-		{*@
-			@foreach (var i in Model.bookTitles)
-			{
-				<tr>
-					<td>@i.BookId</td>
-					<td>@i.Title</td>
-					<td>@i.Condition</td>
-					@if (i.Condition == "A")
-					{
-						<td>R150</td>
-					}
-					@if (i.Condition == "B")
-					{
-						<td>R100</td>
-					}
-					@if (i.Condition == "C")
-					{
-						<td>R50</td>
-					}
+		</section><!-- #content end -->
+		<!-- Footer
+		============================================= -->
+		<footer id="footer" class="dark">
 
-					<td>
-						@using (Html.BeginForm("remove", "TblBorrows", FormMethod.Post))
-						{
-							<input type="hidden" value="@i.BookId" id="bookid" name="bookid" />
-							<input type="submit" value="delete" />
-						}
+			<!-- Copyrights
+			============================================= -->
+			<div id="copyrights">
+				<div class="container">
 
-					</td>
+					<div class="row col-mb-30">
 
-				</tr>
-			}
-		@*}*@
-		<tr>
-
-			<!--Action method Controller, Get/PostMethod/-->
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td>Total = R @TempData["priceTotal"]</td>
-		</tr>
-		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td><input type="button" value="Check out" data-bs-toggle="modal" data-bs-target=".bs-example-modal-centered"/></td> @*data-bs-toggle="modal" data-bs-target=".bs-example-modal-centered" *@
-		</tr>
-
-	</tbody>
-
-
-</table>
-
-			<div class="modal fade bs-example-modal-centered" tabindex="-1" role="dialog" aria-labelledby="centerModalLabel" aria-hidden="true">
-				<div class="modal-dialog modal-dialog-centered">
-					<div class="modal-content">
-						<div class="modal-header">
-							<h4 class="modal-title" id="myModalLabel">Confirm Purchase?</h4>
-							<button type="button" class="btn-close btn-sm" data-bs-dismiss="modal" aria-hidden="true"></button>
+						<div class="col-md-6 text-center text-md-start">
+							Copyrights &copy; 2022 All Rights Reserved by Books-2-Book Inc.<br>
+							<div class="copyright-links"><a href="terms.html">Terms of Use</a> / <a href="#">Privacy Policy</a></div>
 						</div>
-						<div class="modal-body">
-							<p class="mb-0">Please click "confirm" to make your purchase.</p>
-							<input type="button" value="Confirm" onclick="location.href='@Url.Action("Index", "TblPayments")'"/>
+
+						<div class="col-md-6 text-center text-md-end">
+							<div class="d-flex justify-content-center justify-content-md-end">
+								<a href="#" class="social-icon si-small si-borderless si-facebook">
+									<i class="icon-facebook"></i>
+									<i class="icon-facebook"></i>
+								</a>
+
+								<a href="#" class="social-icon si-small si-borderless si-twitter">
+									<i class="icon-twitter"></i>
+									<i class="icon-twitter"></i>
+								</a>
+
+								<a href="#" class="social-icon si-small si-borderless si-github">
+									<i class="icon-github"></i>
+									<i class="icon-github"></i>
+								</a>
+
+								<a href="#" class="social-icon si-small si-borderless si-linkedin">
+									<i class="icon-linkedin"></i>
+									<i class="icon-linkedin"></i>
+								</a>
+							</div>
+
+							<div class="clear"></div>
+
+							<i class="icon-envelope2"></i> info@books2book.com
+							<span class="middot">&middot;</span>
+							<i class="icon-phone1"></i> 083 468 1461
+							<span class="middot">&middot;</span>
+							<i class="icon-phone3"></i> 032 943 1348
 						</div>
+
 					</div>
+
 				</div>
-			</div>
+			</div><!-- #copyrights end -->
+		</footer><!-- #footer end -->
+	</div><!-- #wrapper end -->
+	<!-- JavaScripts
+	============================================= -->
+	<script src="js/jquery.js"></script>
+	@*<script src="js/plugins.min.js"></script>*@
+
+	<!-- Footer Scripts
+	============================================= -->
+	<script src="js/functions.js"></script>
+
+</body>
+</html>

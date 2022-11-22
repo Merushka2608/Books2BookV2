@@ -77,27 +77,30 @@
 												<a href="~/Index"><i class="icon-home"></i>Home</a>
 											</li>
 											<li>
-												<a href="#"><i class="icon-money"></i>Sell Your Books</a>
+												<a href="~/TblBooks/Index"><i class="icon-search"></i>Search For Books</a>
 											</li>
 											<li>
-												<a href="~/TblBooks/Index"><i class="icon-search"></i>Search For Books</a>
+												<a href="~/Shopping"><i class="icon-shopping-cart"></i>Checkout</a>
+											</li>
+											<li>
+												<a href="~/TblImages/Create"><i class="icon-money"></i>Sell Your Books</a>
 											</li>
 											<li>
 												<a href="faqs.html"><i class="icon-question"></i>FAQs</a>
 											</li>
 											<li>
-												<a href="contact.html"><i class="icon-map-marker"></i>Contact Us</a>
+												<a href="contact.html"><i class="icon-phone2"></i>Contact Us</a>
 												<ul>
 													<li><i class="icon-envelope2"></i></li>
-													<li>info@Books2Book.com</li>
+													<li>books2book@gmail.com</li>
 													<li><i class="icon-phone1"></i>Cell:</li>
-													<li>083 468 1461</li>
+													<li>065 600 1461</li>
 													<li><i class="icon-phone3"></i>Tel:</li>
-													<li>032 943 1348</li>
+													<li>032 943 4831</li>
 												</ul>
 											</li>
 											<li>
-												<a href="contact.html"><i class="icon-phone2"></i>Follow Us</a>
+												<a href="contact.html"><i class="icon-map-marker"></i>Follow Us</a>
 												<ul>
 													<li><a href="#"><i class="icon-facebook"></i>Facebook</a></li>
 													<li><a href="#"><i class="icon-github"></i>Github</a></li>
@@ -112,10 +115,20 @@
 												<a href="help.html"><i class="icon-question-circle"></i>Help</a>
 											</li>
 											<li>
-												<a href="~/Stats"><i class="icon-graph"></i>Statistics</a>
+												@if (User.IsInRole("Admin"))
+												{
+													<a href="~/StatsDetails/Index"><i class="icon-graph"></i>Statistics</a>
+
+												}
+
 											</li>
 											<li>
-												<a href="~/Shopping"><i class="icon-shopping-cart"></i>Checkout</a>
+												@if (User.IsInRole("Admin"))
+												{
+													<a href="~/Administration"><i class="icon-pencil"></i>Administration</a>
+
+												}
+
 											</li>
 										</ul>
 									</nav>
@@ -184,7 +197,8 @@
 
 
 
-								@if(User.Identity.IsAuthenticated){
+								@if (User.Identity.IsAuthenticated)
+								{
 									<form action="BorrowBook" method="post">
 										<label for="BookId">Borrow this book</label>
 										<input type="hidden" name="BookId" value="@Model.BookId" />
@@ -199,7 +213,7 @@
 
 								}
 
-							
+
 							</div>
 
 							<a asp-action="Edit" asp-route-id="@Model?.BookId"></a>
@@ -289,7 +303,6 @@
 
 
 	</div><!-- #wrapper end -->
-
 	<!-- JavaScripts
 	============================================= -->
 	<script src="/js/jquery.js"></script>
