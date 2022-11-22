@@ -100,15 +100,21 @@
 											<li>
 												<a href="~/TblBooks/Index"><i class="icon-search"></i>Search For Books</a>
 											</li>
-											<li>
-												@if (User.IsInRole("Admin"))
+											
+												@if ((User.Identity.IsAuthenticated))
 												{
+													<li>
 													<a href="~/Shopping"><i class="icon-shopping-cart"></i>Checkout</a>
+													</li>
 												}
-											</li>
-											<li>
+											
+											
+											@if(User.Identity.IsAuthenticated){
+												<li>
 												<a href="~/TblImages/Create"><i class="icon-money"></i>Sell Your Books</a>
 											</li>
+											}
+										
 											<li>
 												<a href="faqs.html"><i class="icon-question"></i>FAQs</a>
 											</li>
