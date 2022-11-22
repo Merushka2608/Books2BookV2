@@ -1,155 +1,362 @@
 ﻿@model IEnumerable<Books2BookV2.Models.TblBook>
 
 @{
-	ViewData["Title"] = "Index";
+	ViewData["Title"] = "Book List";
 }
 
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+<head>
 
-<!-- Stylesheets
-============================================= -->
-<link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700|Poppins:300,400,500,600,700|PT+Serif:400,400i&display=swap" rel="stylesheet" type="text/css" />
-<link rel="stylesheet" href="~/css/bootstrap.css" type="text/css" />
-<link rel="stylesheet" href="~/css/style.css" type="text/css" />
-<link rel="stylesheet" href="~/css/dark.css" type="text/css" />
-<link rel="stylesheet" href="~/css/font-icons.css" type="text/css" />
-<link rel="stylesheet" href="~/css/animate.css" type="text/css" />
-<link rel="stylesheet" href="~/css/magnific-popup.css" type="text/css" />
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta name="author" content="SemiColonWeb" />
+	<!-- Stylesheets
+	============================================= -->
+	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700|Poppins:300,400,500,600,700|PT+Serif:400,400i&display=swap" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" href="~/css/bootstrap.css" type="text/css" />
+	<link rel="stylesheet" href="~/css/style.css" type="text/css" />
+	<link rel="stylesheet" href="~/css/dark.css" type="text/css" />
+	<link rel="stylesheet" href="~/css/font-icons.css" type="text/css" />
+	<link rel="stylesheet" href="~/css/animate.css" type="text/css" />
+	<link rel="stylesheet" href="~/css/magnific-popup.css" type="text/css" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="~/css/custom.css" type="text/css" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<style>
 
-<link rel="stylesheet" href="~/css/custom.css" type="text/css" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-
-
-<h1>Index</h1>
-<br />
-<br />
-
-<p>
-	<a asp-action="Create">Create New</a>
-</p>
-
-<form asp-controller="Movies" asp-action="Index">
-	<p>
-		Title: <input type="text" name="SearchString" />
-		<input type="submit" value="Filter" />
-	</p>
-</form>
-
-<p>
-	<a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-	<thead>
-		<tr>
-			<th>
-				@Html.DisplayNameFor(model => model.Isbn)
-			</th>
-			<th>
-				@Html.DisplayNameFor(model => model.Title)
-			</th>
-			<th>
-				@Html.DisplayNameFor(model => model.Category)
-			</th>
-			<th>
-				@Html.DisplayNameFor(model => model.InStock)
-			</th>
-			<th>
-				@Html.DisplayNameFor(model => model.Edition)
-			</th>
-			<th>
-				@Html.DisplayNameFor(model => model.Pages)
-			</th>
-			<th>
-				@Html.DisplayNameFor(model => model.Condition)
-			</th>
-			<th>
-				@Html.DisplayNameFor(model => model.NumberOfTimesBorrowed)
-			</th>
-			<th>
-				@Html.DisplayNameFor(model => model.Description)
-			</th>
-			<th>
-				@Html.DisplayNameFor(model => model.RatingTotal)
-			</th>
-			<th>
-				@Html.DisplayNameFor(model => model.DatePublished)
-			</th>
-			<th>
-				@Html.DisplayNameFor(model => model.NumberOfTimesRated)
-			</th>
-			<th>
-				@Html.DisplayNameFor(model => model.AverageRating)
-			</th>
-			<th>
-				@Html.DisplayNameFor(model => model.Pdflink)
-			</th>
-			<th></th>
-		</tr>
-	</thead>
-	<tbody>
-		@foreach (var item in Model)
-		{
-			<tr>
-				<td>
-					@Html.DisplayFor(modelItem => item.Isbn)
-				</td>
-				<td>
-					@Html.DisplayFor(modelItem => item.Title)
-				</td>
-				<td>
-					@Html.DisplayFor(modelItem => item.Category)
-				</td>
-				<td>
-					@Html.DisplayFor(modelItem => item.InStock)
-				</td>
-				<td>
-					@Html.DisplayFor(modelItem => item.Edition)
-				</td>
-				<td>
-					@Html.DisplayFor(modelItem => item.Pages)
-				</td>
-				<td>
-					@Html.DisplayFor(modelItem => item.Condition)
-				</td>
-				<td>
-					@Html.DisplayFor(modelItem => item.NumberOfTimesBorrowed)
-				</td>
-				<td>
-					@Html.DisplayFor(modelItem => item.Description)
-				</td>
-				<td>
-					@Html.DisplayFor(modelItem => item.RatingTotal)
-				</td>
-				<td>
-					@Html.DisplayFor(modelItem => item.DatePublished)
-				</td>
-				<td>
-					@Html.DisplayFor(modelItem => item.NumberOfTimesRated)
-				</td>
-				<td>
-					@Html.DisplayFor(modelItem => item.AverageRating)
-				</td>
-				<td>
-					@Html.DisplayFor(modelItem => item.Pdflink)
-				</td>
-				@*<td>
-			<a asp-action="Edit" asp-route-id="@item.BookId">Edit</a> |
-			<a asp-action="Details" asp-route-id="@item.BookId">Details</a> |
-			<a asp-action="Delete" asp-route-id="@item.BookId">Delete</a>
-			</td>*@
-				<td>
-					@if (User.IsInRole("Admin"))
-					{
-						<a href="~/TblBooks/Edit?ID=@item.BookId" asp-action="Edit" asp-route-id="@item.BookId">Edit</a>
-						<a href="~/TblBooks/Delete?ID=@item.BookId" asp-action="Delete" asp-route-id="@item.BookId">Delete</a>
-					}
-					<a href="~/TblBooks/Details?ID=@item.BookId" asp-action="Details" asp-route-id="@item.BookId">Borrow</a>
-					@* <input type="button" value="Check out" onclick="location.href='@Url.Action("Index", "TblPayments")'" />*@
-
-
-
-
-				</td>
-			</tr>
+		.white-section {
+			background-color: #FFF;
+			padding: 25px 20px;
+			-webkit-box-shadow: 0px 1px 1px 0px #dfdfdf;
+			box-shadow: 0px 1px 1px 0px #dfdfdf;
+			border-radius: 3px;
 		}
-	</tbody>
-</table>
+
+			.white-section label {
+				margin-bottom: 15px;
+			}
+
+		.dark .white-section {
+			background-color: #111;
+			-webkit-box-shadow: 0px 1px 1px 0px #444;
+			box-shadow: 0px 1px 1px 0px #444;
+		}
+
+	</style>
+
+</head>
+
+<body class="stretched">
+
+	<!-- Document Wrapper
+	============================================= -->
+	<div id="wrapper" class="clearfix">
+
+		<!-- Top Bar
+		============================================= -->
+		<div id="top-bar">
+			<div class="container clearfix">
+
+				<div class="row justify-content-between">
+					<div class="col-12 col-md-auto">
+
+
+
+						<!-- Logo
+						============================================= -->
+						<div id="logo">
+
+							<a href="#" class="standard-logo" data-dark-logo="images/logo-dark.png"><img src="~/images/logo1.png" alt="Books2Book Logo"></a>
+							<!-- #logo end -->
+							<div class="fancy-title title-border">
+								<h1>Books-2-Book</h1>
+							</div>
+							<input type="button" value="Menu" class="side-panel-trigger"/>
+						@*	<a href="#" class="button button-mini button-rounded button-dark side-panel-trigger bottommargin">Menu</a>*@
+						</div>
+						<div id="side-panel" class="dark">
+
+							<div id="side-panel-trigger-close" class="side-panel-trigger"><a href="#"><i class="icon-line-cross"></i></a></div>
+
+							<div class="side-panel-wrap">
+
+								<div class="widget clearfix">
+
+									<h4>Menu</h4>
+
+									<nav class="nav-tree mb-0">
+										<ul>
+											<li>
+												<a href="~/Index"><i class="icon-home"></i>Home</a>
+											</li>
+											<li>
+												<a href="~/TblBooks/Index"><i class="icon-search"></i>Search For Books</a>
+											</li>
+											<li>
+												<a href="~/Shopping"><i class="icon-shopping-cart"></i>Checkout</a>
+											</li>
+											<li>
+												<a href="~/TblImages/Create"><i class="icon-money"></i>Sell Your Books</a>
+											</li>
+											<li>
+												<a href="faqs.html"><i class="icon-question"></i>FAQs</a>
+											</li>
+											<li>
+												<a href="contact.html"><i class="icon-phone2"></i>Contact Us</a>
+												<ul>
+													<li><i class="icon-envelope2"></i></li>
+													<li>books2book@gmail.com</li>
+													<li><i class="icon-phone1"></i>Cell:</li>
+													<li>065 600 1461</li>
+													<li><i class="icon-phone3"></i>Tel:</li>
+													<li>032 943 4831</li>
+												</ul>
+											</li>
+											<li>
+												<a href="contact.html"><i class="icon-map-marker"></i>Follow Us</a>
+												<ul>
+													<li><a href="#"><i class="icon-facebook"></i>Facebook</a></li>
+													<li><a href="#"><i class="icon-github"></i>Github</a></li>
+													<li><a href="#"><i class="icon-linkedin"></i>LinkedIn</a></li>
+													<li><a href="#"><i class="icon-twitter"></i>Twitter</a></li>
+												</ul>
+											</li>
+											<li>
+												<a href="~/About"><i class="icon-book"></i>About</a>
+											</li>
+											<li>
+												<a href="help.html"><i class="icon-question-circle"></i>Help</a>
+											</li>
+											<li>
+												@if (User.IsInRole("Admin"))
+												{
+													<a href="~/StatsDetails/Index"><i class="icon-graph"></i>Statistics</a>
+
+												}
+
+											</li>
+											<li>
+												@if (User.IsInRole("Admin"))
+												{
+													<a href="~/Administration"><i class="icon-pencil"></i>Administration</a>
+
+												}
+
+											</li>
+										</ul>
+									</nav>
+
+								</div>
+
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div><!-- #top-bar end -->
+		<!-- Content
+		============================================= -->
+		<section id="content">
+
+		<div class="fancy-title title-border">
+			<h3>Book Library</h3>
+		</div>
+		<br/>
+		@*
+		<p>
+		<a asp-action="Create">Create New</a>
+		</p>*@
+
+		<form asp-controller="Movies" asp-action="Index">
+			<p>
+				Title: <input type="text" name="SearchString" />
+				<input type="submit" value="Filter" />
+			</p>
+		</form>
+		@*
+		<p>
+		<a asp-action="Create">Create New</a>
+		</p>*@
+		<table class="table">
+			<thead>
+				<tr>
+					<th>
+						@Html.DisplayNameFor(model => model.Isbn)
+					</th>
+					<th>
+						@Html.DisplayNameFor(model => model.Title)
+					</th>
+					<th>
+						@Html.DisplayNameFor(model => model.Category)
+					</th>
+					<th>
+						@Html.DisplayNameFor(model => model.InStock)
+					</th>
+					<th>
+						@Html.DisplayNameFor(model => model.Edition)
+					</th>
+					<th>
+						@Html.DisplayNameFor(model => model.Pages)
+					</th>
+					<th>
+						@Html.DisplayNameFor(model => model.Condition)
+					</th>
+					<th>
+						@Html.DisplayNameFor(model => model.NumberOfTimesBorrowed)
+					</th>
+					<th>
+						@Html.DisplayNameFor(model => model.Description)
+					</th>
+					<th>
+						@Html.DisplayNameFor(model => model.RatingTotal)
+					</th>
+					<th>
+						@Html.DisplayNameFor(model => model.DatePublished)
+					</th>
+					<th>
+						@Html.DisplayNameFor(model => model.NumberOfTimesRated)
+					</th>
+					<th>
+						@Html.DisplayNameFor(model => model.AverageRating)
+					</th>
+					<th>
+						@Html.DisplayNameFor(model => model.Pdflink)
+					</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (var item in Model)
+				{
+					<tr>
+						<td>
+							@Html.DisplayFor(modelItem => item.Isbn)
+						</td>
+						<td>
+							@Html.DisplayFor(modelItem => item.Title)
+						</td>
+						<td>
+							@Html.DisplayFor(modelItem => item.Category)
+						</td>
+						<td>
+							@Html.DisplayFor(modelItem => item.InStock)
+						</td>
+						<td>
+							@Html.DisplayFor(modelItem => item.Edition)
+						</td>
+						<td>
+							@Html.DisplayFor(modelItem => item.Pages)
+						</td>
+						<td>
+							@Html.DisplayFor(modelItem => item.Condition)
+						</td>
+						<td>
+							@Html.DisplayFor(modelItem => item.NumberOfTimesBorrowed)
+						</td>
+						<td>
+							@Html.DisplayFor(modelItem => item.Description)
+						</td>
+						<td>
+							@Html.DisplayFor(modelItem => item.RatingTotal)
+						</td>
+						<td>
+							@Html.DisplayFor(modelItem => item.DatePublished)
+						</td>
+						<td>
+							@Html.DisplayFor(modelItem => item.NumberOfTimesRated)
+						</td>
+						<td>
+							@Html.DisplayFor(modelItem => item.AverageRating)
+						</td>
+						<td>
+							@Html.DisplayFor(modelItem => item.Pdflink)
+						</td>
+						@*<td>
+					<a asp-action="Edit" asp-route-id="@item.BookId">Edit</a> |
+					<a asp-action="Details" asp-route-id="@item.BookId">Details</a> |
+					<a asp-action="Delete" asp-route-id="@item.BookId">Delete</a>
+					</td>*@
+						<td>
+							@if (User.IsInRole("Admin"))
+							{
+								<a href="~/TblBooks/Edit?ID=@item.BookId" asp-action="Edit" asp-route-id="@item.BookId">Edit</a>
+								<a href="~/TblBooks/Delete?ID=@item.BookId" asp-action="Delete" asp-route-id="@item.BookId">Delete</a>
+							}
+							<a href="~/TblBooks/Details?ID=@item.BookId" asp-action="Details" asp-route-id="@item.BookId">Borrow</a>
+							@* <input type="button" value="Check out" onclick="location.href='@Url.Action("Index", "TblPayments")'" />*@
+
+
+
+
+						</td>
+					</tr>
+				}
+			</tbody>
+		</table>
+		</section>
+		<!-- Footer
+			============================================= -->
+		<footer id="footer" class="dark">
+
+			<!-- Copyrights
+			============================================= -->
+			<div id="copyrights">
+				<div class="container">
+
+					<div class="row col-mb-30">
+
+						<div class="col-md-6 text-center text-md-start">
+							Copyrights &copy; 2022 All Rights Reserved by Books-2-Book Inc.<br>
+							<div class="copyright-links"><a href="terms.html">Terms of Use</a> / <a href="#">Privacy Policy</a></div>
+						</div>
+
+						<div class="col-md-6 text-center text-md-end">
+							<div class="d-flex justify-content-center justify-content-md-end">
+								<a href="#" class="social-icon si-small si-borderless si-facebook">
+									<i class="icon-facebook"></i>
+									<i class="icon-facebook"></i>
+								</a>
+
+								<a href="#" class="social-icon si-small si-borderless si-twitter">
+									<i class="icon-twitter"></i>
+									<i class="icon-twitter"></i>
+								</a>
+
+								<a href="#" class="social-icon si-small si-borderless si-github">
+									<i class="icon-github"></i>
+									<i class="icon-github"></i>
+								</a>
+
+								<a href="#" class="social-icon si-small si-borderless si-linkedin">
+									<i class="icon-linkedin"></i>
+									<i class="icon-linkedin"></i>
+								</a>
+							</div>
+
+							<div class="clear"></div>
+
+							<i class="icon-envelope2"></i> info@books2book.com
+							<span class="middot">&middot;</span>
+							<i class="icon-phone1"></i> 083 468 1461
+							<span class="middot">&middot;</span>
+							<i class="icon-phone3"></i> 032 943 1348
+						</div>
+
+					</div>
+
+				</div>
+			</div><!-- #copyrights end -->
+		</footer><!-- #footer end -->
+	</div><!-- #wrapper end -->
+	<!-- JavaScripts
+	============================================= -->
+	<script src="/js/jquery.js"></script>
+	@*<script src="js/plugins.min.js"></script>*@
+
+	<!-- Footer Scripts
+	============================================= -->
+	<script src="/js/functions.js"></script>
+
+</body>
+</html>

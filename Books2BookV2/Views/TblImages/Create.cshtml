@@ -25,6 +25,7 @@
 	<!-- Bootstrap File Upload CSS -->
 	<link rel="stylesheet" href="~/css/components/bs-filestyle.css" type="text/css" />
 	<link rel="stylesheet" href="~/css/components/select-boxes.css" type="text/css" />
+
 	<!-- Bootstrap Select CSS -->
 	<link rel="stylesheet" href="~/css/components/bs-select.css" type="text/css" />
 
@@ -238,9 +239,16 @@
 																<input type="hidden" name="Id" class="form-control" />
 																<span asp-validation-for="Id" class="text-danger"></span>
 															</div>-->
-															<div asp-validation-summary="ModelOnly" class="text-danger"></div>
-															<img src="~/images/book1.png" style="max-width: 200px;" id="img-me" />
-															<input id="img-me-file" type="file" class="d-none" accept="image/*" />
+																<div class="col-12 bottommargin-sm">
+																<label for="img-me">Image of Book<small class="text-danger">*</small></label>
+																<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+															<img style="max-width: 200px;" id="img-me" />
+																<input id="img-me-file" type="file" accept="image/*" class="file-loading" data-allowed-file-extensions='[]' data-show-preview="false"/>
+																<span asp-validation-for="img-me-file" class="text-danger"></span>
+															</div>
+															
+															@*<input id="img-me-file" type="file" class="d-none" accept="image/*" />*@
+							
 															<!--
 																 <div class="form-group">
 																  <label asp-for="Id" class="control-label">ID</label>
@@ -250,11 +258,13 @@
 
 
 															 -->
-															<div class="form-group">
-																<label asp-for="Title" class="control-label">Title </label>
-																<input name="Title" class="form-control" placeholder="Enter the ISBN of the Book"/>
+															 	<div class="col-12 bottommargin-sm">
+																<label for="Title">Book's Title<small class="text-danger">*</small></label>
+																<input type="text" id="template-contactform-title" name="Title" value="" class="form-control required" placeholder="Enter the Title of the Book" />
 																<span asp-validation-for="Title" class="text-danger"></span>
 															</div>
+									
+
 															<div class="form-group">
 														
 																<input type="hidden" name="Image" id="Image" class="form-control" />
@@ -402,9 +412,26 @@
 	<!-- TinyMCE Plugin -->
 	<script src="/js/components/tinymce/tinymce.min.js"></script>
 
+
 	<!-- Footer Scripts
 	============================================= -->
 	<script src="/js/functions.js"></script>
+	<script>
+				$(document).ready(function() {
+
+			$("#img-me-file").fileinput({
+				mainClass: "input-group-md",
+				showUpload: false,
+				previewFileType: "image",
+				browseClass: "btn btn-success",
+				browseLabel: "Pick Image",
+				browseIcon: "<i class=\"icon-picture\"></i> ",
+				removeClass: "btn btn-danger",
+				removeLabel: "Delete",
+				removeIcon: "<i class=\"icon-trash\"></i> "
+			});
+		});
+	</script>
 	<script>
 
 		jQuery(document).ready(function() {
