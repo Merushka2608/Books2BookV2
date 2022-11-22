@@ -1,99 +1,109 @@
 ﻿@page
 @model LoginModel
 @{
-    ViewData["Title"] = "Log in";
+	ViewData["Title"] = "Log in";
 }
 
 <h1>@ViewData["Title"]</h1>
 
 <!-- Document Wrapper
-    ============================================= -->
+	============================================= -->
 <div id="wrapper" class="clearfix">
 
-    <!-- Content
-    ============================================= -->
-    <section id="content">
-        <div class="content-wrap py-0">
+	<!-- Content
+	============================================= -->
+	<section id="content">
+		<div class="content-wrap py-0">
 
-            <div class="section p-0 m-0 h-100 position-absolute" style="background: url('images/parallax/home/1.jpg') center center no-repeat; background-size: cover;"></div>
+			<div class="section p-0 m-0 h-100 position-absolute" style="background: url('images/parallax/home/1.jpg') center center no-repeat; background-size: cover;"></div>
 
-            <div class="section bg-transparent min-vh-100 p-0 m-0">
-                <div class="vertical-middle">
-                    <div class="container-fluid py-5 mx-auto">
-                        <div class="center">
-                            <a href="index.html"><img src="images\books.jpg" alt="Canvas Logo"></a>
-                        </div>
+			<div class="section bg-transparent min-vh-100 p-0 m-0">
+				<div class="vertical-middle">
+					<div class="container-fluid py-5 mx-auto">
+						<div class="center">
+							<a href="index.html"><img src="images\books.jpg" alt="Canvas Logo"></a>
+						</div>
 
-                        <div class="card mx-auto rounded-0 border-0" style="max-width: 400px; background-color: rgba(255,255,255,0.93);">
-                            <div class="card-body" style="padding: 40px;">
-                                <form id="account" method="post" class="mb-0">
-                                    <h3>Use a local account to log in.</h3>
-                                    <hr />
-                                    <div class="row">
-                                        <div class="col-12 form-group">
-                                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                                        <div class="form-floating">
-                                            <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" />
-                                            <label asp-for="Input.Email" class="form-label"></label>
-                                            <span asp-validation-for="Input.Email" class="text-danger"></span>
-                                        </div>
-                                        </div>
-                                        <div class="col-12 form-group">
-                                            <div class="form-floating">
-                                                <input asp-for="Input.Password" class="form-control" autocomplete="current-password" aria-required="true" />
-                                                <label asp-for="Input.Password" class="form-label"></label>
-                                                <span asp-validation-for="Input.Password" class="text-danger"></span>
-                                            </div>
-                                        </div>
-                                        <div class="col-12 form-group">
-                                            <div>
-                                                <div class="checkbox">
-                                                    <label asp-for="Input.RememberMe" class="form-label">
-                                                        <input class="form-check-input" asp-for="Input.RememberMe" />
-                                                        @Html.DisplayNameFor(m => m.Input.RememberMe)
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-12 form-group">
-                                            <div>
-                                                <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-primary">Log in</button>
-                                            </div>
-                                        </div>
-                                        <div class="col-12 form-group">
-                                            <p>
-                                                <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
-                                            </p>
-                                        </div>
-                                        <div class="col-12 form-group">
-                                            <p>
-                                                <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
-                                            </p>
-                                        </div>
-                                        <div class="col-12 form-group">
-                                            <p>
-                                                <a id="resend-confirmation" asp-page="./ResendEmailConfirmation">Resend email confirmation</a>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </form>
-                                <div class="line line-sm"></div>
-                            </div>
-                        </div>
+						<div class="card mx-auto rounded-0 border-0" style="max-width: 400px; background-color: rgba(255,255,255,0.93);">
+							<div class="card-body" style="padding: 40px;">
+								<form id="account" method="post" class="mb-0">
+									<h3>Use a local account to log in.</h3>
+									<hr />
+									<div class="row">
+										<div class="col-12 form-group">
+											<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+											<div class="form-floating">
+												<input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" />
+												<label asp-for="Input.Email" class="form-label"></label>
+												<span asp-validation-for="Input.Email" class="text-danger"></span>
+											</div>
+										</div>
+										<div class="col-12 form-group">
+											<div class="form-floating">
+												<input asp-for="Input.Password" class="form-control" autocomplete="current-password" aria-required="true" />
+												<label asp-for="Input.Password" class="form-label"></label>
+												<span asp-validation-for="Input.Password" class="text-danger"></span>
+											</div>
+										</div>
+										<div class="col-12 form-group">
+											<div>
+												<div class="checkbox">
+													<label asp-for="Input.RememberMe" class="form-label">
+														<input class="form-check-input" asp-for="Input.RememberMe" />
+														@Html.DisplayNameFor(m => m.Input.RememberMe)
+													</label>
+												</div>
+											</div>
+										</div>
+										<div class="col-12 form-group">
+											<div>
+												<button id="login-submit" type="submit" class="w-100 btn btn-lg btn-primary">Log in</button>
+											</div>
+										</div>
+										<div class="col-12 form-group">
+											<p>
+												<a id="forgot-password" asp-page="./ForgotPassword" data-bs-toggle="modal" data-bs-target=".bs-example-modal-centered">Forgot your password?</a>
+											</p>
+										</div>
+										<div class="col-12 form-group">
+											<p>
+												<a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
+											</p>
+										</div>
+										<div class="col-12 form-group">
+											<p>
+												<a id="resend-confirmation" asp-page="./ResendEmailConfirmation">Resend email confirmation</a>
+											</p>
+										</div>
+									</div>
+								</form>
+								<div class="line line-sm"></div>
+							</div>
+						</div>
 
-                        <div class="text-center dark mt-3"><small>Copyrights &copy; All Rights Reserved by Vidur & Merushka Inc.</small></div>
-                    </div>
-                </div>
-            </div>
+						<div class="text-center dark mt-3"><small>Copyrights &copy; All Rights Reserved by Vidur & Merushka Inc.</small></div>
+					</div>
+				</div>
+			</div>
 
-        </div>
-    </section><!-- #content end -->
+		</div>
+		<div class="modal fade bs-example-modal-centered" tabindex="-1" role="dialog" aria-labelledby="centerModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title" id="myModalLabel">Forgot Password?</h4>
+						<button type="button" class="btn-close btn-sm" data-bs-dismiss="modal" aria-hidden="true"></button>
+					</div>
+					<div class="modal-body">
+						<p class="mb-0">Please contact us at books2book@gmail.com with your username and institution details. We will verify your details and contact you with steps shortly thereafter.</p>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</section><!-- #content end -->
 
 </div><!-- #wrapper end -->
-
-
-
-
 @section Scripts {
-    <partial name="_ValidationScriptsPartial" />
+	<partial name="_ValidationScriptsPartial" />
 }
