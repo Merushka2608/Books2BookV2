@@ -1,4 +1,5 @@
 ﻿using Books2BookV2.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
@@ -23,12 +24,12 @@ namespace Books2BookV2.Pages
         
 
         public List<double> prices = new List<double>();
-       
-      
-        
-        
 
-     
+
+
+
+
+		[Authorize]
         public void OnGet()
         {
             string userId = User.Identity.Name;

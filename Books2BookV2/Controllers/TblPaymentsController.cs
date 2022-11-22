@@ -20,8 +20,9 @@ namespace Books2BookV2.Controllers
 			_context = context;
 		}
 
-		[Authorize]
+
 		// GET: TblPayments
+		[Authorize]
 		public async Task<IActionResult> Index()
 		{
 
