@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Books2BookV2.Models;
 using Newtonsoft.Json;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Books2BookV2.Controllers
 {
@@ -19,17 +20,21 @@ namespace Books2BookV2.Controllers
 			_context = context;
 		}
 
+		[Authorize]
 		// GET: TblPayments
 		public async Task<IActionResult> Index()
 		{
 
 			if (TempData["priceTotal"] == null)
 			{
-				TempData["priceTotal"] = "0";
-			}
+                
 
-			//here we get the total price
-			double temp = double.Parse((string)TempData["priceTotal"]);
+                    return RedirectToAction("NoPurchases", "TblPayments");
+
+            }
+
+            //here we get the total price
+            double temp = double.Parse((string)TempData["priceTotal"]);
 			var user = User.Identity.Name;
 			var AccountNumber = (from b in _context.AspNetUsers
 								 where b.UserName == user
@@ -77,10 +82,16 @@ namespace Books2BookV2.Controllers
 			return View();
 		}
 
-		// POST: TblPayments/Create
-		// To protect from overposting attacks, enable the specific properties you want to bind to.
-		// For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-		[HttpPost]
+
+        public IActionResult NoPurchases()
+        {
+            return View();
+        }
+
+        // POST: TblPayments/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
 		[ValidateAntiForgeryToken]
 		public async Task<IActionResult> Create([Bind("Id,UserName,DatePaid")] TblPayment tblPayment)
 		{

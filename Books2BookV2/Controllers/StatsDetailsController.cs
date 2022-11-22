@@ -51,15 +51,33 @@ namespace Books2BookV2.Controllers
             .Where(b => b.Category == "Business")
             .Sum(b => b.NumberOfTimesBorrowed);
 
+            var query = (from t in _context.TblPayments
+                         group t by new
+                         {
+                             Year = t.DatePaid.Year,
+                             Month = t.DatePaid.Month
+                         } into g
+                         select new
+                         {
+                             MonthAndYear = g.Key.Year + "-" + g.Key.Month,
+                             Total = g.Sum(t => t.Total)
+                         }).ToList();
+
+            var Dates = (from q in query
+                         select q.MonthAndYear).ToList();
 
 
+            var Total = (from q in query
+                         select q.Total).ToList();
+
+            ViewData["Months"] = Dates.ToArray();
+            ViewData["Totals"] = Total.ToArray();
 
             var details = new List<StatsDetails>
             {
                 new StatsDetails(){Id = 1, Name= "Ficton" , total = numbBooksFiction, numTimesBorrowed = sumTimesBorrowedFiction},
                 new StatsDetails(){Id = 2, Name= "Coding" , total = numCodingBooks, numTimesBorrowed = sumTimesBorrowedCoding},
                 new StatsDetails(){Id = 3, Name= "Business" , total = numBusinessBooks, numTimesBorrowed = sumTimesBorrowedBusiness}
-
             };
 
             //int sum = 10;
