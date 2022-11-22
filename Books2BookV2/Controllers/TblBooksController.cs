@@ -306,6 +306,10 @@ namespace Books2BookV2.Controllers
         {
             return View();
         }
+        public IActionResult Successful()
+        {
+            return View();
+        }
 
         public ActionResult DeleteBook(int bookId)
 		{
@@ -337,7 +341,7 @@ namespace Books2BookV2.Controllers
             _context.TblBorrows.AddAsync(borrow);
             _context.SaveChangesAsync();
 
-            return RedirectToAction("Index", "TblBooks");
+            return RedirectToAction("Successful", "TblBooks");
 
         }
 

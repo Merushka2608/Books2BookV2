@@ -1,61 +1,101 @@
 ﻿@page
 @model Shopping
 @{
-    ViewData["Title"] = "Shopping Cart";
+	ViewData["Title"] = "Shopping Cart";
 }
 <h1>@ViewData["Title"]</h1>
 <table class="table table-sm table-light">
-    <thead>
-        <tr>
-            <th scope="col">BookId</th>
-            <th scope="col">Book Title</th>
-            <th scope="col">Condition</th>
-            <th scope="col">Price</th>
-        </tr>
-    </thead>
-    <tbody>
-        @if (Model.bookTitles == null)
-        {
-            <tr>Your list is empty </tr>
-        }else{
-            @foreach (var i in Model.bookTitles)
-            {
-                <tr>
-                    <td>@i.BookId</td>
-                    <td>@i.Title</td>
-                    <td>@i.Condition</td>
-                    @if (i.Condition == "A")
-                    {
-                        <td>R150</td>
-                    }
-                    @if (i.Condition == "B")
-                    {
-                        <td>R100</td>
-                    }
-                     @if (i.Condition == "C")
-                    {
-                        <td>R50</td>
-                    }
+	<thead>
+		<tr>
+			<th scope="col">BookId</th>
+			<th scope="col">Book Title</th>
+			<th scope="col">Condition</th>
+			<th scope="col">Price</th>
+		</tr>
+	</thead>
+	<tbody>
+	@*	@if (Model.bookTitles == null)
+		{
+			<div class="modal fade bs-example-modal-centered" tabindex="-1" role="dialog" aria-labelledby="centerModalLabel" aria-hidden="true">
+				<div class="modal-dialog modal-dialog-centered">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h4 class="modal-title" id="myModalLabel">No Items Selected</h4>
+							<button type="button" class="btn-close btn-sm" data-bs-dismiss="modal" aria-hidden="true"></button>
+						</div>
+						<div class="modal-body">
+							<p class="mb-0">Please add books to cart before making your purchase.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		}
+		else
+		{*@
+			@foreach (var i in Model.bookTitles)
+			{
+				<tr>
+					<td>@i.BookId</td>
+					<td>@i.Title</td>
+					<td>@i.Condition</td>
+					@if (i.Condition == "A")
+					{
+						<td>R150</td>
+					}
+					@if (i.Condition == "B")
+					{
+						<td>R100</td>
+					}
+					@if (i.Condition == "C")
+					{
+						<td>R50</td>
+					}
 
-                    <td>
-                        @using (Html.BeginForm("remove", "TblBorrows", FormMethod.Post))
-                        {
-                            <input type="hidden" value="@i.BookId" id="bookid" name="bookid" />
-                            <input type="submit" value="delete" />
-                        }
-                          
-                    </td>
+					<td>
+						@using (Html.BeginForm("remove", "TblBorrows", FormMethod.Post))
+						{
+							<input type="hidden" value="@i.BookId" id="bookid" name="bookid" />
+							<input type="submit" value="delete" />
+						}
 
-                </tr>
-            }
-        }
-        <!--Action method Controller, Get/PostMethod/-->
-        <input type="button" value="Check out" onclick="location.href='@Url.Action("Index", "TblPayments")'" />
-    </tbody>
+					</td>
 
-    <table>
-        <tr>
-            <td align="right">R @TempData["priceTotal"]</td>
-        </tr>
-    </table>
+				</tr>
+			}
+		@*}*@
+		<tr>
+
+			<!--Action method Controller, Get/PostMethod/-->
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td>Total = R @TempData["priceTotal"]</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td><input type="button" value="Check out" data-bs-toggle="modal" data-bs-target=".bs-example-modal-centered"/></td> @*data-bs-toggle="modal" data-bs-target=".bs-example-modal-centered" *@
+		</tr>
+
+	</tbody>
+
+
 </table>
+
+			<div class="modal fade bs-example-modal-centered" tabindex="-1" role="dialog" aria-labelledby="centerModalLabel" aria-hidden="true">
+				<div class="modal-dialog modal-dialog-centered">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h4 class="modal-title" id="myModalLabel">Confirm Purchase?</h4>
+							<button type="button" class="btn-close btn-sm" data-bs-dismiss="modal" aria-hidden="true"></button>
+						</div>
+						<div class="modal-body">
+							<p class="mb-0">Please click "confirm" to make your purchase.</p>
+							<input type="button" value="Confirm" onclick="location.href='@Url.Action("Index", "TblPayments")'"/>
+						</div>
+					</div>
+				</div>
+			</div>

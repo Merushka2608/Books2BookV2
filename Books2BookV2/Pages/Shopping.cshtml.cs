@@ -40,7 +40,12 @@ namespace Books2BookV2.Pages
                          where (c.IsPaid == false && userId == c.UserName)
                          select b;
 
-
+          /*  if (bookTitles == null)
+            {
+                Redirect("~/TblPayments/NoPurchases");
+            } 
+            else 
+            { */
             foreach (var i in bookTitles)
             {
                 if (i.Condition.Equals("A"))
@@ -56,9 +61,11 @@ namespace Books2BookV2.Pages
                     prices.Add(50);
                 }
             }
+            
 
             double sum = prices.Sum();
             TempData["priceTotal"] = JsonConvert.SerializeObject(sum);
+           // }
 
         }
 
