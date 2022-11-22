@@ -276,6 +276,11 @@ namespace Books2BookV2.Controllers
                             where b.UserName == userId
                             select b.SubscriptionType).FirstOrDefault();
 
+
+            if (userType == null) {
+                userType = "standard";
+            }
+
             if (User.IsInRole("Admin"))
             {
                 TempData["BookString"] = (from b in _context.TblBooks

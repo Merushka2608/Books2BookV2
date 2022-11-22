@@ -42,7 +42,7 @@ namespace Books2BookV2.Controllers
             {
                 return NotFound();
             }
-
+            ViewData["path"] = "~" + tblImage.Image.ToString();
             return View(tblImage);
         }
 
