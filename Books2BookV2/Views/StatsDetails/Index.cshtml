@@ -31,7 +31,9 @@
  </head>
 <body class="stretched">
 
-<!--Chart stuff-->
+    <h1>Number of books per section</h1>
+
+    <!--Chart stuff-->
     <h4 class="display-4"> Chart</h4>
     <h3><a href="~/Home/Index">Back</a></h3>
     <div class="card">
@@ -43,6 +45,8 @@
     </div>
 </div>
 <br />
+
+    <h1>Number of times borrowed</h1>
 <div class="text-center">
     <h4 class="display-4"> Chart</h4>
     <h3><a href="~/Home/Index">Back</a></h3>
@@ -55,7 +59,21 @@
     </div>
 </div>
 
+   <h1>Revenue per month</h1>
+<div class="text-center">
+    <h4 class="display-4"> Chart</h4>
+    <h3><a href="~/Home/Index">Back</a></h3>
+    <div class="card">
+        <div class="card-header">
+            <div class="chart">
+                <canvas id="revenueChart"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
 
+
+<!--
 <div class="text-center">
     <h4 class="display-4"> Chart</h4>
     <h3><a href="~/Home/Index">Back</a></h3>
@@ -79,7 +97,7 @@
             </div>
         </div>
     </div>
-</div>
+    </div>-->
 
 	<!-- JavaScripts
 	============================================= -->
@@ -196,6 +214,66 @@
             }
         }
     });
+
+
+
+       
+    var labels = [];
+    var totals = [];
+  @{
+            var myArray = (string[])ViewData["Months"];
+            var myArray2 = (double[])ViewData["Totals"];
+
+  } 
+
+    @foreach (var item in myArray)
+    {
+        @:labels.push('@item');
+    }
+
+
+        @foreach (var item in myArray2)
+        {
+            @:totals.push('@item');
+        }
+
+
+
+                        var chart3 = new Chart(revenueChart, {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [{
+                    data: totals,
+                    borderWidth: 0,
+                    backgroundColor: [
+                        'rgb(255, 99, 132)',
+                        'rgb(54, 162, 235)',
+                        'rgb(157, 230, 41)',
+                        'rgb(41, 224, 230)',
+                        'rgb(255, 255, 0)'
+                    ],
+                    hoverBackgroundColor: [
+                        'rgb(255, 99, 132)',
+                        'rgb(54, 162, 235)',
+                        'rgb(157, 230, 41)',
+                        'rgb(41, 224, 230)',
+                        'rgb(255, 255, 0)'
+                    ]
+                }]
+            },
+            options: {
+                responsive: true,
+                legend: {
+                    position: "bottom",
+                    labels: {
+                        boxWidth: 11,
+                        fontColor: "#757681",
+                        fontSize: 11
+                    }
+                }
+            }
+        });
 </script>
 </body>
 </html>

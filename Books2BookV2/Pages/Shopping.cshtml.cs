@@ -40,12 +40,16 @@ namespace Books2BookV2.Pages
                          where (c.IsPaid == false && userId == c.UserName)
                          select b;
 
-          /*  if (bookTitles == null)
+        
+          
+
+            if(bookTitles.Count() == 0 || bookTitles == null)
             {
                 Redirect("~/TblPayments/NoPurchases");
-            } 
-            else 
-            { */
+
+            }
+
+
             foreach (var i in bookTitles)
             {
                 if (i.Condition.Equals("A"))
