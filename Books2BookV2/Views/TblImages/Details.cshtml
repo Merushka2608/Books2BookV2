@@ -2,6 +2,7 @@
 
 @{
 	ViewData["Title"] = "Details";
+	string strPath = ViewData["Path"].ToString();
 }
 
 <h1>Details</h1>
@@ -20,7 +21,9 @@
 			@Html.DisplayNameFor(model => model.Image)
 		</dt>
 		<dd class="col-sm-10">
-			 @Html.DisplayFor(model => model.Image)
+			@Html.DisplayFor(model => model.Title)
+			
+			<img src="@Url.Content("~" + Model.Image)" alt="not loaded" />
 		</dd>
 		<dt class="col-sm-2">
 			@Html.DisplayNameFor(model => model.Isbn)
