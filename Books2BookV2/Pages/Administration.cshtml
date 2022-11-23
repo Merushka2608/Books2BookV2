@@ -43,8 +43,6 @@
 				<div class="row justify-content-between">
 					<div class="col-12 col-md-auto">
 
-						<a href="#" class="button button-mini button-rounded button-dark side-panel-trigger bottommargin">Menu</a>
-
 						<!-- Logo
 						============================================= -->
 						<div id="logo">
@@ -54,92 +52,6 @@
 							<div class="fancy-title title-border">
 								<h1>Administration</h1>
 							</div>
-						</div>
-						<div id="side-panel" class="dark">
-
-							<div id="side-panel-trigger-close" class="side-panel-trigger"><a href="#"><i class="icon-line-cross"></i></a></div>
-
-							<div class="side-panel-wrap">
-
-								<div class="widget clearfix">
-
-									<h4>Menu</h4>
-
-									<nav class="nav-tree mb-0">
-										<ul>
-											<li>
-												<a href="~/Index"><i class="icon-home"></i>Home</a>
-											</li>
-											<li>
-												<a href="~/TblBooks/Index"><i class="icon-search"></i>Search For Books</a>
-											</li>
-											
-												@if ((User.Identity.IsAuthenticated))
-												{
-													<li>
-													<a href="~/Shopping"><i class="icon-shopping-cart"></i>Checkout</a>
-													</li>
-												}
-											
-											
-											@if(User.Identity.IsAuthenticated){
-												<li>
-												<a href="~/TblImages/Create"><i class="icon-money"></i>Sell Your Books</a>
-											</li>
-											}
-										
-											<li>
-												<a href="faqs.html"><i class="icon-question"></i>FAQs</a>
-											</li>
-											<li>
-												<a href="contact.html"><i class="icon-phone2"></i>Contact Us</a>
-												<ul>
-													<li><i class="icon-envelope2"></i></li>
-													<li>books2book@gmail.com</li>
-													<li><i class="icon-phone1"></i>Cell:</li>
-													<li>065 600 1461</li>
-													<li><i class="icon-phone3"></i>Tel:</li>
-													<li>032 943 4831</li>
-												</ul>
-											</li>
-											<li>
-												<a href="contact.html"><i class="icon-map-marker"></i>Follow Us</a>
-												<ul>
-													<li><a href="#"><i class="icon-facebook"></i>Facebook</a></li>
-													<li><a href="#"><i class="icon-github"></i>Github</a></li>
-													<li><a href="#"><i class="icon-linkedin"></i>LinkedIn</a></li>
-													<li><a href="#"><i class="icon-twitter"></i>Twitter</a></li>
-												</ul>
-											</li>
-											<li>
-												<a href="~/About"><i class="icon-book"></i>About</a>
-											</li>
-											<li>
-												<a href="help.html"><i class="icon-question-circle"></i>Help</a>
-											</li>
-											<li>
-												@if (User.IsInRole("Admin"))
-												{
-													<a href="~/StatsDetails/Index"><i class="icon-graph"></i>Statistics</a>
-
-												}
-
-											</li>
-											<li>
-												@if (User.IsInRole("Admin"))
-												{
-													<a href="~/Administration"><i class="icon-pencil"></i>Administration</a>
-
-												}
-
-											</li>
-										</ul>
-									</nav>
-
-								</div>
-
-							</div>
-
 						</div>
 					</div>
 				</div>
@@ -158,6 +70,13 @@
 					</div>
 					<div class="center">
 						<a href="~/StatsDetails/Index" class="button button-3d m-0 tab-linker" rel="5">Index</a>
+					</div>
+					<div class="divider divider-center"><i class="icon-pen"></i></div>
+					<div class="fancy-title title-border title-center">
+						<h3>TblBorrows</h3>
+					</div>
+					<div class="center">
+						<a href="~/TblBorrows/Index" class="button button-3d m-0 tab-linker" rel="5">Index</a>
 					</div>
 					<div class="divider divider-center"><i class="icon-book"></i></div>
 					<div class="fancy-title title-border title-center">
@@ -180,61 +99,61 @@
 
 			</div>
 
-	</section>
+		</section>
 
-	<!-- Footer
-	============================================= -->
-	<footer id="footer" class="dark">
-
-		<!-- Copyrights
+		<!-- Footer
 		============================================= -->
-		<div id="copyrights">
-			<div class="container">
+		<footer id="footer" class="dark">
 
-				<div class="row col-mb-30">
+			<!-- Copyrights
+			============================================= -->
+			<div id="copyrights">
+				<div class="container">
 
-					<div class="col-md-6 text-center text-md-start">
-						Copyrights &copy; 2022 All Rights Reserved by Books-2-Book Inc.<br>
-						<div class="copyright-links"><a href="terms.html">Terms of Use</a> / <a href="#">Privacy Policy</a></div>
-					</div>
+					<div class="row col-mb-30">
 
-					<div class="col-md-6 text-center text-md-end">
-						<div class="d-flex justify-content-center justify-content-md-end">
-							<a href="#" class="social-icon si-small si-borderless si-facebook">
-								<i class="icon-facebook"></i>
-								<i class="icon-facebook"></i>
-							</a>
-
-							<a href="#" class="social-icon si-small si-borderless si-twitter">
-								<i class="icon-twitter"></i>
-								<i class="icon-twitter"></i>
-							</a>
-
-							<a href="#" class="social-icon si-small si-borderless si-github">
-								<i class="icon-github"></i>
-								<i class="icon-github"></i>
-							</a>
-
-							<a href="#" class="social-icon si-small si-borderless si-linkedin">
-								<i class="icon-linkedin"></i>
-								<i class="icon-linkedin"></i>
-							</a>
+						<div class="col-md-6 text-center text-md-start">
+							Copyrights &copy; 2022 All Rights Reserved by Books-2-Book Inc.<br>
+							<div class="copyright-links"><a href="terms.html">Terms of Use</a> / <a href="#">Privacy Policy</a></div>
 						</div>
 
-						<div class="clear"></div>
+						<div class="col-md-6 text-center text-md-end">
+							<div class="d-flex justify-content-center justify-content-md-end">
+								<a href="#" class="social-icon si-small si-borderless si-facebook">
+									<i class="icon-facebook"></i>
+									<i class="icon-facebook"></i>
+								</a>
 
-						<i class="icon-envelope2"></i> info@books2book.com
-						<span class="middot">&middot;</span>
-						<i class="icon-phone1"></i> 083 468 1461
-						<span class="middot">&middot;</span>
-						<i class="icon-phone3"></i> 032 943 1348
+								<a href="#" class="social-icon si-small si-borderless si-twitter">
+									<i class="icon-twitter"></i>
+									<i class="icon-twitter"></i>
+								</a>
+
+								<a href="#" class="social-icon si-small si-borderless si-github">
+									<i class="icon-github"></i>
+									<i class="icon-github"></i>
+								</a>
+
+								<a href="#" class="social-icon si-small si-borderless si-linkedin">
+									<i class="icon-linkedin"></i>
+									<i class="icon-linkedin"></i>
+								</a>
+							</div>
+
+							<div class="clear"></div>
+
+							<i class="icon-envelope2"></i> info@books2book.com
+							<span class="middot">&middot;</span>
+							<i class="icon-phone1"></i> 083 468 1461
+							<span class="middot">&middot;</span>
+							<i class="icon-phone3"></i> 032 943 1348
+						</div>
+
 					</div>
 
 				</div>
-
-			</div>
-		</div><!-- #copyrights end -->
-	</footer><!-- #footer end -->
+			</div><!-- #copyrights end -->
+		</footer><!-- #footer end -->
 	</div><!-- #wrapper end -->
 	@*	<!-- JavaScripts
 	============================================= -->

@@ -57,9 +57,8 @@
 				<td>
 					@if (User.IsInRole("Admin"))
 					{
-						<a href="~/TblImages/Edit?ID=@item.Id" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+
 						<a href="~/TblImages/Details?ID=@item.Id" asp-action="Details" asp-route-id="@item.Id">Details</a>
-						<a href="~/TblImages/Delete?ID=@item.Id" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
 
 					}
 				</td>
@@ -67,3 +66,4 @@
 		}
 	</tbody>
 </table>
+ <button type="submit"><h5><a href="~/Administration">Admin Page</a></h5></button>

@@ -22,13 +22,6 @@
 	<link rel="stylesheet" href="~/css/animate.css" type="text/css" />
 	<link rel="stylesheet" href="~/css/magnific-popup.css" type="text/css" />
 
-	<!-- Bootstrap File Upload CSS -->
-	<link rel="stylesheet" href="~/css/components/bs-filestyle.css" type="text/css" />
-	<link rel="stylesheet" href="~/css/components/select-boxes.css" type="text/css" />
-
-	<!-- Bootstrap Select CSS -->
-	<link rel="stylesheet" href="~/css/components/bs-select.css" type="text/css" />
-
 	<link rel="stylesheet" href="~/css/custom.css" type="text/css" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 
@@ -80,8 +73,6 @@
 				<div class="row justify-content-between">
 					<div class="col-12 col-md-auto">
 
-						<a href="#" class="button button-mini button-rounded button-dark side-panel-trigger bottommargin">Menu</a>
-
 						<!-- Logo
 						============================================= -->
 						<div id="logo">
@@ -91,67 +82,6 @@
 							<div class="fancy-title title-border">
 								<h1>Books-2-Book</h1>
 							</div>
-						</div>
-						<div id="side-panel" class="dark">
-
-							<div id="side-panel-trigger-close" class="side-panel-trigger"><a href="#"><i class="icon-line-cross"></i></a></div>
-
-							<div class="side-panel-wrap">
-
-								<div class="widget clearfix">
-
-									<h4>Menu</h4>
-
-									<nav class="nav-tree mb-0">
-										<ul>
-											<li>
-												<a href="~/Index"><i class="icon-home"></i>Home</a>
-											</li>
-											<li>
-												<a href="#"><i class="icon-money"></i>Sell Your Books</a>
-											</li>
-											<li>
-												<a href="~/TblBooks/Index"><i class="icon-search"></i>Search For Books</a>
-											</li>
-											<li>
-												<a href="faqs.html"><i class="icon-question"></i>FAQs</a>
-											</li>
-											<li>
-												<a href="contact.html"><i class="icon-map-marker"></i>Contact Us</a>
-												<ul>
-													<li><i class="icon-envelope2"></i></li>
-													<li>info@Books2Book.com</li>
-													<li><i class="icon-phone1"></i>Cell:</li>
-													<li>083 468 1461</li>
-													<li><i class="icon-phone3"></i>Tel:</li>
-													<li>032 943 1348</li>
-												</ul>
-											</li>
-											<li>
-												<a href="contact.html"><i class="icon-phone2"></i>Follow Us</a>
-												<ul>
-													<li><a href="#"><i class="icon-facebook"></i>Facebook</a></li>
-													<li><a href="#"><i class="icon-github"></i>Github</a></li>
-													<li><a href="#"><i class="icon-linkedin"></i>LinkedIn</a></li>
-													<li><a href="#"><i class="icon-twitter"></i>Twitter</a></li>
-												</ul>
-											</li>
-											<li>
-												<a href="~/About"><i class="icon-book"></i>About</a>
-											</li>
-											<li>
-												<a href="help.html"><i class="icon-question-circle"></i>Help</a>
-											</li>
-											<li>
-												<a href="~/Stats"><i class="icon-graph"></i>Statistics</a>
-											</li>
-										</ul>
-									</nav>
-
-								</div>
-
-							</div>
-
 						</div>
 					</div>
 				</div>
@@ -173,7 +103,7 @@
 									<a href="#"><i class="i-alt">1</i></a>
 								</div>
 								<div class="fbox-content">
-									<h3>Enter Book Details and Upload Images<span class="subtitle">Step 1</span></h3>
+									<h3>Review Rules and Upload Details<span class="subtitle">Step 1</span></h3>
 								</div>
 							</div>
 						</div>
@@ -184,7 +114,7 @@
 									<a href="#"><i>2</i></a>
 								</div>
 								<div class="fbox-content">
-									<h3>Drop Book off at Your Nearest Campus<span class="subtitle">Step 2</span></h3>
+									<h3>Drop Book off at Your Campus<span class="subtitle">Step 2</span></h3>
 								</div>
 							</div>
 						</div>
@@ -200,136 +130,32 @@
 							</div>
 						</div>
 					</div>
-
-					<div class="content-wrap bg-light">
-
-						<div class="container">
-
-							<div class="row justify-content-center">
-								<div class="col-lg-7 col-md-10">
-									<div class="card shadow-sm">
-										<div class="card-header">
-											<h4 class="mb-0">Enter Book Information</h4>
-										</div>
-										<div class="card-body">
-
-											<div class="form-widget">
-
-												<div class="form-result"></div>
-
-												<div class="form-process">
-													<div class="css3-spinner">
-														<div class="css3-spinner-double-bounce1"></div>
-														<div class="css3-spinner-double-bounce2"></div>
-													</div>
-												</div>
-
-												<form class="mb-0" id="template-contactform" name="template-contactform" method="post" enctype="multipart/form-data" )">
-													<!--action=""-->
-
-													<div class="row">
-														@using (Html.BeginForm("Create", "TblImages", FormMethod.Post))
-														{
-
-														//<div asp-validation-summary="ModelOnly" class="text-danger"></div>
-														//<img src="~/images/book1.jpg" style="max-width: 200px;" id="" />
-														//<input id="img-me-file" type="file" class="d-none" accept="image/*" />
-															<!--<div class="col-12 bottommargin-sm">
-
-																<input type="hidden" name="Id" class="form-control" />
-																<span asp-validation-for="Id" class="text-danger"></span>
-															</div>-->
-																<div class="col-12 bottommargin-sm">
-																<label for="img-me">Image of Book<small class="text-danger">*</small></label>
-																<div asp-validation-summary="ModelOnly" class="text-danger"></div>
-															<img style="max-width: 200px;" id="img-me" />
-																<input id="img-me-file" type="file" accept="image/*" class="file-loading" data-allowed-file-extensions='[]' data-show-preview="false"/>
-																<span asp-validation-for="img-me-file" class="text-danger"></span>
-															</div>
-															
-															@*<input id="img-me-file" type="file" class="d-none" accept="image/*" />*@
-							
-															<!--
-																 <div class="form-group">
-																  <label asp-for="Id" class="control-label">ID</label>
-																  <input name="Id" class="form-control" />
-																  <span asp-validation-for="Id" class="text-danger"></span>
-															  </div>
-
-
-															 -->
-															 	<div class="col-12 bottommargin-sm">
-																<label for="Title">Book's Title<small class="text-danger">*</small></label>
-																<input type="text" id="template-contactform-title" name="Title" value="" class="form-control required" placeholder="Enter the Title of the Book" />
-																<span asp-validation-for="Title" class="text-danger"></span>
-															</div>
-									
-
-															<div class="form-group">
-														
-																<input type="hidden" name="Image" id="Image" class="form-control" />
-																<span asp-validation-for="Image" class="text-danger"></span>
-															</div>
-															<input type="hidden" id="filename" name="filename" />
-															<!--<div class="form-group">
-																<input type="submit" value="Create" class="btn btn-primary" />
-															</div>
-
-															<div class="col-12 bottommargin-sm">
-
-																<input type="hidden" name="Image" id="Image" class="form-control" />
-																<span asp-validation-for="Image" class="text-danger"></span>
-															</div>
-															<input type="hidden" id="filename" name="filename" />-->
-
-															<div class="col-12 bottommargin-sm">
-																<label for="Isbn">Book's ISBN<small class="text-danger">*</small></label>
-																<input type="text" id="template-contactform-isbn" name="Isbn" value="" class="form-control required" placeholder="Enter the ISBN of the Book" />
-																<span asp-validation-for="Isbn" class="text-danger"></span>
-															</div>
-
-															//<div class="col-12 bottommargin-sm">
-																//<label for="template-contactform-id">Book's Title<small class="text-danger">*</small></label>
-																//<input type="text" id="template-contactform-title" name="Title" value="" class="form-control required" placeholder="Enter the Title of the Book" />
-															//</div>
-
-															<div class="col-12 bottommargin-sm">
-																<label for="Author">Book's Author<small class="text-danger">*</small></label>
-																<input type="text" id="template-contactform-author" name="Author" value="" class="form-control required" placeholder="Enter the Author of the Book" />
-																<span asp-validation-for="Author" class="text-danger"></span>
-															</div>
-
-															//<div class="col-12 bottommargin-sm">
-																//<label for="img-me-file">Upload Image of Book:</label><br>
-																//<input id="img-me-file" type="file" name="front-image[]" multiple class="file file-loading" data-show-preview="true">
-														//	</div>
-
-															<div class="col-12 bottommargin-sm">
-																<label for="DescriptionOfBook">Describe Book's Condition:<small class="text-danger">*</small></label>
-																<textarea class="required form-control textarea-message" id="template-contactform-message" name="DescriptionOfBook" rows="6" cols="30"></textarea>
-																<span asp-validation-for="DescriptionOfBook" class="text-danger"></span>
-															</div>
-
-															@*<div class="col-12 d-none">
-																<input type="text" id="template-contactform-botcheck" name="template-contactform-botcheck" value="" />
-															</div>*@
-															<div class="col-12">
-																<button type="submit" value="Create" name="template-contactform-submit" class="btn btn-secondary w-100 btn-lg">Submit Details</button>
-															</div>
-
-															@*<input type="hidden" name="prefix" value="template-contactform-">*@
-														}
-													</div>
-
-												</form>
-											</div>
-										</div>
-									</div>
+					<div class="row justify-content-center m-3">
+						<div class="col-sm-8">
+							<div class="card">
+								<div class="card-header">
+									<h2>Books with the following won't be accepted:</h2>
+								</div>
+								<div class="card-body text-center">
+									<br />
+									<h5>Missing pages and covers</h5>
+									<h5>Defects caused by water</h5>
+									<h5>Defects caused by fire and/or smoke</h5>
+									<h5>Significant wear</h5>
+									<h5>Torn and/or loose pages and/or cover</h5>
+									<h5>Pirated books</h5>
+									<h5>Stained pages</h5>
+									<h5>Writing on the pages and/or cover</h5>
+									<h5>Incorrect ISBN or misprinting</h5>
+									<br />
+									<h4>Please review our rules carefully and only click "confirm" below if your book does not match any of the defects</h4>
+									<h4>You may then proceed to the details page where you can fill in the required information as well as upload a recent image of the book you wish to sell.</h4>
+									<a href="~/TblImages/Create">Confirm</a>
 								</div>
 							</div>
-
 						</div>
 					</div>
+					 <button type="submit" value="Home"><h5><a href="~/Index">Home</a></h5></button>
 				</div>
 			</div>
 		</section><!-- #content end -->
@@ -417,7 +243,7 @@
 	============================================= -->
 	<script src="/js/functions.js"></script>
 	<script>
-				$(document).ready(function() {
+		$(document).ready(function() {
 
 			$("#img-me-file").fileinput({
 				mainClass: "input-group-md",

@@ -80,7 +80,9 @@
 							<div class="fancy-title title-border">
 								<h1>Books-2-Book</h1>
 							</div>
-							<a href="#" class="button button-mini button-rounded button-dark side-panel-trigger bottommargin">Menu</a>
+						
+							<input type="button" value="Menu" class="button tox-button button-rounded button-dark side-panel-trigger bottommargin"/>
+						
 						</div>
 						<div id="side-panel" class="dark">
 
@@ -100,29 +102,30 @@
 											<li>
 												<a href="~/TblBooks/Index"><i class="icon-search"></i>Search For Books</a>
 											</li>
-											
-												@if ((User.Identity.IsAuthenticated))
-												{
-													<li>
-													<a href="~/Shopping"><i class="icon-shopping-cart"></i>Checkout</a>
-													</li>
-												}
-											
-											
-											@if(User.Identity.IsAuthenticated){
+
+											@if ((User.Identity.IsAuthenticated))
+											{
 												<li>
-												<a href="~/TblImages/Create"><i class="icon-money"></i>Sell Your Books</a>
-											</li>
+													<a href="~/Shopping"><i class="icon-shopping-cart"></i>Checkout</a>
+												</li>
 											}
-										
+
+
+											@if (User.Identity.IsAuthenticated)
+											{
+												<li>
+													<a href="~/TblImages/Guidelines"><i class="icon-money"></i>Sell Your Books</a>
+												</li>
+											}
+
 											<li>
 												<a href="faqs.html"><i class="icon-question"></i>FAQs</a>
 											</li>
 											<li>
-												<a href="contact.html"><i class="icon-phone2"></i>Contact Us</a>
+												<a href="#"><i class="icon-phone2"></i>Contact Us</a>
 												<ul>
 													<li><i class="icon-envelope2"></i></li>
-													<li>books2book@gmail.com</li>
+													<li>bookadmin@gmail.com</li>
 													<li><i class="icon-phone1"></i>Cell:</li>
 													<li>065 600 1461</li>
 													<li><i class="icon-phone3"></i>Tel:</li>
@@ -140,9 +143,6 @@
 											</li>
 											<li>
 												<a href="~/About"><i class="icon-book"></i>About</a>
-											</li>
-											<li>
-												<a href="help.html"><i class="icon-question-circle"></i>Help</a>
 											</li>
 											<li>
 												@if (User.IsInRole("Admin"))
@@ -184,30 +184,30 @@
 						<div class="slider-wrap">
 							<div class="slide" data-thumb="images/slider/boxed/thumbs/3.jpg">
 								<a href="vidur.html" class="d-block position-relative">
-									<img src="images/slide1.jpg" alt="Slide 1">
+									<img src="images/ad1.PNG" alt="Slide 1">
 									<div class="bg-overlay">
 										<div class="bg-overlay-content justify-content-start align-items-end">
-											<div class="h3 fw-light py-2 px-3 bg-light text-dark ms-3 mb-3 rounded">Vidur's Site</div>
+											<div class="h3 fw-light py-2 px-3 bg-light text-dark ms-3 mb-3 rounded">Visit Site</div>
 										</div>
 									</div>
 								</a>
 							</div>
 							<div class="slide" data-thumb="images/slider/boxed/thumbs/3.jpg">
-								<a href="codesphere.html" class="d-block position-relative">
-									<img src="images/slider.jpg" alt="Slide 2">
+								<a href="site.html" class="d-block position-relative">
+									<img src="images/ad2.PNG" alt="Slide 2">
 									<div class="bg-overlay">
 										<div class="bg-overlay-content justify-content-end align-items-end">
-											<div class="h3 fw-light py-2 px-3 bg-dark text-light me-3 mb-3 rounded">Codesphere's Site</div>
+											<div class="h3 fw-light py-2 px-3 bg-dark text-light me-3 mb-3 rounded">Visit Site</div>
 										</div>
 									</div>
 								</a>
 							</div>
 							<div class="slide" data-thumb="images/slider/boxed/thumbs/4.jpg">
 								<a href="merushka.html" class="d-block position-relative">
-									<img src="images/slide2.jpg" alt="Slide 3">
+									<img src="images/ad3.PNG" alt="Slide 3">
 									<div class="bg-overlay">
 										<div class="bg-overlay-content">
-											<div class="h3 fw-light py-2 px-3 bg-color text-light rounded">Merushka's Site</div>
+											<div class="h3 fw-light py-2 px-3 bg-color text-light rounded">Visit Site</div>
 										</div>
 									</div>
 								</a>
@@ -284,7 +284,7 @@
 
 
 			<div class="fancy-title title-border">
-				<h3>Coding Books</h3>
+				<h1>Coding Books</h1>
 			</div>
 
 			<div class="content-wrap">
@@ -318,7 +318,7 @@
 			</div>
 
 			<div class="fancy-title title-border">
-				<h3>Business Books</h3>
+				<h1>Business Books</h1>
 			</div>
 
 			<div class="content-wrap">
@@ -328,7 +328,7 @@
 						{
 							<div class="oc-item">
 
-								<a href="#"><img style='border:10px solid #000000'  src="@Url.Content("~/images/"+ b.BookId +".png" )" alt="Image not found" height="500" width="500"></a>
+								<a href="#"><img style='border:10px solid #000000' src="@Url.Content("~/images/"+ b.BookId +".png" )" alt="Image not found" height="500" width="500"></a>
 								<div class="bg-overlay">
 									<div class="bg-overlay-content text-overlay-mask dark desc-sm align-items-end justify-content-start p-4">
 										<div>
@@ -343,6 +343,42 @@
 							</div>
 						}
 					</div>
+				</div>
+			</div>
+
+			<div class="fancy-title title-border">
+				<h1>Fiction Books</h1>
+			</div>
+
+			<div class="content-wrap">
+				<div class="container clearfix">
+					<div id="oc-images" class="owl-carousel owl-carousel-full news-carousel header-stick bottommargin-lg carousel-widget" data-margin="3" data-loop="true" data-stage-padding="50" data-pagi="false" data-items-sm="1" data-items-xl="2">
+						@foreach (var b in Model.fictionBooks)
+						{
+							<div class="oc-item">
+
+								<a href="#"><img style='border:10px solid #000000' src="@Url.Content("~/images/"+ b.BookId +".png" )" alt="Image not found" height="500" width="500"></a>
+
+								<div class="bg-overlay">
+									<div class="bg-overlay-content text-overlay-mask dark desc-sm align-items-end justify-content-start p-4">
+										<div>
+											<div class="portfolio-desc px-0">
+												<h3>@b.Title</h3>
+											</div>
+											<a href="/TblBooks/Details?ID=@b.BookId" class="btn btn-sm btn-outline-light mx-0 mb-2">Borrow</a>
+										</div>
+									</div>
+								</div>
+
+							</div>
+						}
+
+
+					</div>
+
+
+				</div>
+			</div>
 		</section><!-- #content end -->
 		<!-- Footer
 		============================================= -->

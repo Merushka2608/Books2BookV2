@@ -63,6 +63,11 @@ namespace Books2BookV2.Controllers
             return View();
         }
 
+        public IActionResult Guidelines()
+        {
+            return View();
+        }
+
 
         [Authorize]
         // POST: TblImages/Create

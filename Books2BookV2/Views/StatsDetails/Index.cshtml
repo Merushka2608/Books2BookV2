@@ -8,9 +8,9 @@
 
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 	<meta name="author" content="SemiColonWeb" />
-   
-<!-- Stylesheets
-	============================================= -->
+
+	<!-- Stylesheets
+		============================================= -->
 	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700|Poppins:300,400,500,600,700|PT+Serif:400,400i&display=swap" rel="stylesheet" type="text/css" />
 	<link rel="stylesheet" href="@Url.Content("css/bootstrap.css")" type="text/css" />
 	<link rel="stylesheet" href="@Url.Content("style.css") type="text/css" />
@@ -19,86 +19,69 @@
 	<link rel="stylesheet" href="@Url.Content("css/animate.css")" type="text/css" />
 	<link rel="stylesheet" href="@Url.Content("css/magnific-popup.css")" type="text/css" />
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
 	<link rel="stylesheet" href="@Url.Content("css/custom.css")" type="text/css" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
 
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0-rc1/js/bootstrap.min.js"></script>
-    <script src="http://code.jquery.com/jquery.js"></script>    
-<script type="text/javascript" src="../../Scripts/jquery-1.8.2.min.js"></script>
- </head>
+	<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0-rc1/js/bootstrap.min.js"></script>
+	<script src="http://code.jquery.com/jquery.js"></script>
+	<script type="text/javascript" src="../../Scripts/jquery-1.8.2.min.js"></script>
+</head>
 <body class="stretched">
+	<div class="text-center">
+		<h1><b><u>Statistics</u></b></h1>
+	</div>
+	<section id="content">
+		<div class="content-wrap">
+			<div class="container clearfix">
+				<div class="fancy-title title-border">
+					<h2>Number of books per genre</h2>
+				</div>
+				<!--Chart stuff-->
+				<div class="card">
+					<div class="card-header">
+						<div class="chart">
+							<canvas id="doughnutchart"></canvas>
+						</div>
+					</div>
+				</div>
 
-    <h1>Number of books per section</h1>
+				<br />
 
-    <!--Chart stuff-->
-    <h4 class="display-4"> Chart</h4>
-    <h3><a href="~/Home/Index">Back</a></h3>
-    <div class="card">
-        <div class="card-header">
-            <div class="chart">
-                <canvas id="doughnutchart"></canvas>
-            </div>
-        </div>
-    </div>
-</div>
-<br />
+				<div class="fancy-title title-border">
+					<h2>Number of times borrowed per genre</h2>
+				</div>
+				<div class="text-center">
+					<div class="card">
+						<div class="card-header">
+							<div class="chart">
+								<canvas id="timesBorrowed"></canvas>
+							</div>
+						</div>
+					</div>
+				</div>
 
-    <h1>Number of times borrowed</h1>
-<div class="text-center">
-    <h4 class="display-4"> Chart</h4>
-    <h3><a href="~/Home/Index">Back</a></h3>
-    <div class="card">
-        <div class="card-header">
-            <div class="chart">
-                <canvas id="timesBorrowed"></canvas>
-            </div>
-        </div>
-    </div>
-</div>
+				<div class="fancy-title title-border">
+					<h2>Revenue generated per month</h2>
+				</div>
+				<div class="text-center">
+					<div class="card">
+						<div class="card-header">
+							<div class="chart">
+								<canvas id="revenueChart"></canvas>
+							</div>
+						</div>
+					</div>
+				</div>
 
-   <h1>Revenue per month</h1>
-<div class="text-center">
-    <h4 class="display-4"> Chart</h4>
-    <h3><a href="~/Home/Index">Back</a></h3>
-    <div class="card">
-        <div class="card-header">
-            <div class="chart">
-                <canvas id="revenueChart"></canvas>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-<!--
-<div class="text-center">
-    <h4 class="display-4"> Chart</h4>
-    <h3><a href="~/Home/Index">Back</a></h3>
-    <div class="card">
-        <div class="card-header">
-            <div class="chart">
-                <canvas id="chart2"></canvas>
-            </div>
-        </div>
-    </div>
-</div>
-
-<br />
-<div class="text-center">
-    <h4 class="display-4"> Chart</h4>
-    <h3><a href="~/Home/Index">Back</a></h3>
-    <div class="card">
-        <div class="card-header">
-            <div class="chart">
-                <canvas id="timesBorrowed"></canvas>
-            </div>
-        </div>
-    </div>
-    </div>-->
-
+				<div>
+					<button type="submit" class="button button-3d mt-2 mt-sm-0 me-0 alignleft" value="Admin Page"><h4><a href="~/Administration">Admin Page</a></h4></button>
+				</div>
+			</div>
+		</div>
+	</section>
 	<!-- JavaScripts
 	============================================= -->
 	<script src="/js/jquery.js"></script>
@@ -107,173 +90,173 @@
 	============================================= -->
 	<script src="/js/functions.js"></script>
 
-<!--Do not touch anything below me-->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"
-        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-        crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
-<script>
+	<!--Do not touch anything below me-->
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+			integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+			crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
+	<script>
 
-    var doughnutchartCanvas = document.getElementById("doughnutchart");
-    var timesBorrowedCanvas = document.getElementById("timesBorrowed");
+		var doughnutchartCanvas = document.getElementById("doughnutchart");
+		var timesBorrowedCanvas = document.getElementById("timesBorrowed");
 
-         var bookCategory = [];
-     var score = [];
-
-    
-        @foreach(var item in Model)
-        {
-            @:bookCategory.push('@item.Name');
-            @:score.push(@item.total);
-        }
-    
+		var bookCategory = [];
+		var score = [];
 
 
-    var doughnutChart = new Chart(doughnutchartCanvas, {
-        type: 'pie',
-        data: {
-            labels: bookCategory,
-        datasets: [{
-            data: score,
-            borderWidth: 0,
-            backgroundColor: [
-                        'rgb(54, 162, 235)',
-                'rgb(255, 99, 132)',
-                'rgb(157, 230, 41)',
-                'rgb(41, 224, 230)',
-                'rgb(255, 255, 0)'
-            ],
-            hoverBackgroundColor: [
-                        'rgb(54, 162, 235)',
-                'rgb(255, 99, 132)',
-                'rgb(157, 230, 41)',
-                'rgb(41, 224, 230)',
-                'rgb(255, 255, 0)'
-            ]
-        }]
-    },
-        options: {
-            responsive:true,
-            legend: {
-                position: "bottom",
-                labels: {
-                    boxWidth: 11,
-                    fontColor: "#757681",
-                    fontSize: 11
-                }
-            }
-        }
-    });
+		@foreach (var item in Model)
+		{
+			@:bookCategory.push('@item.Name');
+			@:score.push(@item.total);
+		}
 
 
 
-
-    var label = [];
-    var sumBorrowed = [];
-
-
-    @foreach (var item in Model)
-    {
-        @:label.push('@item.Name');
-        @:sumBorrowed.push(@item.numTimesBorrowed);
-    }
-
-
-        var chart2 = new Chart(timesBorrowedCanvas, {
-        type: 'doughnut',
-        data: {
-            labels: label,
-            datasets: [{
-                data: sumBorrowed,
-                borderWidth: 0,
-                backgroundColor: [
-                    'rgb(255, 99, 132)',
-                    'rgb(54, 162, 235)',
-                    'rgb(157, 230, 41)',
-                    'rgb(41, 224, 230)',
-                    'rgb(255, 255, 0)'
-                ],
-                hoverBackgroundColor: [
-                    'rgb(255, 99, 132)',
-                    'rgb(54, 162, 235)',
-                    'rgb(157, 230, 41)',
-                    'rgb(41, 224, 230)',
-                    'rgb(255, 255, 0)'
-                ]
-            }]
-        },
-        options: {
-            responsive: true,
-            legend: {
-                position: "bottom",
-                labels: {
-                    boxWidth: 11,
-                    fontColor: "#757681",
-                    fontSize: 11
-                }
-            }
-        }
-    });
+									var doughnutChart = new Chart(doughnutchartCanvas, {
+			type: 'pie',
+			data: {
+				labels: bookCategory,
+				datasets: [{
+					data: score,
+					borderWidth: 0,
+					backgroundColor: [
+						'rgb(54, 162, 235)',
+						'rgb(255, 99, 132)',
+						'rgb(157, 230, 41)',
+						'rgb(41, 224, 230)',
+						'rgb(255, 255, 0)'
+					],
+					hoverBackgroundColor: [
+						'rgb(54, 162, 235)',
+						'rgb(255, 99, 132)',
+						'rgb(157, 230, 41)',
+						'rgb(41, 224, 230)',
+						'rgb(255, 255, 0)'
+					]
+				}]
+			},
+			options: {
+				responsive: true,
+				legend: {
+					position: "bottom",
+					labels: {
+						boxWidth: 11,
+						fontColor: "#757681",
+						fontSize: 11
+					}
+				}
+			}
+		});
 
 
 
-       
-    var labels = [];
-    var totals = [];
-  @{
-            var myArray = (string[])ViewData["Months"];
-            var myArray2 = (double[])ViewData["Totals"];
 
-  } 
-
-    @foreach (var item in myArray)
-    {
-        @:labels.push('@item');
-    }
+		var label = [];
+		var sumBorrowed = [];
 
 
-        @foreach (var item in myArray2)
-        {
-            @:totals.push('@item');
-        }
+		@foreach (var item in Model)
+		{
+			@:label.push('@item.Name');
+			@:sumBorrowed.push(@item.numTimesBorrowed);
+		}
+
+
+										var chart2 = new Chart(timesBorrowedCanvas, {
+			type: 'doughnut',
+			data: {
+				labels: label,
+				datasets: [{
+					data: sumBorrowed,
+					borderWidth: 0,
+					backgroundColor: [
+						'rgb(255, 99, 132)',
+						'rgb(54, 162, 235)',
+						'rgb(157, 230, 41)',
+						'rgb(41, 224, 230)',
+						'rgb(255, 255, 0)'
+					],
+					hoverBackgroundColor: [
+						'rgb(255, 99, 132)',
+						'rgb(54, 162, 235)',
+						'rgb(157, 230, 41)',
+						'rgb(41, 224, 230)',
+						'rgb(255, 255, 0)'
+					]
+				}]
+			},
+			options: {
+				responsive: true,
+				legend: {
+					position: "bottom",
+					labels: {
+						boxWidth: 11,
+						fontColor: "#757681",
+						fontSize: 11
+					}
+				}
+			}
+		});
 
 
 
-                        var chart3 = new Chart(revenueChart, {
-            type: 'line',
-            data: {
-                labels: labels,
-                datasets: [{
-                    data: totals,
-                    borderWidth: 0,
-                    backgroundColor: [
-                        'rgb(255, 99, 132)',
-                        'rgb(54, 162, 235)',
-                        'rgb(157, 230, 41)',
-                        'rgb(41, 224, 230)',
-                        'rgb(255, 255, 0)'
-                    ],
-                    hoverBackgroundColor: [
-                        'rgb(255, 99, 132)',
-                        'rgb(54, 162, 235)',
-                        'rgb(157, 230, 41)',
-                        'rgb(41, 224, 230)',
-                        'rgb(255, 255, 0)'
-                    ]
-                }]
-            },
-            options: {
-                responsive: true,
-                legend: {
-                    position: "bottom",
-                    labels: {
-                        boxWidth: 11,
-                        fontColor: "#757681",
-                        fontSize: 11
-                    }
-                }
-            }
-        });
-</script>
+
+		var labels = [];
+		var totals = [];
+		@{
+			var myArray = (string[])ViewData["Months"];
+			var myArray2 = (double[])ViewData["Totals"];
+
+		}
+
+		@foreach (var item in myArray)
+		{
+			@:labels.push('@item');
+		}
+
+
+		@foreach (var item in myArray2)
+		{
+			@:totals.push('@item');
+		}
+
+
+
+														var chart3 = new Chart(revenueChart, {
+			type: 'line',
+			data: {
+				labels: labels,
+				datasets: [{
+					data: totals,
+					borderWidth: 0,
+					backgroundColor: [
+						'rgb(255, 99, 132)',
+						'rgb(54, 162, 235)',
+						'rgb(157, 230, 41)',
+						'rgb(41, 224, 230)',
+						'rgb(255, 255, 0)'
+					],
+					hoverBackgroundColor: [
+						'rgb(255, 99, 132)',
+						'rgb(54, 162, 235)',
+						'rgb(157, 230, 41)',
+						'rgb(41, 224, 230)',
+						'rgb(255, 255, 0)'
+					]
+				}]
+			},
+			options: {
+				responsive: true,
+				legend: {
+					position: "bottom",
+					labels: {
+						boxWidth: 11,
+						fontColor: "#757681",
+						fontSize: 11
+					}
+				}
+			}
+		});
+	</script>
 </body>
 </html>

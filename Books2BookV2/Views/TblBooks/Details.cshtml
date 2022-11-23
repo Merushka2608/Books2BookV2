@@ -49,8 +49,6 @@
 				<div class="row justify-content-between">
 					<div class="col-12 col-md-auto">
 
-						<a href="#" class="button button-mini button-rounded button-dark side-panel-trigger bottommargin">Menu</a>
-
 						<!-- Logo
 						============================================= -->
 						<div id="logo">
@@ -60,83 +58,6 @@
 							<div class="fancy-title title-border">
 								<h1>Books-2-Book</h1>
 							</div>
-						</div>
-						<div id="side-panel" class="dark">
-
-							<div id="side-panel-trigger-close" class="side-panel-trigger"><a href="#"><i class="icon-line-cross"></i></a></div>
-
-							<div class="side-panel-wrap">
-
-								<div class="widget clearfix">
-
-									<h4>Menu</h4>
-
-									<nav class="nav-tree mb-0">
-										<ul>
-											<li>
-												<a href="~/Index"><i class="icon-home"></i>Home</a>
-											</li>
-											<li>
-												<a href="~/TblBooks/Index"><i class="icon-search"></i>Search For Books</a>
-											</li>
-											<li>
-												<a href="~/Shopping"><i class="icon-shopping-cart"></i>Checkout</a>
-											</li>
-											<li>
-												<a href="~/TblImages/Create"><i class="icon-money"></i>Sell Your Books</a>
-											</li>
-											<li>
-												<a href="faqs.html"><i class="icon-question"></i>FAQs</a>
-											</li>
-											<li>
-												<a href="contact.html"><i class="icon-phone2"></i>Contact Us</a>
-												<ul>
-													<li><i class="icon-envelope2"></i></li>
-													<li>books2book@gmail.com</li>
-													<li><i class="icon-phone1"></i>Cell:</li>
-													<li>065 600 1461</li>
-													<li><i class="icon-phone3"></i>Tel:</li>
-													<li>032 943 4831</li>
-												</ul>
-											</li>
-											<li>
-												<a href="contact.html"><i class="icon-map-marker"></i>Follow Us</a>
-												<ul>
-													<li><a href="#"><i class="icon-facebook"></i>Facebook</a></li>
-													<li><a href="#"><i class="icon-github"></i>Github</a></li>
-													<li><a href="#"><i class="icon-linkedin"></i>LinkedIn</a></li>
-													<li><a href="#"><i class="icon-twitter"></i>Twitter</a></li>
-												</ul>
-											</li>
-											<li>
-												<a href="~/About"><i class="icon-book"></i>About</a>
-											</li>
-											<li>
-												<a href="help.html"><i class="icon-question-circle"></i>Help</a>
-											</li>
-											<li>
-												@if (User.IsInRole("Admin"))
-												{
-													<a href="~/StatsDetails/Index"><i class="icon-graph"></i>Statistics</a>
-
-												}
-
-											</li>
-											<li>
-												@if (User.IsInRole("Admin"))
-												{
-													<a href="~/Administration"><i class="icon-pencil"></i>Administration</a>
-
-												}
-
-											</li>
-										</ul>
-									</nav>
-
-								</div>
-
-							</div>
-
 						</div>
 					</div>
 				</div>
@@ -152,7 +73,7 @@
 							<div class="col-sm-8">
 								<div class="card">
 									<div class="card-header">
-										<h1></h1>
+										<h1>@Html.DisplayNameFor(model => model.Title): @Html.DisplayFor(model => model.Title)</h1>
 									</div>
 
 									<div class="card-body text-center">
@@ -216,6 +137,7 @@
 									</form>
 
 								}
+									 <button type="submit" value="Home"><h5><a href="~/Index">Home</a></h5></button>
 
 
 							</div>
